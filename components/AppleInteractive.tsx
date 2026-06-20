@@ -92,38 +92,53 @@ export default function AppleInteractive() {
       <path d="M361.338 756.385L367.356 759.969L367.967 764.021L366.588 766.879L360.569 767.294L358.963 763.146Z" fill="#341208" />
 
       {/* ════════════════════════════════════════════
-          STICKER 1 — 雨 / yǔ   (small, upper-left)
-          Default centre ≈ (583, 1029)
+          STICKER 1 — 雨 / yǔ   (same size as the other two — was undersized
+          and mislocated on the left; Figma has it middle-right)
+          Default centre ≈ (1089, 1200)
       ════════════════════════════════════════════ */}
       <g className="sticker-group">
         {/* v1 – default */}
         <g className="sv1">
-          {/* white drop-shadow */}
-          <path d="M634 1063L578 1081L534 1057L529 1020L548 979H606L633 1007Z" fill="white" opacity="0.55" />
+          {/* white outline (even-odd knockout gives the border) */}
+          <path
+            fillRule="evenodd"
+            d="M1143.70 1093.51L1208.46 1156.58L1196.91 1277.84L1089.34 1319.30L987.80 1268.33L974.15 1191.72L1017.75 1093.51Z
+               M1030.76 1113.51L994.92 1194.24L1005.74 1254.95L1090.41 1297.45L1178.18 1263.63L1187.65 1164.22L1135.57 1113.51Z"
+            fill="white"
+          />
           {/* golden hex */}
-          <path d="M621.723 1055.34L582.82 1070.53L545.29 1051.44L540.495 1024.17L556.381 987.897H602.84L625.92 1010.68Z" fill="#FFDE88" />
+          <path
+            d="M1178.18 1263.63L1090.41 1297.45L1005.74 1254.95L994.92 1194.24L1030.76 1113.51H1135.57L1187.65 1164.22Z"
+            fill="#FFDE88"
+          />
           <text
-            x="583" y="1031"
+            x="1089" y="1200"
             textAnchor="middle"
             dominantBaseline="middle"
             fontFamily="'Noto Serif SC', 'Source Han Serif CN', serif"
             fontWeight="700"
-            fontSize="46"
+            fontSize="90"
             fill="#341208"
           >雨</text>
         </g>
 
         {/* v2 – hover */}
         <g className="sv2">
-          <path d="M660 1094L565 1118L486 1065L484 986L561 928H674L724 1003Z" fill="white" opacity="0.45" />
-          <path d="M647 1087L557 1109L485 1059L483 987L557 932H662L709 1003Z" fill="#FFDE88" />
+          <path
+            d="M985.89 1046.74L1171.41 1046.74L1263.59 1136.50L1246.83 1312.46L1091.47 1372.32L941.61 1297.09L922.46 1189.63Z"
+            fill="white" opacity="0.45"
+          />
+          <path
+            d="M1235.24 1304.21L1091.29 1359.68L952.43 1289.98L934.69 1190.41L993.47 1058.02H1165.36L1250.77 1141.18Z"
+            fill="#FFDE88"
+          />
           <text
-            x="583" y="1031"
+            x="1089" y="1200"
             textAnchor="middle"
             dominantBaseline="middle"
             fontFamily="var(--font-geist-sans), Arial, sans-serif"
             fontWeight="900"
-            fontSize="96"
+            fontSize="118"
             fill="#341208"
           >yǔ</text>
         </g>

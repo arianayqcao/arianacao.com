@@ -1,33 +1,12 @@
+import { Fragment } from "react";
 import Link from "next/link";
-import Image from "next/link";
+import Image from "next/image";
 import AppleInteractive from "@/components/AppleInteractive";
 import SnakeGame from "@/components/SnakeGame";
+import NavApple from "@/components/NavApple";
+import MobileMenuOverlay from "@/components/MobileMenuOverlay";
 
 /* ─── nav ──────────────────────────────────────────────────────── */
-
-function NavApple() {
-  return (
-    <svg width="35" height="32" viewBox="310 665 1090 1015" aria-hidden="true">
-      <path
-        d="M364.579 976.437L358.579 1191.15L364.466 1303.88L530.797 1514.49
-           L690.436 1618.69L809.079 1592.84L809.63 1585.59L917.214 1603.95
-           L1192.93 1544.02L1287.04 1379.23L1384.96 1072.96L1266.79 788.341
-           L1002.06 698.475L862.248 766.717L775.697 798.341L610.917 790.019Z"
-        fill="#F60000"
-      />
-      <path
-        d="M885.567 842.85L802.553 756.906L814.073 757.521L828.922 743.233
-           L915.843 689.518L1083.83 743.233L1165.86 796.948L1225.44 814.527
-           L1119.96 883.869H967.605Z"
-        fill="#93F200"
-      />
-      <path
-        d="M730.353 726.907L759.802 710.876L802.553 789.406L773.104 805.438L732.073 750.225Z"
-        fill="#341208"
-      />
-    </svg>
-  );
-}
 
 const NAV_LINKS = [
   { href: "/work", label: "work" },
@@ -232,7 +211,7 @@ export default function WorkPage() {
           </Link>
 
           {/* centre links */}
-          <div className="flex-1 flex justify-center" style={{ paddingBlock: 8 }}>
+          <div className="hidden md:flex flex-1 justify-center" style={{ paddingBlock: 8 }}>
             <div className="flex" style={{ gap: 32 }}>
               {NAV_LINKS.map(({ href, label }) => (
                 <Link
@@ -258,6 +237,7 @@ export default function WorkPage() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            className="hidden md:inline"
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: 14.1,
@@ -269,6 +249,9 @@ export default function WorkPage() {
           >
             Resume
           </a>
+
+          {/* mobile menu */}
+          <MobileMenuOverlay />
         </nav>
       </header>
 
@@ -280,20 +263,19 @@ export default function WorkPage() {
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section
-          className="flex items-center justify-center w-full"
-          style={{ padding: "32px 16px" }}
+          className="flex items-center justify-center w-full min-h-[100dvh] md:min-h-0"
+          style={{ padding: "16px" }}
         >
           <div
-            className="flex flex-col items-center"
-            style={{ width: 649, maxWidth: "100%", gap: 24 }}
+            className="flex flex-col items-center gap-16 md:gap-6"
+            style={{ width: 649, maxWidth: "100%" }}
           >
             <h1
+              className="text-[96px] leading-[64px] md:text-[length:var(--text-4xl)] md:leading-[var(--leading-tight)]"
               style={{
                 fontFamily: "var(--font-primary)",
-                fontSize: "var(--text-4xl)",
                 fontWeight: "var(--weight-black)",
                 color: "var(--color-heading)",
-                lineHeight: "var(--leading-tight)",
                 width: "100%",
               }}
             >
@@ -315,10 +297,10 @@ export default function WorkPage() {
             style={{ width: 695, maxWidth: "100%", gap: 24 }}
           >
             <p
+              className="text-[28px] md:text-[length:var(--text-2xl)]"
               style={{
                 fontFamily: "var(--font-primary)",
                 fontWeight: "var(--weight-bold)",
-                fontSize: "var(--text-2xl)",
                 color: "#000",
                 lineHeight: "normal",
                 margin: 0,
@@ -383,7 +365,7 @@ export default function WorkPage() {
         >
           <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
             {CASE_STUDIES.map((row, ri) => (
-              <div key={ri} className="flex w-full" style={{ gap: 16 }}>
+              <div key={ri} className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
                 {row.map((study, ci) => (
                   <CaseStudyCard
                     key={study.title}
@@ -401,7 +383,7 @@ export default function WorkPage() {
           className="flex flex-col items-start w-full"
           style={{ padding: 16 }}
         >
-          <div className="flex items-start w-full" style={{ gap: 16 }}>
+          <div className="flex flex-col md:flex-row items-start w-full" style={{ gap: 16 }}>
             {/* text */}
             <div
               className="flex flex-col flex-1 min-w-0 self-stretch"
@@ -444,14 +426,14 @@ export default function WorkPage() {
             </div>
 
             {/* 1/3 spacer */}
-            <div className="self-stretch shrink-0 bg-white" style={{ width: 223 }} />
+            <div className="hidden md:block self-stretch shrink-0 bg-white" style={{ width: 223 }} />
 
             {/* photo */}
             <div
-              className="flex-1 min-w-0 relative rounded-lg overflow-hidden"
+              className="w-full md:flex-1 md:min-w-0 relative rounded-lg overflow-hidden"
               style={{ aspectRatio: "346 / 448" }}
             >
-              <Image src="/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
+              <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
             </div>
           </div>
         </section>
@@ -494,18 +476,17 @@ export default function WorkPage() {
           className="flex flex-col items-start w-full"
           style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
         >
-          <div className="flex items-start w-full" style={{ gap: 64 }}>
+          <div className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16">
             {/* left: grid + loves */}
-            <div className="flex flex-1 min-w-0" style={{ gap: 32 }}>
+            <div className="flex flex-col md:flex-row flex-1 min-w-0 w-full" style={{ gap: 32 }}>
               {/* practices / toolkit grid */}
               <div
+                className="w-full md:w-[299px] shrink-0"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                   columnGap: 32,
                   rowGap: 16,
-                  width: 299,
-                  flexShrink: 0,
                 }}
               >
                 {/* headers */}
@@ -536,9 +517,8 @@ export default function WorkPage() {
 
                 {/* rows */}
                 {PRACTICES.map(({ label, tools }) => (
-                  <>
+                  <Fragment key={label}>
                     <span
-                      key={label + "-label"}
                       style={{
                         fontFamily: "var(--font-primary)",
                         fontWeight: "var(--weight-regular)",
@@ -550,7 +530,6 @@ export default function WorkPage() {
                       {label}
                     </span>
                     <div
-                      key={label + "-tools"}
                       className="flex flex-col"
                       style={{
                         fontFamily: "var(--font-primary)",
@@ -564,12 +543,12 @@ export default function WorkPage() {
                         <span key={t}>{t}</span>
                       ))}
                     </div>
-                  </>
+                  </Fragment>
                 ))}
               </div>
 
               {/* loves */}
-              <div className="flex flex-col shrink-0" style={{ gap: 16, width: 145 }}>
+              <div className="flex flex-col w-full md:w-[145px] shrink-0" style={{ gap: 16 }}>
                 <span
                   style={{
                     fontFamily: "var(--font-mono)",
@@ -601,8 +580,8 @@ export default function WorkPage() {
 
             {/* portrait */}
             <div
-              className="relative rounded-lg overflow-hidden shrink-0"
-              style={{ width: 411, height: 546 }}
+              className="relative rounded-lg overflow-hidden shrink-0 w-full md:w-[411px]"
+              style={{ aspectRatio: "411 / 546" }}
             >
               <Image src="/images/lilies.png" alt="Lilies" fill className="object-cover" />
             </div>
@@ -622,9 +601,9 @@ export default function WorkPage() {
         }}
       >
         {/* ── CTA + nav links ──────────────────────────────────── */}
-        <div className="flex items-start justify-between w-full shrink-0">
+        <div className="flex flex-col md:flex-row items-start justify-between w-full shrink-0 gap-8 md:gap-0">
           {/* left: heading + tagline */}
-          <div className="flex flex-col shrink-0" style={{ width: 340, gap: 19 }}>
+          <div className="flex flex-col shrink-0 w-full md:w-[340px]" style={{ gap: 19 }}>
             <h2
               style={{
                 fontFamily: "var(--font-primary)",
