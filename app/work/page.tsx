@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import AppleInteractive from "@/components/AppleInteractive";
 import SnakeGame from "@/components/SnakeGame";
 
