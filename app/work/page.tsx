@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+
 import AppleInteractive from "@/components/AppleInteractive";
 import SnakeGame from "@/components/SnakeGame";
 
@@ -452,27 +452,6 @@ export default function WorkPage() {
               style={{ aspectRatio: "346 / 448" }}
             >
               <Image src="/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(160deg, #d4e8c2 0%, #8cb878 40%, #4a7c3f 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "rgba(255,255,255,0.5)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  Photo
-                </span>
-              </div>
             </div>
           </div>
         </section>
@@ -626,27 +605,6 @@ export default function WorkPage() {
               style={{ width: 411, height: 546 }}
             >
               <Image src="/images/lilies.png" alt="Lilies" fill className="object-cover" />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(160deg, #f5e6c8 0%, #e8c68a 50%, #c4a265 100%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "rgba(0,0,0,0.3)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  Photo
-                </span>
-              </div>
             </div>
           </div>
         </section>
