@@ -188,9 +188,14 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
 /* ─── logo strip ────────────────────────────────────────────────── */
 
 const LOGOS = [
-  "Figma", "Adobe CC", "Blender", "After Effects",
-  "React", "Next.js", "GSAP", "Tailwind CSS",
-  "Jitter", "Lovable", "Notion", "GitHub",
+  { name: "Figma", src: "/logos/Figma-logo-lockup.jpg" },
+  { name: "Adobe CC", src: "/logos/Adobe_Creative_Cloud_rainbow_icon.svg" },
+  { name: "Blender", src: "/logos/Logo_Blender.svg" },
+  { name: "React", src: "/logos/reactjs_logo_icon_170805.svg" },
+  { name: "Tailwind CSS", src: "/logos/Tailwind_CSS_logo_with_dark_text.svg" },
+  { name: "Jitter", src: "/logos/Jitter_logo.png" },
+  { name: "Lovable", src: "/logos/lovable-dark-png.png" },
+  { name: "Notion", src: "/logos/logoblack.svg" },
 ];
 
 /* ─── skills data ───────────────────────────────────────────────── */
@@ -486,21 +491,19 @@ export default function WorkPage() {
                 width: "max-content",
               }}
             >
-              {[...LOGOS, ...LOGOS].map((name, i) => (
-                <span
+              {[...LOGOS, ...LOGOS].map(({ name, src }, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
                   key={i}
+                  src={src}
+                  alt={name}
                   style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "rgba(0,0,0,0.35)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    whiteSpace: "nowrap",
+                    height: 28,
+                    width: "auto",
+                    opacity: 0.5,
                     userSelect: "none",
                   }}
-                >
-                  {name}
-                </span>
+                />
               ))}
             </div>
           </div>
