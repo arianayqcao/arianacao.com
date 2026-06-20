@@ -54,7 +54,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         "Designing civic action tools that mobilize student volunteers for community service.",
       href: "/work/spur",
       coverStyle: {
-        backgroundImage: 'url("/Spur - Cover Image - Case Study.png")',
+        backgroundImage: 'url("/public/Case Study Cover Images/Spur - Cover Image - Case Study.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
@@ -66,7 +66,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         "Designing cooking-themed annual website for largest hackathon in the Pacific Northwest.",
       href: "/work/dubhacks-2026",
       coverStyle: {
-        backgroundImage: 'url("/DubHacks 2026 - Cover Image - Case Study.png")',
+        backgroundImage: 'url("/public/Case Study Cover Images/DubHacks 2026 - Cover Image - Case Study.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
@@ -80,7 +80,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
       href: "/work/cura",
       coverStyle: {
-        backgroundImage: 'url("/Cura - Cover Image - Case Study.png")',
+        backgroundImage: 'url("/public/Case Study Cover Images/Cura - Cover Image - Case Study.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
@@ -92,7 +92,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         "Redesigning the DubCoin experience and DubCoin distribution system.",
       href: "/work/dubcoin-system",
       coverStyle: {
-        backgroundImage: 'url("/DubCoin Reward System - Cover Image - Case Study.png")',
+        backgroundImage: 'url("/public/Case Study Cover Images/DubCoin Reward System - Cover Image - Case Study.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
@@ -105,7 +105,7 @@ const CASE_STUDIES: CaseStudy[][] = [
       description: "Redesigned local family business's restaurant website.",
       href: "/work/lilys",
       coverStyle: {
-        backgroundImage: 'url("/Lily\'s Salvadorean - Cover Image - Case Study.png")',
+        backgroundImage: 'url("/public/Case Study Cover Images/Lily\'s Salvadorean - Cover Image - Case Study.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
@@ -117,7 +117,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         "Led website design and prototyping for DubHacks 2025, supporting 1,100+ participants.",
       href: "/work/dubhacks-2025",
       coverStyle: {
-        backgroundImage: 'url("/DubHacks 2025 - Cover Image - Case Study.png")',
+        backgroundImage: 'url("/public/Case Study Cover Images/DubHacks 2025 - Cover Image - Case Study.png")',
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
