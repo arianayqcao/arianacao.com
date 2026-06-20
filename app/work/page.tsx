@@ -450,7 +450,7 @@ export default function WorkPage() {
               className="flex-1 min-w-0 relative rounded-lg overflow-hidden"
               style={{ aspectRatio: "346 / 448" }}
             >
-              {/* Replace with: <Image src="/images/about-photo.jpg" alt="Ariana Cao" fill className="object-cover" /> */}
+              {<Image src="public\image of ariana holding flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />}
               <div
                 className="absolute inset-0"
                 style={{
