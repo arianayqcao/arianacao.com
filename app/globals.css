@@ -5,3 +5,12 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* Play page: explicit two-column placement only kicks in at md+,
+   so the same DOM order reads top-to-bottom on mobile. */
+@media (min-width: 768px) {
+  .play-grid-item {
+    grid-column: var(--play-col);
+    grid-row: var(--play-row);
+  }
+}

@@ -53,9 +53,10 @@
      font weights
   ------------------------------------------- */
 
-  --weight-regular: 400;
-  --weight-bold:    700;
-  --weight-black:   900; /* Hanken Grotesk Black — hero display */
+  --weight-regular:  400;
+  --weight-semibold: 600; /* Hanken Grotesk SemiBold — play card titles */
+  --weight-bold:     700;
+  --weight-black:    900; /* Hanken Grotesk Black — hero display */
 
 
   /* -------------------------------------------
