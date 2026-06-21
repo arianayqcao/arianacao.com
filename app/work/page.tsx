@@ -313,6 +313,7 @@ export default function WorkPage() {
               >
                 quietly delightful
               </span>
+              .
             </p>
           </div>
         </section>
