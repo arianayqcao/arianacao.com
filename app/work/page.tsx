@@ -226,31 +226,7 @@ export default function WorkPage() {
         </section>
 
         {/* ── BIO ──────────────────────────────────────────────── */}
-        <section
-          className="flex flex-col items-center w-full"
-          style={{ padding: 16 }}
-        >
-          <div
-            className="flex flex-col"
-            style={{ width: 695, maxWidth: "100%", gap: 24 }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "var(--text-md)",
-                color: "rgba(0,0,0,0.7)",
-                lineHeight: "normal",
-                margin: 0,
-                fontStyle: "normal",
-              }}
-            >
-              Based in Seattle, WA.{"\n"}
-              Constantly collecting free magazines, making tea.
-            </p>
-          </div>
-        </section>
 
-        {/* ── CASE STUDIES ─────────────────────────────────────── */}
         <section
           className="flex items-start justify-center w-full"
           style={{ padding: 16 }}
@@ -311,6 +287,30 @@ export default function WorkPage() {
                 quietly delightful
               </span>
               .
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="flex flex-col items-center w-full"
+          style={{ padding: 16 }}
+        >
+          <div
+            className="flex flex-col"
+            style={{ width: 695, maxWidth: "100%", gap: 24 }}
+          >
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-md)",
+                color: "rgba(0,0,0,0.7)",
+                lineHeight: "normal",
+                margin: 0,
+                fontStyle: "normal",
+              }}
+            >
+              Based in Seattle, WA.{"\n"}
+              Constantly collecting free magazines, making tea.
             </p>
           </div>
         </section>
