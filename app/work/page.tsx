@@ -258,7 +258,8 @@ export default function WorkPage() {
           className="flex items-start justify-center w-full"
           style={{ padding: 16 }}
         >
-          <div classNam            <p
+          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+            <p
               className="text-[28px] md:text-[length:var(--text-2xl)]"
               style={{
                 fontFamily: "var(--font-primary)",
@@ -311,7 +312,17 @@ export default function WorkPage() {
                 }}
               >
                 quietly delightful
-              </span>e="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+              </span>
+            </p>
+          </div>
+        </section>
+
+        {/* ── CASE STUDIES ─────────────────────────────────────── */}
+        <section
+          className="flex items-start justify-center w-full"
+          style={{ padding: 16 }}
+        >
+          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
             {CASE_STUDIES.map((row, ri) => (
               <div key={ri} className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
                 {row.map((study, ci) => (
