@@ -266,12 +266,12 @@ export default function WorkPage() {
                 margin: 0,
               }}
             >
-              Ariana is a 
+              Ariana is a&nbsp;
               <br className="md:hidden" />
-              product designer with a passion for 
+              product designer with a passion for&nbsp;
               <br className="md:hidden" />
               crafting magical
-              experiences 
+              experiences&nbsp;
               <br className="md:hidden" />
               that feel{" "}
               <br className="md:hidden" />
@@ -297,7 +297,7 @@ export default function WorkPage() {
               >
                 inclusive
               </span>
-              , 
+              ,&nbsp;
               <br className="md:hidden" />
               and{" "}
               <span
