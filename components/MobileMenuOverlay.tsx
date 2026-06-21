@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import NavApple from "@/components/NavApple";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { href: "/work", label: "work" },
@@ -58,7 +58,7 @@ export default function MobileMenuOverlay() {
           {/* top row: logo + close */}
           <div className="flex items-center justify-between w-full shrink-0">
             <Link href="/" className="flex items-center" style={{ padding: 8 }} onClick={() => setOpen(false)}>
-              <NavApple />
+              <Image src="/images/apple_logo.svg" alt="Apple Logo" width={40} height={40} />
             </Link>
             <button
               type="button"
