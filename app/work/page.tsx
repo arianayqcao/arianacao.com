@@ -228,10 +228,11 @@ export default function WorkPage() {
         {/* ── BIO ──────────────────────────────────────────────── */}
 
         <section
-          className="flex items-start justify-center w-full"
+          className="flex flex-col items-center w-full"
           style={{ padding: 16 }}
         >
-          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+          
+                    <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
             <p
               className="text-[28px] md:text-[length:var(--text-2xl)]"
               style={{
@@ -289,12 +290,7 @@ export default function WorkPage() {
               .
             </p>
           </div>
-        </section>
 
-        <section
-          className="flex flex-col items-center w-full"
-          style={{ padding: 16 }}
-        >
           <div
             className="flex flex-col"
             style={{ width: 695, maxWidth: "100%", gap: 24 }}
