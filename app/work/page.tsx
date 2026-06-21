@@ -234,50 +234,7 @@ export default function WorkPage() {
             className="flex flex-col"
             style={{ width: 695, maxWidth: "100%", gap: 24 }}
           >
-            <p
-              className="text-[28px] md:text-[length:var(--text-2xl)]"
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontWeight: "var(--weight-bold)",
-                color: "#000",
-                lineHeight: "normal",
-                margin: 0,
-              }}
-            >
-              Ariana is a product designer with a passion for crafting magical
-              experiences that feel{" "}
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "#7bc100",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                intuitive
-              </span>
-              ,{" "}
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "#93f200",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                inclusive
-              </span>
-              , and{" "}
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "red",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                quietly delightful
-              </span>
+
               .
             </p>
             <p
@@ -301,7 +258,60 @@ export default function WorkPage() {
           className="flex items-start justify-center w-full"
           style={{ padding: 16 }}
         >
-          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+          <div classNam            <p
+              className="text-[28px] md:text-[length:var(--text-2xl)]"
+              style={{
+                fontFamily: "var(--font-primary)",
+                fontWeight: "var(--weight-bold)",
+                color: "#000",
+                lineHeight: "normal",
+                margin: 0,
+              }}
+            >
+              Ariana is a 
+              <br className="md:hidden" />
+              product designer with a passion for 
+              <br className="md:hidden" />
+              crafting magical
+              experiences 
+              <br className="md:hidden" />
+              that feel{" "}
+              <br className="md:hidden" />
+              <span
+                style={{
+                  textDecoration: "underline",
+                  textDecorationColor: "#7bc100",
+                  textDecorationThickness: "12%",
+                  textDecorationSkipInk: "none",
+                }}
+              >
+                intuitive
+              </span>
+              ,{" "}
+              <br className="md:hidden" />
+              <span
+                style={{
+                  textDecoration: "underline",
+                  textDecorationColor: "#93f200",
+                  textDecorationThickness: "12%",
+                  textDecorationSkipInk: "none",
+                }}
+              >
+                inclusive
+              </span>
+              , 
+              <br className="md:hidden" />
+              and{" "}
+              <span
+                style={{
+                  textDecoration: "underline",
+                  textDecorationColor: "red",
+                  textDecorationThickness: "12%",
+                  textDecorationSkipInk: "none",
+                }}
+              >
+                quietly delightful
+              </span>e="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
             {CASE_STUDIES.map((row, ri) => (
               <div key={ri} className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
                 {row.map((study, ci) => (
