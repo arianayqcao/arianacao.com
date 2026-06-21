@@ -234,9 +234,6 @@ export default function WorkPage() {
             className="flex flex-col"
             style={{ width: 695, maxWidth: "100%", gap: 24 }}
           >
-
-              .
-            </p>
             <p
               style={{
                 fontFamily: "var(--font-mono)",

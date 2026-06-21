@@ -143,6 +143,9 @@
   --primitive-green:        #7bc100;   /* "intuitive" underline */
   --primitive-lime:         #93f200;   /* "inclusive" underline */
   --primitive-red:          #ff0000;   /* "quietly delightful" underline */
+  --primitive-rose:         #e92063;   /* Figma: var(--color/rose/52) — DubCoin case study accent */
+  --primitive-grey-94:      #f1f0ee;   /* Figma: var(--color/grey/94) — quote card bg */
+  --primitive-grey-96:      #f5f5f5;   /* Figma: var(--color/grey/96) — case study footer bg */
 
   /* alpha variants */
   --primitive-black-10:     rgba(0, 0, 0, 0.1);  /* card border (Figma: border-[rgba(0,0,0,0.1)]) */
@@ -178,6 +181,7 @@
   --color-accent-intuitive:  var(--primitive-green);
   --color-accent-inclusive:  var(--primitive-lime);
   --color-accent-delightful: var(--primitive-red);
+  --color-accent-rose:       var(--primitive-rose);
 
   /* borders */
   --color-border:        var(--primitive-black-10);
