@@ -124,7 +124,7 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
       </Link>
 
       {/* description */}
-      <div className="flex flex-col shrink-0 w-full" data-cursor="text-regular"} style={{ gap: 4 }}>
+      <div className="flex flex-col shrink-0 w-full" data-cursor="text-regular" style={{ gap: 4 }}>
         <span
           style={{
             fontFamily: "var(--font-mono)",
