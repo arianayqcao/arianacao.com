@@ -242,9 +242,11 @@ export default function WorkPage() {
         >
           
           <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+            {/* Ariana is a product designer with a passion for crafting magical experiences that feel 
+                intuitive, inclusive, and quietly delightful. */}
             <p
               className="text-[28px] md:text-[length:var(--text-2xl)]"
-              data-cursor="text-large"
+              data-cursor="text-medium"
               style={{
                 fontFamily: "var(--font-primary)",
                 fontWeight: "var(--weight-bold)",
@@ -253,14 +255,8 @@ export default function WorkPage() {
                 margin: 0,
               }}
             >
-              Ariana is a&nbsp;
-              <br className="md:hidden" />
-              product designer with a passion for&nbsp;
-              <br className="md:hidden" />
-              crafting magical
-              experiences&nbsp;
-              <br className="md:hidden" />
-              that feel{" "}
+              Ariana is a product designer with a passion for crafting magical
+              experiences & that feel{" "}
               <br className="md:hidden" />
               <span
                 style={{

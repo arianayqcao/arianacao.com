@@ -14,6 +14,7 @@ export type CursorVariant =
   | "view-case-study"
   | "coming-soon"
   | "text-large"
+  | "text-medium"
   | "text-regular";
 
 const CURSOR_VARIANTS: readonly CursorVariant[] = [
@@ -22,6 +23,7 @@ const CURSOR_VARIANTS: readonly CursorVariant[] = [
   "view-case-study",
   "coming-soon",
   "text-large",
+  "text-medium",
   "text-regular",
 ];
 
@@ -37,7 +39,8 @@ const PILL_LABEL: Partial<Record<CursorVariant, string>> = {
 const PILL_VARIANTS = new Set<CursorVariant>(["view-case-study", "coming-soon"]);
 const BAR_SIZE: Partial<Record<CursorVariant, { width: number; height: number }>> = {
   "text-large": { width: 4, height: 128 },
-  "text-regular": { width: 1, height: 64 },
+  "text-medium": { width: 3, height: 64 },
+  "text-regular": { width: 2, height: 32 },
 };
 
 function subscribeFinePointer(callback: () => void) {
