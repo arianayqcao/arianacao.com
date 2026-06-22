@@ -202,6 +202,7 @@ export default function SnakeGame() {
               fill="#93F200"
             />
           </svg>
+          {/* score */}
           <span
             style={{
               fontFamily: "var(--font-primary)",
@@ -216,7 +217,10 @@ export default function SnakeGame() {
           </span>
         </div>
 
+        {/* controls */}
+
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          {/* mute button */}
           <button
             onClick={() => setMuted((m) => !m)}
             aria-label={muted ? "Unmute" : "Mute"}
@@ -239,20 +243,6 @@ export default function SnakeGame() {
                   <path d="M20 6C22 8 23 10.5 23 13s-1 5-3 7" />
                 </>
               )}
-            </svg>
-          </button>
-          <button
-            onClick={startGame}
-            aria-label="Restart game"
-            style={{
-              background: "none", border: "none", cursor: "pointer",
-              opacity: 0.6, color: "white", padding: 0, lineHeight: 0,
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-              stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <line x1="2" y1="2" x2="16" y2="16" />
-              <line x1="16" y1="2" x2="2" y2="16" />
             </svg>
           </button>
         </div>
