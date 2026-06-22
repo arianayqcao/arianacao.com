@@ -242,8 +242,8 @@ export default function WorkPage() {
         >
 
           <div
-            className="flex flex-col"
-            style={{ width: 695, maxWidth: "100%", gap: 24 }}
+            className="flex flex-col w-1/2"
+            style={{ maxWidth: "100%", gap: 24 }}
           >
             {/* Ariana is a product designer with a passion for crafting magical experiences that feel 
                 intuitive, inclusive, and quietly delightful. */}

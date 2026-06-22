@@ -94,4 +94,4 @@ export const CardTitle = (p: AliasProps) => <Text variant="card-title" {...p} />
 export const Body      = (p: AliasProps) => <Text variant="body"       {...p} />;
 export const Nav       = (p: AliasProps) => <Text variant="nav"        {...p} />;
 export const Label     = (p: AliasProps) => <Text variant="label"      {...p} />;
-export const Meta      = (p: AliasProps) => <Text variant="meta"       {...p} />;
+export const Meta      = (p: AliasProps) => <Text variant="meta"       {...p} />;H2
