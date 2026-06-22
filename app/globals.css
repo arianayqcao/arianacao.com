@@ -6,6 +6,14 @@
   to   { transform: translateX(-50%); }
 }
 
+/* Custom cursor: native cursor is hidden only once JS confirms a fine
+   pointer is present (see components/CustomCursor.tsx), so touch devices
+   and no-JS fallbacks keep the default cursor. */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
 /* Play page: explicit two-column placement only kicks in at md+,
    so the same DOM order reads top-to-bottom on mobile. */
 @media (min-width: 768px) {

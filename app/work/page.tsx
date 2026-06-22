@@ -101,6 +101,7 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
     <div className="flex flex-col flex-1 min-w-0 overflow-clip" style={{ gap: 16 }}>
       <Link
         href={study.href}
+        data-cursor="view-case-study"
         className="flex flex-col overflow-clip rounded-lg shrink-0 w-full"
         style={{
           height: 450,
