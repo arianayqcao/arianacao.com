@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, SplitText, useGSAP } from "@/lib/gsap";
+import { gsap, SplitText, useGSAP, INTRO_REVEAL_DELAY } from "@/lib/gsap";
 
 /**
  * Character-reveal heading for the work-page hero. Starts at 1.6s so it
@@ -26,7 +26,7 @@ export default function HeroTitleReveal({ text }: { text: string }) {
         duration: 0.6,
         ease: "circ.out",
         stagger: 0.02,
-        delay: 1.6,
+        delay: INTRO_REVEAL_DELAY,
       });
 
       return () => split.revert();

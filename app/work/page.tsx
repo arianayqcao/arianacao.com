@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AppleInteractive from "@/components/AppleInteractive";
 import HeroTitleReveal from "@/components/HeroTitleReveal";
+import ScrambleBioText from "@/components/ScrambleBioText";
 import SiteHeader, { NAV_LINKS } from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 
@@ -289,20 +290,9 @@ export default function WorkPage() {
               .
             </p>
 
-            <p
-              data-cursor="text-regular"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "var(--text-md)",
-                color: "rgba(0,0,0,0.7)",
-                lineHeight: "normal",
-                margin: 0,
-                fontStyle: "normal",
-              }}
-            >
-              Based in Seattle, WA.{"\n"}
-              Constantly collecting free magazines, making tea.
-            </p>
+            <ScrambleBioText
+              text={"Based in Seattle, WA.\nConstantly collecting free magazines, making tea."}
+            />
           </div>
         </section>
 
