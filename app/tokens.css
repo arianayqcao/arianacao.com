@@ -186,9 +186,12 @@
   --color-accent-rose:       var(--primitive-rose);
 
   /* custom cursor */
-  --color-cursor-default:  var(--primitive-lime);   /* green circle */
-  --color-cursor-stop:     var(--primitive-apple-red);  /* red circle */
-  --color-cursor-disabled: var(--primitive-lime-50);    /* "coming soon" pill */
+  --color-cursor-default:     var(--primitive-lime);
+  --color-cursor-stop:        var(--primitive-apple-red);
+  --color-cursor-disabled:    var(--primitive-lime-50);
+  --color-cursor-text-sm:     var(--primitive-lime);      /* labels, meta, nav */
+  --color-cursor-text-md:     var(--primitive-lime);      /* body, card titles */
+  --color-cursor-text-lg:     var(--primitive-lime);      /* headings, display */
 
   /* borders */
   --color-border:        var(--primitive-black-10);

@@ -240,8 +240,11 @@ export default function WorkPage() {
           className="flex flex-col items-center w-full"
           style={{ padding: 16 }}
         >
-          
-          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+
+          <div
+            className="flex flex-col"
+            style={{ width: 695, maxWidth: "100%", gap: 24 }}
+          >
             {/* Ariana is a product designer with a passion for crafting magical experiences that feel 
                 intuitive, inclusive, and quietly delightful. */}
             <p
@@ -256,7 +259,7 @@ export default function WorkPage() {
               }}
             >
               Ariana is a product designer with a passion for crafting magical
-              experiences & that feel{" "}
+              experiences that feel{" "}
               <br className="md:hidden" />
               <span
                 style={{
@@ -295,12 +298,7 @@ export default function WorkPage() {
               </span>
               .
             </p>
-          </div>
 
-          <div
-            className="flex flex-col"
-            style={{ width: 695, maxWidth: "100%", gap: 24 }}
-          >
             <p
               data-cursor="text-regular"
               style={{
@@ -350,6 +348,7 @@ export default function WorkPage() {
               style={{ gap: 16 }}
             >
               <h2
+                data-cursor="text-large"
                 style={{
                   fontFamily: "var(--font-primary)",
                   fontWeight: "var(--weight-bold)",
@@ -362,6 +361,7 @@ export default function WorkPage() {
                 Student at UW-Seattle, from the Bay Area.
               </h2>
               <div
+                data-cursor="text-regular"
                 style={{
                   fontFamily: "var(--font-primary)",
                   fontWeight: "var(--weight-regular)",
@@ -441,6 +441,7 @@ export default function WorkPage() {
             <div className="flex flex-col md:flex-row flex-1 min-w-0 w-full" style={{ gap: 32 }}>
               {/* practices / toolkit grid */}
               <div
+                data-cursor="text-regular"
                 className="w-full md:w-[299px] shrink-0"
                 style={{
                   display: "grid",
@@ -509,6 +510,7 @@ export default function WorkPage() {
 
               {/* loves */}
               <div className="flex flex-col w-full md:w-[145px] shrink-0" style={{ gap: 16 }}>
+                data-cursor="text-regular"
                 <span
                   style={{
                     fontFamily: "var(--font-mono)",

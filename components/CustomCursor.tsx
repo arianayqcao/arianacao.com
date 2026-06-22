@@ -2,20 +2,21 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
-/* ─── cursor states ─────────────────────────────────────────────────
-   Figma: node 345-794 (states) / 345-793 (default).
-   Other sections opt into a state by adding a `data-cursor="<variant>"`
-   attribute to the hovered element — no context/provider needed.
+/* ─── cursor variants ───────────────────────────────────────────────
+   Other elements opt in by adding data-cursor="<variant>" — no
+   context/provider needed. Text.tsx imports CursorVariant to keep
+   the two files in sync via the type system.
    ──────────────────────────────────────────────────────────────────── */
 
 export type CursorVariant =
-  | "default"
-  | "stop"
-  | "view-case-study"
-  | "coming-soon"
-  | "text-large"
-  | "text-medium"
-  | "text-regular";
+  | "default"           // 16×16 green circle
+  | "stop"              // 16×16 red circle
+  | "view-case-study"   // pill — "view case study"
+  | "coming-soon"       // pill — "coming soon" (lime/50)
+  | "text-large"        // I-beam 4×128  (display, h2)
+  | "text-medium"       // I-beam 3×64   (h3, card-title)
+  | "text-regular"      // I-beam 2×32   (body, nav)
+  | "text-small";       // I-beam 2×20   (label, meta, eyebrows)
 
 const CURSOR_VARIANTS: readonly CursorVariant[] = [
   "default",
@@ -25,47 +26,56 @@ const CURSOR_VARIANTS: readonly CursorVariant[] = [
   "text-large",
   "text-medium",
   "text-regular",
+  "text-small",
 ];
 
 function isCursorVariant(value: string | null): value is CursorVariant {
   return !!value && (CURSOR_VARIANTS as readonly string[]).includes(value);
 }
 
+/* ─── pill variants ─────────────────────────────────────────────── */
+
 const PILL_LABEL: Partial<Record<CursorVariant, string>> = {
   "view-case-study": "view case study",
-  "coming-soon": "coming soon",
+  "coming-soon":     "coming soon",
 };
 
-const PILL_VARIANTS = new Set<CursorVariant>(["view-case-study", "coming-soon"]);
+const PILL_VARIANTS = new Set<CursorVariant>([
+  "view-case-study",
+  "coming-soon",
+]);
+
+/* ─── I-beam sizes ──────────────────────────────────────────────── */
+
 const BAR_SIZE: Partial<Record<CursorVariant, { width: number; height: number }>> = {
-  "text-large": { width: 4, height: 128 },
-  "text-medium": { width: 3, height: 64 },
+  "text-large":   { width: 4, height: 128 },
+  "text-medium":  { width: 3, height: 64 },
   "text-regular": { width: 2, height: 32 },
+  "text-small":   { width: 2, height: 20 },
 };
+
+/* ─── fine-pointer detection ────────────────────────────────────── */
 
 function subscribeFinePointer(callback: () => void) {
   const mql = window.matchMedia("(pointer: fine)");
   mql.addEventListener("change", callback);
   return () => mql.removeEventListener("change", callback);
 }
+const getFinePointerSnapshot       = () => window.matchMedia("(pointer: fine)").matches;
+const getFinePointerServerSnapshot = () => false;
 
-function getFinePointerSnapshot() {
-  return window.matchMedia("(pointer: fine)").matches;
-}
-
-function getFinePointerServerSnapshot() {
-  return false;
-}
+/* ─── component ─────────────────────────────────────────────────── */
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorRef  = useRef<HTMLDivElement>(null);
   const variantRef = useRef<CursorVariant>("default");
   const [variant, setVariant] = useState<CursorVariant>("default");
   const [visible, setVisible] = useState(false);
+
   const enabled = useSyncExternalStore(
     subscribeFinePointer,
     getFinePointerSnapshot,
-    getFinePointerServerSnapshot
+    getFinePointerServerSnapshot,
   );
 
   useEffect(() => {
@@ -80,8 +90,8 @@ export default function CustomCursor() {
       setVisible(true);
 
       const target = (e.target as HTMLElement | null)?.closest?.("[data-cursor]") ?? null;
-      const attr = target?.getAttribute("data-cursor") ?? null;
-      const next = isCursorVariant(attr) ? attr : "default";
+      const attr   = target?.getAttribute("data-cursor") ?? null;
+      const next: CursorVariant = isCursorVariant(attr) ? attr : "default";
 
       if (next !== variantRef.current) {
         variantRef.current = next;
@@ -93,21 +103,21 @@ export default function CustomCursor() {
       setVisible(false);
     }
 
-    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointermove",  handlePointerMove);
     document.addEventListener("pointerleave", handlePointerLeave);
 
     return () => {
       document.documentElement.classList.remove("custom-cursor-active");
-      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointermove",  handlePointerMove);
       document.removeEventListener("pointerleave", handlePointerLeave);
     };
   }, [enabled]);
 
   if (!enabled) return null;
 
-  const isPill = PILL_VARIANTS.has(variant);
-  const barSize = BAR_SIZE[variant];
-  const label = PILL_LABEL[variant];
+  const isPill   = PILL_VARIANTS.has(variant);
+  const barSize  = BAR_SIZE[variant];
+  const label    = PILL_LABEL[variant];
 
   const background =
     variant === "stop"
@@ -122,26 +132,31 @@ export default function CustomCursor() {
       aria-hidden="true"
       className="fixed top-0 left-0 z-[100] flex items-center justify-center pointer-events-none"
       style={{
-        opacity: visible ? 1 : 0,
-        width: isPill ? "auto" : (barSize?.width ?? 16),
-        height: isPill ? 24 : (barSize?.height ?? 16),
-        padding: isPill ? "4px 12px" : 0,
+        opacity:      visible ? 1 : 0,
+        width:        isPill ? "auto" : (barSize?.width  ?? 16),
+        height:       isPill ? 24     : (barSize?.height ?? 16),
+        padding:      isPill ? "4px 12px" : 0,
         borderRadius: "var(--radius-full)",
         background,
-        transition:
-          "width var(--transition-fast), height var(--transition-fast), padding var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast)",
+        transition: [
+          "width var(--transition-fast)",
+          "height var(--transition-fast)",
+          "padding var(--transition-fast)",
+          "background-color var(--transition-fast)",
+          "opacity var(--transition-fast)",
+        ].join(", "),
         willChange: "transform",
       }}
     >
       {label && (
         <span
           style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "var(--text-xs)",
-            lineHeight: "16px",
-            color: "var(--primitive-black)",
+            fontFamily:    "var(--font-mono)",
+            fontSize:      "var(--text-xs)",
+            lineHeight:    "16px",
+            color:         "var(--primitive-black)",
             textTransform: "uppercase",
-            whiteSpace: "nowrap",
+            whiteSpace:    "nowrap",
           }}
         >
           {label}
