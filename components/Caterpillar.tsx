@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const CATERPILLAR_FRAMES = [
-  'eyes-left.svg',
-  'eyes-right.svg',
-  'eyes-left.svg',
-  'eyes-up.svg'
+  'caterpillar/eyes-left.svg',
+  'caterpillar/eyes-right.svg',
+  'caterpillar/eyes-left.svg',
+  'caterpillar/eyes-up.svg'
 ];
 
 export default function Caterpillar() {
