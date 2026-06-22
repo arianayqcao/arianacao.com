@@ -103,7 +103,7 @@
   --grid-margin:   var(--space-4);  /* 16px */
   --max-width:     1440px;
   --content-width: 1200px;
-
+  --max-width-content: 100rem; /* 1600px — caps content at wide screens */
 
   /* -------------------------------------------
      border radius

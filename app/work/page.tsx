@@ -214,7 +214,7 @@ export default function WorkPage() {
         >
           <div
             className="flex flex-col items-center gap-16 md:gap-6"
-            style={{ width: 649, maxWidth: "100%" }}
+            style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
           >
             <h1
               className="text-[96px] leading-[64px] md:text-[length:var(--text-4xl)] md:leading-[var(--leading-tight)]"
@@ -234,94 +234,15 @@ export default function WorkPage() {
           </div>
         </section>
 
-        {/* ── BIO ──────────────────────────────────────────────── */}
-
-        <section
-          className="flex flex-col items-center w-full"
-          style={{ padding: 16 }}
-        >
-
-          <div
-            className="flex flex-col w-1/2"
-            style={{ maxWidth: "100%", gap: 24 }}
-          >
-            {/* Ariana is a product designer with a passion for crafting magical experiences that feel 
-                intuitive, inclusive, and quietly delightful. */}
-            <p
-              className="text-[28px] md:text-[length:var(--text-2xl)]"
-              data-cursor="text-medium"
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontWeight: "var(--weight-bold)",
-                color: "#000",
-                lineHeight: "normal",
-                margin: 0,
-              }}
-            >
-              Ariana is a product designer with a passion for crafting magical
-              experiences that feel{" "}
-              <br className="md:hidden" />
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "#7bc100",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                intuitive
-              </span>
-              ,{" "}
-              <br className="md:hidden" />
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "#93f200",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                inclusive
-              </span>
-              ,&nbsp;
-              <br className="md:hidden" />
-              and{" "}
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "red",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                quietly delightful
-              </span>
-              .
-            </p>
-
-            <p
-              data-cursor="text-regular"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "var(--text-md)",
-                color: "rgba(0,0,0,0.7)",
-                lineHeight: "normal",
-                margin: 0,
-                fontStyle: "normal",
-              }}
-            >
-              Based in Seattle, WA.{"\n"}
-              Constantly collecting free magazines, making tea.
-            </p>
-          </div>
-        </section>
-
         {/* ── CASE STUDIES ─────────────────────────────────────── */}
         <section
           className="flex items-start justify-center w-full"
           style={{ padding: 16 }}
         >
-          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+          <div 
+            className="flex flex-col flex-1 min-w-0" 
+            style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+            >
             {CASE_STUDIES.map((row, ri) => (
               <div key={ri} className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
                 {row.map((study, ci) => (
@@ -341,7 +262,10 @@ export default function WorkPage() {
           className="flex flex-col items-start w-full"
           style={{ padding: 16 }}
         >
-          <div className="flex flex-col md:flex-row items-start w-full" style={{ gap: 16 }}>
+          <div 
+            className="flex flex-col md:flex-row items-start w-full" 
+            style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+          >
             {/* text */}
             <div
               className="flex flex-col flex-1 min-w-0 self-stretch"
@@ -422,7 +346,7 @@ export default function WorkPage() {
                   style={{
                     height: 28,
                     width: "auto",
-                    opacity: 0.5,
+                    opacity: 1,
                     userSelect: "none",
                   }}
                 />
@@ -436,7 +360,10 @@ export default function WorkPage() {
           className="flex flex-col items-start w-full"
           style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
         >
-          <div className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16">
+          <div 
+            className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16"
+            style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+          >
             {/* left: grid + loves */}
             <div className="flex flex-col md:flex-row flex-1 min-w-0 w-full" style={{ gap: 32 }}>
               {/* practices / toolkit grid */}

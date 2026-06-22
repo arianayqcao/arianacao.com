@@ -22,7 +22,10 @@ export default function Footer() {
         }}
       >
         {/* ── CTA + nav links ──────────────────────────────────── */}
-        <div className="flex flex-col md:flex-row items-start justify-between w-full shrink-0 gap-8 md:gap-0">
+        <div
+          className="flex flex-col md:flex-row items-start justify-between w-full shrink-0 gap-8 md:gap-0"
+          style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+        >
           {/* left: heading + tagline */}
           <div className="flex flex-col shrink-0 w-full md:w-[340px]" style={{ gap: 19 }}>
             <h2
@@ -126,14 +129,14 @@ export default function Footer() {
         </div>
 
         {/* ── snake game ───────────────────────────────────────── */}
-        <div className="shrink-0">
+        <div className="shrink-0" style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}>
           <SnakeGame />
         </div>
 
         {/* ── bottom bar ───────────────────────────────────────── */}
         <div
           className="flex items-center justify-between w-full shrink-0"
-          style={{ opacity: 0.898 }}
+          style={{ opacity: 0.898, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
         >
           <div className="flex flex-col">
             <span
