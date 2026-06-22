@@ -71,7 +71,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
-      cursor: "coming-soon"
+      cursor: "view-case-study"
     },
   ],
   [
