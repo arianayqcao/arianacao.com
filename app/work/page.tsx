@@ -124,7 +124,7 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
       </Link>
 
       {/* description */}
-      <div className="flex flex-col shrink-0 w-full" style={{ gap: 4 }}>
+      <div className="flex flex-col shrink-0 w-full" data-cursor="text-regular"} style={{ gap: 4 }}>
         <span
           style={{
             fontFamily: "var(--font-mono)",
@@ -224,6 +224,7 @@ export default function WorkPage() {
                 color: "var(--color-heading)",
                 width: "100%",
               }}
+              data-cursor="text-large"
             >
               ariana cao.
             </h1>
@@ -240,9 +241,10 @@ export default function WorkPage() {
           style={{ padding: 16 }}
         >
           
-                    <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
+          <div className="flex flex-col flex-1 min-w-0" style={{ gap: 16 }}>
             <p
               className="text-[28px] md:text-[length:var(--text-2xl)]"
+              data-cursor="text-large"
               style={{
                 fontFamily: "var(--font-primary)",
                 fontWeight: "var(--weight-bold)",
@@ -304,6 +306,7 @@ export default function WorkPage() {
             style={{ width: 695, maxWidth: "100%", gap: 24 }}
           >
             <p
+              data-cursor="text-regular"
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "var(--text-md)",

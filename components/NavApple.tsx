@@ -13,6 +13,8 @@ export default function NavApple() {
            L915.843 689.518L1083.83 743.233L1165.86 796.948L1225.44 814.527
            L1119.96 883.869H967.605Z"
         fill="#93F200"
+        data-cursor="stop"
+        style={{ pointerEvents: "all", cursor: "none" }}
       />
       <path
         d="M730.353 726.907L759.802 710.876L802.553 789.406L773.104 805.438L732.073 750.225Z"
