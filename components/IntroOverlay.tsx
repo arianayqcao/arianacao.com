@@ -45,7 +45,10 @@ export default function IntroOverlay() {
 
     const toSettle = requestAnimationFrame(() => setPhase("settle"));
     const toExit = setTimeout(() => setPhase("exit"), 1300);
-    const toDone = setTimeout(() => setPhase("done"), 1900);
+    const toDone = setTimeout(() => {
+      setPhase("done");
+      document.body.style.overflow = "";
+    }, 1900);
 
     return () => {
       cancelAnimationFrame(toSettle);
