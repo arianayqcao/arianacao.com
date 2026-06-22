@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AppleInteractive from "@/components/AppleInteractive";
+import HeroTitleReveal from "@/components/HeroTitleReveal";
 import SiteHeader, { NAV_LINKS } from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 
@@ -216,19 +217,7 @@ export default function WorkPage() {
             className="flex flex-col items-center gap-16 md:gap-6"
             style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
           >
-            <h1
-              className="text-[96px] leading-[64px] md:text-[length:var(--text-4xl)] md:leading-[var(--leading-tight)]"
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontWeight: "var(--weight-black)",
-                color: "var(--color-heading)",
-                width: "100%",
-                textAlign: "center",
-              }}
-              data-cursor="text-large"
-            >
-              ariana cao.
-            </h1>
+            <HeroTitleReveal text="ariana cao." />
             <div style={{ width: 575, maxWidth: "100%", height: 510 }}>
               <AppleInteractive />
             </div>
