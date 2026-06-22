@@ -223,6 +223,7 @@ export default function WorkPage() {
                 fontWeight: "var(--weight-black)",
                 color: "var(--color-heading)",
                 width: "100%",
+                textAlign: "center",
               }}
               data-cursor="text-large"
             >

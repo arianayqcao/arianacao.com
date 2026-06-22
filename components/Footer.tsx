@@ -19,6 +19,7 @@ export default function Footer() {
           paddingBottom: 16,
           paddingInline: 16,
           gap: 128,
+          maxHeight: "100vh",
         }}
       >
         {/* ── CTA + nav links ──────────────────────────────────── */}
