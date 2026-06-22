@@ -14,6 +14,7 @@ interface CaseStudy {
   href: string;
   coverStyle: React.CSSProperties;
   coverContent?: React.ReactNode;
+  cursor?: string;
 }
 
 const CASE_STUDIES: CaseStudy[][] = [
@@ -29,9 +30,10 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
+      cursor: "view-case-study"
     },
     {
-      eyebrow: "WINFO Hackathon · 2025",
+      eyebrow: "DubHacks · 2026",
       title: "DubHacks 2026",
       description:
         "Designing cooking-themed annual website for largest hackathon in the Pacific Northwest.",
@@ -41,6 +43,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
+      cursor: "coming-soon"
     },
   ],
   [
@@ -55,6 +58,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
+      cursor: "view-case-study"
     },
     {
       eyebrow: "DubHacks · 2026",
@@ -67,6 +71,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
+      cursor: "coming-soon"
     },
   ],
   [
@@ -80,6 +85,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
+      cursor: "coming-soon"
     },
     {
       eyebrow: "DubHacks · 2025",
@@ -92,6 +98,7 @@ const CASE_STUDIES: CaseStudy[][] = [
         backgroundSize: "cover",
         backgroundPosition: "center",
       },
+      cursor: "coming-soon"
     },
   ],
 ];
@@ -101,7 +108,7 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
     <div className="flex flex-col flex-1 min-w-0 overflow-clip" style={{ gap: 16 }}>
       <Link
         href={study.href}
-        data-cursor="view-case-study"
+        data-cursor={study.cursor ?? "default"}
         className="flex flex-col overflow-clip rounded-lg shrink-0 w-full"
         style={{
           height: 450,
