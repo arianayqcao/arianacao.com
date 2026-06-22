@@ -25,7 +25,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start justify-between w-full shrink-0 gap-8 md:gap-0">
           {/* left: heading + tagline */}
           <div className="flex flex-col shrink-0 w-full md:w-[340px]" style={{ gap: 19 }}>
-            <h2 data-cursor="text-large">
+            <h2
+              data-cursor="text-large"
               style={{
                 fontFamily: "var(--font-primary)",
                 fontWeight: "var(--weight-bold)",
@@ -37,7 +38,8 @@ export default function Footer() {
             >
               Hey, have you played yet today?
             </h2>
-            <p data-cursor="text-regular">
+            <p
+              data-cursor="text-regular"
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "var(--text-md)",
