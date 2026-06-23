@@ -4,6 +4,7 @@ import Image from "next/image";
 import AppleInteractive from "@/components/AppleInteractive";
 import HeroTitleReveal from "@/components/HeroTitleReveal";
 import ScrambleBioText from "@/components/ScrambleBioText";
+import BioHeadlineReveal from "@/components/BioHeadlineReveal";
 import SiteHeader, { NAV_LINKS } from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 
@@ -236,59 +237,7 @@ export default function WorkPage() {
             className="flex flex-col w-1/2"
             style={{ maxWidth: "var(--max-width-content)", width: "100%", gap: 24, margin: "0 auto" }}
           >
-            {/* Ariana is a product designer with a passion for crafting magical experiences that feel 
-                intuitive, inclusive, and quietly delightful. */}
-            <p
-              className="text-[28px] md:text-[length:var(--text-2xl)]"
-              data-cursor="text-medium"
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontWeight: "var(--weight-bold)",
-                color: "#000",
-                lineHeight: "normal",
-                margin: 0,
-              }}
-            >
-              Ariana is a product designer with a passion for crafting magical
-              experiences that feel{" "}
-              <br className="md:hidden" />
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "#7bc100",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                intuitive
-              </span>
-              ,{" "}
-              <br className="md:hidden" />
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "#93f200",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                inclusive
-              </span>
-              ,&nbsp;
-              <br className="md:hidden" />
-              and{" "}
-              <span
-                style={{
-                  textDecoration: "underline",
-                  textDecorationColor: "red",
-                  textDecorationThickness: "12%",
-                  textDecorationSkipInk: "none",
-                }}
-              >
-                quietly delightful
-              </span>
-              .
-            </p>
+            <BioHeadlineReveal />
 
             <ScrambleBioText
               text={"Based in Seattle, WA.\nConstantly collecting free magazines, making tea."}

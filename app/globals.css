@@ -6,6 +6,12 @@
   to   { transform: translateX(-50%); }
 }
 
+/* GSAP SplitText line masks: clip per-line so multi-line char reveals
+   (see components/BioHeadlineReveal.tsx) don't overflow vertically. */
+.split-line {
+  overflow: hidden;
+}
+
 /* Custom cursor: native cursor is hidden only once JS confirms a fine
    pointer is present (see components/CustomCursor.tsx), so touch devices
    and no-JS fallbacks keep the default cursor. */
