@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Caterpillar from "@/components/Caterpillar";
 import { gsap, useGSAP, INTRO_REVEAL_DELAY } from "@/lib/gsap";
 
 /**
@@ -176,13 +175,6 @@ export default function AppleInteractive() {
         d="M730.353 726.907L759.802 710.876L802.553 789.406L773.104 805.438L732.073 750.225Z"
         fill="#341208"
       />
-
-      {/* ── Vector caterpillar (morphs in from nothing alongside the leaf) ── */}
-      <g ref={caterpillarGroupRef} transform={`translate(${CATERPILLAR_OFFSET})`}>
-        {CATERPILLAR_PATHS.map((p, i) => (
-          <path key={i} d={p.d} fill={p.fill} />
-        ))}
-      </g>
 
       {/* ── Worm ── */}
 
