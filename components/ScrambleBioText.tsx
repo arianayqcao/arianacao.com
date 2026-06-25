@@ -2,6 +2,9 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, INTRO_REVEAL_DELAY } from "@/lib/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Scramble-reveal for the bio detail line. Starts at INTRO_REVEAL_DELAY so
@@ -15,21 +18,36 @@ export default function ScrambleBioText({ text }: { text: string }) {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       if (!textRef.current) return;
 
-      const tween = gsap.to(textRef.current, {
-        duration: 1,
-        delay: INTRO_REVEAL_DELAY,
-        scrambleText: {
-          text,
-          chars: "upperAndLowerCase",
-          revealDelay: 0.7,
-          speed: 0.4,
+      let tween: gsap.core.Tween | null = null;
+
+      ScrollTrigger.create({
+        trigger: textRef.current,
+        start: "top 85%",
+        once: true,   // only trigger once, like intro reveal
+        onEnter: () => {
+          tween = gsap.to(textRef.current, {
+            duration: 1.5,
+            delay: INTRO_REVEAL_DELAY,
+            scrambleText: {
+              text,
+              chars: "upperAndLowerCase",
+              revealDelay: 0.1,   // 0 = start revealing immediately
+              speed: 0.5,         // lower = slower
+              delimiter: "",      // char by char, not word for word
+            },
+            ease: "none",
+          });
         },
       });
 
-      return () => tween.kill();
+      return () => {
+        tween?.kill();
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      };
     },
-    { scope: textRef }
+    { scope: textRef, dependencies: [text] }
   );
+      
 
   return (
     <p
