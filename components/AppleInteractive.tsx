@@ -116,6 +116,44 @@ export default function AppleInteractive() {
     { scope: svgRef }
   );
 
+  // ── Sticker hover animation ──
+  useGSAP(
+    () => {
+      const stickers = gsap.utils.toArray<SVGGElement>(".sticker-group");
+
+      const cleanups = stickers.map((sticker) => {
+        const v1 = sticker.querySelector<SVGGElement>(".sv1");
+        const v2 = sticker.querySelector<SVGGElement>(".sv2");
+        if (!v1 || !v2) return () => {};
+
+        gsap.set(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%" });
+
+        const onEnter = () => {
+          gsap.to(v1, { autoAlpha: 0, duration: 0.25, ease: "power2.out" });
+          gsap.to(v2, { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
+          gsap.to(sticker, { rotate: 10, scale: 1.5, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
+        };
+
+        const onLeave = () => {
+          gsap.to(v1, { autoAlpha: 1, duration: 0.25, ease: "power2.out" });
+          gsap.to(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%", duration: 0.2, ease: "power2.in" });
+          gsap.to(sticker, { rotate: 0, scale: 1, transformOrigin: "50% 50%", duration: 0.25, ease: "power2.out" });
+        };
+
+        sticker.addEventListener("mouseenter", onEnter);
+        sticker.addEventListener("mouseleave", onLeave);
+
+        return () => {
+          sticker.removeEventListener("mouseenter", onEnter);
+          sticker.removeEventListener("mouseleave", onLeave);
+        };
+      });
+
+      return () => cleanups.forEach((cleanup) => cleanup());
+    },
+    { scope: svgRef }
+  );
+
   return (
     <svg
       ref={svgRef}
@@ -126,30 +164,8 @@ export default function AppleInteractive() {
     >
       <defs>
         <style>{`
-          .sticker-group { cursor: pointer; }
-
-          .sv1, .sv2 {
-            transition:
-              opacity 500ms cubic-bezier(0, 0, 0.2, 1),
-              transform 500ms cubic-bezier(0, 0, 0.2, 1);
-            transform-box: fill-box;
-            transform-origin: center;
-          }
-
-          .sv2 {
-            opacity: 0;
-            transform: scale(0.75);
-          }
-
-          .sticker-group:hover .sv1 {
-            opacity: 0;
-            transform: scale(1.1);
-          }
-
-          .sticker-group:hover .sv2 {
-            opacity: 1;
-            transform: scale(1);
-          }
+          .sticker-group { cursor: pointer; transform-box: fill-box; }
+          .sv1, .sv2 { transform-box: fill-box; }
         `}</style>
       </defs>
 
@@ -206,14 +222,17 @@ export default function AppleInteractive() {
           />
         </g>
 
-        {/* v2 – hover */}
+        {/* v2 – hover (exact vectors from design, Variant2) */}
         <g className="sv2">
           <path
-            d="M985.89 1046.74L1171.41 1046.74L1263.59 1136.50L1246.83 1312.46L1091.47 1372.32L941.61 1297.09L922.46 1189.63Z"
+            transform="translate(913.266 1030.6625)"
+            fillRule="evenodd"
+            d="M254.328 0L351.468 94.5928L334.145 276.49L172.788 338.675L20.4795 262.228L0 147.313L65.4033 0H254.328ZM84.9082 30L31.1465 151.092L47.376 242.161L174.384 305.909L306.039 255.171L320.24 106.058L242.135 30H84.9082Z"
             fill="white" opacity="0.45"
           />
           <path
-            d="M1235.24 1304.21L1091.29 1359.68L952.43 1289.98L934.69 1190.41L993.47 1058.02H1165.36L1250.77 1141.18Z"
+            transform="translate(944.453 1062.0455)"
+            d="M274.893 225.171L143.238 275.909L16.2298 212.161L0 121.092L53.7614 0H210.988L289.094 76.0576L274.893 225.171Z"
             fill="#FFDE88"
           />
           <text
@@ -252,29 +271,23 @@ export default function AppleInteractive() {
           />
           {/* 曹 — exact vector strokes from design */}
           <path
-            d="M819.57 1067.43H884.57V1105.53H868.47V1077.73H834.87V1105.93H819.57V1067.43Z
-               M828.47 1080.53H874.87V1089.33H828.47V1080.53Z
-               M808.07 1016.93H896.37V1028.53H808.07V1016.93Z
-               M828.47 1092.33H874.87V1102.93H828.47V1092.33Z
-               M833.67 1011.23H847.87V1059.83H833.67V1011.23Z
-               M854.97 1011.23H869.17V1060.33H854.97V1011.23Z
-               M826.87 1052.03V1055.13H875.37V1052.03H826.87Z
-               M826.87 1040.63V1043.83H875.37V1040.63H826.87Z
-               M812.67 1031.03H890.37V1064.83H812.67V1031.03Z"
+            transform="translate(807.85 1017.65)"
+            d="M11.5 56.2H76.5V94.3H60.4V66.5H26.8V94.7H11.5V56.2ZM20.4 69.3H66.8V78.1H20.4V69.3ZM0 5.7H88.3V17.3H0V5.7ZM20.4 81.1H66.8V91.7H20.4V81.1ZM25.6 0H39.8V48.6H25.6V0ZM46.9 0H61.1V49.1H46.9V0ZM18.8 40.8V43.9H67.3V40.8H18.8ZM18.8 29.4V32.6H67.3V29.4H18.8ZM4.6 19.8H82.3V53.6H4.6V19.8Z"
             fill="#341208"
           />
         </g>
 
-        {/* v2 – hover */}
+        {/* v2 – hover (exact vectors from design, Variant2) */}
         <g className="sv2">
           <path
-            d="M1026 1031L981 1196L819 1224L692 1127L690 1014L775 892L960 926Z"
+            transform="translate(664.5505 884.373)"
+            fillRule="evenodd"
+            d="M271.283 0L374.899 100.898L356.421 294.923L184.308 361.254L21.8447 279.709L0 157.134L69.7637 0H271.283ZM90.5684 32L33.2227 161.164L50.5342 258.305L186.01 326.304L326.441 272.182L341.59 113.128L258.276 32H90.5684Z"
             fill="white" opacity="0.45"
           />
-          {/* large golden hex (from Figma panel 2) */}
           <path
-            d="M1015.52 1026.4L972.99 1180.4L825.29 1209.32L703.68 1118.83
-               L703.5 1020.16L782.4 902.91L947.56 932.03Z"
+            transform="translate(697.8165 917.8485)"
+            d="M293.219 240.182L152.787 294.303L17.3118 226.305L0 129.165L57.3455 0H225.054L308.367 81.1281L293.219 240.182Z"
             fill="#FFDE88"
           />
           <text
@@ -313,55 +326,25 @@ export default function AppleInteractive() {
           />
           {/* 琪 — exact vector strokes from design */}
           <path
-            d="M899.1 1381.81H957.2V1394.71H899.1V1381.81Z
-               M914.5 1398.61H940.7V1409.51H914.5V1398.61Z
-               M914.5 1413.61H940.7V1424.51H914.5V1413.61Z
-               M897.2 1429.01H958V1441.91H897.2V1429.01Z
-               M906.3 1369.41H920.2V1433.81H906.3V1369.41Z
-               M934.8 1369.41H949V1433.81H934.8V1369.41Z
-               M863.7 1374.51H896.6V1387.91H863.7V1374.51Z
-               M864.3 1403.21H895.2V1416.51H864.3V1403.21Z
-               M873.1 1379.81H886.2V1440.91L873.1 1443.01V1379.81Z"
-            fill="#1a0a05"
-          />
-          <path
-            d="M930.3 1447.01L941.1 1439.71
-               C943.167 1441.31 945.367 1443.11 947.7 1445.11
-               C950.034 1447.05 952.267 1449.01 954.4 1451.01
-               C956.6 1452.95 958.367 1454.71 959.7 1456.31
-               L948.1 1464.51
-               C946.9 1462.91 945.3 1461.08 943.3 1459.01
-               C941.3 1456.95 939.167 1454.88 936.9 1452.81
-               C934.634 1450.68 932.434 1448.75 930.3 1447.01Z
-               M861.9 1441.01
-               C864.834 1440.35 868.134 1439.55 871.8 1438.61
-               C875.534 1437.68 879.434 1436.68 883.5 1435.61
-               C887.567 1434.48 891.567 1433.35 895.5 1432.21
-               L897.2 1445.21
-               C891.6 1446.88 885.9 1448.58 880.1 1450.31
-               C874.367 1451.98 869.1 1453.48 864.3 1454.81L861.9 1441.01Z
-               M911.5 1439.01L923.1 1446.31
-               C920.167 1450.18 916.667 1453.75 912.6 1457.01
-               C908.6 1460.28 904.6 1462.98 900.6 1465.11
-               C899.667 1463.58 898.3 1461.81 896.5 1459.81
-               C894.767 1457.81 893.134 1456.18 891.6 1454.91
-               C894.134 1453.71 896.6 1452.25 899 1450.51
-               C901.467 1448.78 903.767 1446.95 905.9 1445.01
-               C908.1 1443.01 909.967 1441.01 911.5 1439.01Z"
+            transform="translate(862.1 1362.15)"
+            d="M37.2 12.4H95.3V25.3H37.2V12.4ZM52.6 29.2H78.8V40.1H52.6V29.2ZM52.6 44.2H78.8V55.1H52.6V44.2ZM35.3 59.6H96.1V72.5H35.3V59.6ZM44.4 0H58.3V64.4H44.4V0ZM72.9 0H87.1V64.4H72.9V0ZM68.4 77.6L79.2 70.3C81.2667 71.9 83.4667 73.7 85.8 75.7C88.1333 77.6333 90.3667 79.6 92.5 81.6C94.7 83.5333 96.4667 85.3 97.8 86.9L86.2 95.1C85 93.5 83.4 91.6667 81.4 89.6C79.4 87.5333 77.2667 85.4667 75 83.4C72.7333 81.2667 70.5333 79.3333 68.4 77.6ZM1.8 5.09998H34.7V18.5H1.8V5.09998ZM2.4 33.8H33.3V47.1H2.4V33.8ZM0 71.6C2.93333 70.9333 6.23333 70.1333 9.9 69.2C13.6333 68.2666 17.5333 67.2666 21.6 66.2C25.6667 65.0666 29.6667 63.9333 33.6 62.8L35.3 75.8C29.7 77.4667 24 79.1667 18.2 80.9C12.4667 82.5667 7.2 84.0667 2.4 85.4L0 71.6ZM11.2 10.4H24.3V71.5L11.2 73.6V10.4ZM49.6 69.6L61.2 76.9C58.2667 80.7667 54.7667 84.3333 50.7 87.6C46.7 90.8667 42.7 93.5666 38.7 95.7C37.7667 94.1666 36.4 92.4 34.6 90.4C32.8667 88.4 31.2333 86.7667 29.7 85.5C32.2333 84.3 34.7 82.8333 37.1 81.1C39.5667 79.3667 41.8667 77.5333 44 75.6C46.2 73.6 48.0667 71.6 49.6 69.6Z"
             fill="#1a0a05"
           />
         </g>
 
-        {/* v2 – hover */}
+        {/* v2 – hover (exact vectors from design, Variant2) */}
         <g className="sv2">
-          <path
-            d="M1062 1312L1062 1512L911 1578L760 1512L760 1312L911 1253Z"
-            fill="white" opacity="0.45"
-          />
-          <path
-            d="M1050 1322L1050 1500L911 1562L772 1500L772 1322L911 1265Z"
-            fill="#FFDE88"
-          />
+          <g transform="translate(735.266 1240.6625)">
+            <path
+              fillRule="evenodd"
+              d="M254.328 338.675L351.468 244.082L334.145 62.1846L172.788 0L20.4796 76.4473L0.000141955 191.362L65.4035 338.675H254.328ZM84.9083 308.675L31.1466 187.583L47.3761 96.5137L174.384 32.7656L306.039 83.5039L320.24 232.617L242.135 308.675H84.9083Z"
+              fill="white" opacity="0.45"
+            />
+            <path
+              d="M306.04 83.5042L174.384 32.7654L47.3765 96.5141L31.1466 187.583L84.908 308.675H242.135L320.241 232.617L306.04 83.5042Z"
+              fill="#FFDE88"
+            />
+          </g>
           <text
             x="911" y="1413"
             textAnchor="middle"
