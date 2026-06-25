@@ -121,22 +121,27 @@ export default function AppleInteractive() {
       const stickers = gsap.utils.toArray<SVGGElement>(".sticker-group");
 
       const cleanups = stickers.map((sticker) => {
+        // .sticker-visual carries the hover rotate/scale; .sticker-group itself (and its
+        // invisible hit-area path) never transforms, so the mouseenter/mouseleave hit-test
+        // target stays put under the cursor instead of animating out from under it — which
+        // otherwise causes mouseenter/mouseleave to retrigger each other in a flicker loop.
+        const visual = sticker.querySelector<SVGGElement>(".sticker-visual");
         const v1 = sticker.querySelector<SVGGElement>(".sv1");
         const v2 = sticker.querySelector<SVGGElement>(".sv2");
-        if (!v1 || !v2) return () => {};
+        if (!visual || !v1 || !v2) return () => {};
 
         gsap.set(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%" });
 
         const onEnter = () => {
           gsap.to(v1, { autoAlpha: 0, duration: 0.25, ease: "power2.out" });
           gsap.to(v2, { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
-          gsap.to(sticker, { rotate: 10, scale: 1.5, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
+          gsap.to(visual, { rotate: 10, scale: 1.5, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
         };
 
         const onLeave = () => {
           gsap.to(v1, { autoAlpha: 1, duration: 0.25, ease: "power2.out" });
           gsap.to(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%", duration: 0.2, ease: "power2.in" });
-          gsap.to(sticker, { rotate: 0, scale: 1, transformOrigin: "50% 50%", duration: 0.25, ease: "power2.out" });
+          gsap.to(visual, { rotate: 0, scale: 1, transformOrigin: "50% 50%", duration: 0.25, ease: "power2.out" });
         };
 
         sticker.addEventListener("mouseenter", onEnter);
@@ -163,8 +168,8 @@ export default function AppleInteractive() {
     >
       <defs>
         <style>{`
-          .sticker-group { cursor: pointer; transform-box: fill-box; }
-          .sv1, .sv2 { transform-box: fill-box; }
+          .sticker-group { cursor: pointer; }
+          .sticker-visual, .sv1, .sv2 { transform-box: fill-box; }
         `}</style>      
       </defs>
 
@@ -200,6 +205,13 @@ export default function AppleInteractive() {
           Default centre ≈ (1089, 1200)
       ════════════════════════════════════════════ */}
       <g className="sticker-group">
+        {/* stable hit-area — never transforms, so hover stays anchored under the
+            cursor even as .sticker-visual scales/rotates on hover (see useGSAP above) */}
+        <path
+          d="M1178.18 1263.63L1090.41 1297.45L1005.74 1254.95L994.92 1194.24L1030.76 1113.51H1135.57L1187.65 1164.22Z"
+          fill="transparent"
+        />
+        <g className="sticker-visual">
         {/* v1 – default */}
         <g className="sv1">
           {/* white outline (even-odd knockout gives the border) */}
@@ -242,6 +254,7 @@ export default function AppleInteractive() {
             <path d="M146.816 145.534C152.779 147.867 160.027 148.282 168.562 146.777C174.734 145.689 180.191 143.237 184.934 139.422C188.424 136.674 191.129 132.815 193.047 127.844L195.164 139.852L224.905 134.608L207.784 37.506L178.042 42.7501L183.703 74.8549C185.046 82.4707 186.011 89.4763 186.597 95.8717C187.183 102.267 186.553 107.523 184.706 111.64C182.991 115.733 179.113 118.312 173.073 119.377C168.346 120.211 164.693 119.839 162.113 118.263C159.534 116.687 157.661 114.513 156.495 111.74C155.306 108.836 154.434 105.808 153.878 102.656L144.362 48.6889L114.621 53.9331L125.213 114.006C126.556 121.622 128.996 128.165 132.533 133.634C136.07 139.102 140.831 143.069 146.816 145.534Z" fill="#341208" />
           </g>
         </g>
+        </g>
       </g>
 
       {/* ════════════════════════════════════════════
@@ -249,6 +262,13 @@ export default function AppleInteractive() {
           Default centre ≈ (852, 1065)
       ════════════════════════════════════════════ */}
       <g className="sticker-group">
+        {/* stable hit-area — never transforms, so hover stays anchored under the
+            cursor even as .sticker-visual scales/rotates on hover (see useGSAP above) */}
+        <path
+          d="M939.117 1122.79L851.347 1156.61L766.675 1114.11L755.855 1053.4L791.696 972.674H896.514L948.585 1023.38Z"
+          fill="transparent"
+        />
+        <g className="sticker-visual">
         {/* v1 – default */}
         <g className="sv1">
           {/* white outline (even-odd knockout gives the border) */}
@@ -295,6 +315,7 @@ export default function AppleInteractive() {
             <path d="M20.7478 114.388C26.4901 118.248 33.5115 120.823 41.8121 122.112C52.0889 123.708 61.3608 122.651 69.6278 118.942C77.8948 115.234 84.6503 108.659 89.8943 99.2185L65.6004 84.9215C63.6486 88.8013 61.0847 91.8439 57.9087 94.0493C54.8644 96.2752 50.8389 96.9995 45.8323 96.222C41.2209 95.5059 37.65 93.7371 35.1197 90.9154C32.7416 87.9824 31.1904 84.5032 30.4662 80.4777C29.8941 76.341 29.9252 72.2304 30.5595 68.146C31.1937 64.0616 32.4004 60.2011 34.1795 56.5643C36.0903 52.948 38.6133 50.1689 41.7484 48.227C45.0357 46.1737 48.9851 45.5052 53.5965 46.2212C58.6032 46.9987 62.2194 48.9095 64.4453 51.9538C66.803 55.0185 68.3235 58.6954 69.0068 62.9844L96.4923 56.7277C94.3581 46.1415 89.9145 37.8279 83.1615 31.7868C76.4085 25.7458 67.8935 21.9273 57.6167 20.3315C49.3162 19.0426 41.8446 19.3666 35.2021 21.3037C28.6913 23.2611 23.0152 26.3602 18.1738 30.6009C13.3529 34.7098 9.48375 39.6412 6.56631 45.395C3.64888 51.1488 1.69915 57.1878 0.717115 63.512C-0.264919 69.8362 -0.238338 76.1821 0.796861 82.5497C1.83206 88.9173 4.01336 94.8557 7.34076 100.365C10.6682 105.874 15.1372 110.548 20.7478 114.388Z" fill="#341208" />
           </g>
         </g>
+        </g>
       </g>
 
       {/* ════════════════════════════════════════════
@@ -302,6 +323,13 @@ export default function AppleInteractive() {
           Default centre ≈ (911, 1410)
       ════════════════════════════════════════════ */}
       <g className="sticker-group">
+        {/* stable hit-area — never transforms, so hover stays anchored under the
+            cursor even as .sticker-visual scales/rotates on hover (see useGSAP above) */}
+        <path
+          d="M997.697 1350.49L909.927 1316.66L825.255 1359.16L814.436 1419.87L850.276 1500.6H955.094L1007.16 1449.9Z"
+          fill="transparent"
+        />
+        <g className="sticker-visual">
         {/* v1 – default */}
         <g className="sv1">
           {/* white outline */}
@@ -345,6 +373,7 @@ export default function AppleInteractive() {
             <path d="M108.668 132.628L125.79 35.5264L155.531 40.7706L138.409 137.873L108.668 132.628ZM132.045 24.2411L159.268 0L191.175 5.6262L153.514 28.0266L132.045 24.2411Z" fill="#1a0a05" />
             <path d="M60.0819 111.707L50.8843 163.869L80.4286 169.078L104.635 31.7962L75.0909 26.5868L73.0283 38.2842C72.6685 37.3913 72.2752 36.551 71.8482 35.7631C69.1132 30.5422 65.7181 26.7619 61.6628 24.4221C57.7388 22.1055 53.8072 20.5999 49.8679 19.9053C41.4642 18.4235 33.9144 19.3939 27.2183 22.8165C20.5454 26.1078 14.9503 31.3491 10.4328 38.5406C6.06988 45.6239 3.03173 54.024 1.31841 63.7408C-0.580148 74.508 -0.428211 84.0121 1.77422 92.2531C3.9998 100.363 7.78537 106.92 13.1309 111.924C18.4765 116.928 24.7602 120.067 31.9822 121.341C36.5779 122.151 41.216 121.953 45.8965 120.748C50.5769 119.542 54.8865 116.985 58.8251 113.076C59.2532 112.64 59.6721 112.183 60.0819 111.707ZM56.7603 94.8406C53.6787 96.1927 50.1026 96.5099 46.032 95.7921C42.0928 95.0975 38.8409 93.5764 36.2763 91.2287C33.7116 88.8811 31.954 85.7956 31.0035 81.9725C30.1842 78.1725 30.2029 73.8433 31.0596 68.9849C31.9394 63.9952 33.4141 59.8551 35.4836 56.5645C37.6844 53.297 40.3913 50.9988 43.6042 49.6698C46.8171 48.3409 50.3932 48.0237 54.3324 48.7183C58.403 49.4361 61.6433 51.0229 64.0535 53.4787C66.6181 55.8264 68.3101 58.9002 69.1293 62.7002C70.103 66.392 70.15 70.7328 69.2701 75.7225C68.4135 80.5809 66.8847 84.6438 64.6839 87.9113C62.6375 91.0706 59.9963 93.3804 56.7603 94.8406Z" fill="#1a0a05" />
           </g>
+        </g>
         </g>
       </g>
     </svg>
