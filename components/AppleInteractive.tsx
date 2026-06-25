@@ -115,44 +115,6 @@ export default function AppleInteractive() {
     { scope: svgRef }
   );
 
-  // ── Sticker hover animation ──
-  useGSAP(
-    () => {
-      const stickers = gsap.utils.toArray<SVGGElement>(".sticker-group");
-
-      const cleanups = stickers.map((sticker) => {
-        const v1 = sticker.querySelector<SVGGElement>(".sv1");
-        const v2 = sticker.querySelector<SVGGElement>(".sv2");
-        if (!v1 || !v2) return () => {};
-
-        gsap.set(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%" });
-
-        const onEnter = () => {
-          gsap.to(v1, { autoAlpha: 0, duration: 0.25, ease: "power2.out" });
-          gsap.to(v2, { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
-          gsap.to(sticker, { rotate: 10, scale: 1.5, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
-        };
-
-        const onLeave = () => {
-          gsap.to(v1, { autoAlpha: 1, duration: 0.25, ease: "power2.out" });
-          gsap.to(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%", duration: 0.2, ease: "power2.in" });
-          gsap.to(sticker, { rotate: 0, scale: 1, transformOrigin: "50% 50%", duration: 0.25, ease: "power2.out" });
-        };
-
-        sticker.addEventListener("mouseenter", onEnter);
-        sticker.addEventListener("mouseleave", onLeave);
-
-        return () => {
-          sticker.removeEventListener("mouseenter", onEnter);
-          sticker.removeEventListener("mouseleave", onLeave);
-        };
-      });
-
-      return () => cleanups.forEach((cleanup) => cleanup());
-    },
-    { scope: svgRef }
-  );
-
   return (
     <svg
       ref={svgRef}
@@ -162,10 +124,7 @@ export default function AppleInteractive() {
       style={{ overflow: "visible", width: "100%", maxWidth: 480 }}
     >
       <defs>
-        <style>{`
-          .sticker-group { cursor: pointer; transform-box: fill-box; }
-          .sv1, .sv2 { transform-box: fill-box; }
-        `}</style>
+        <style></style>
       </defs>
 
       {/* ── Apple body ── */}
