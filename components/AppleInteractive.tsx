@@ -115,6 +115,44 @@ export default function AppleInteractive() {
     { scope: svgRef }
   );
 
+  // ── Sticker hover animation ──
+  useGSAP(
+    () => {
+      const stickers = gsap.utils.toArray<SVGGElement>(".sticker-group");
+
+      const cleanups = stickers.map((sticker) => {
+        const v1 = sticker.querySelector<SVGGElement>(".sv1");
+        const v2 = sticker.querySelector<SVGGElement>(".sv2");
+        if (!v1 || !v2) return () => {};
+
+        gsap.set(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%" });
+
+        const onEnter = () => {
+          gsap.to(v1, { autoAlpha: 0, duration: 0.25, ease: "power2.out" });
+          gsap.to(v2, { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
+          gsap.to(sticker, { rotate: 10, scale: 1.5, transformOrigin: "50% 50%", duration: 0.3, ease: "back.out(1.7)" });
+        };
+
+        const onLeave = () => {
+          gsap.to(v1, { autoAlpha: 1, duration: 0.25, ease: "power2.out" });
+          gsap.to(v2, { autoAlpha: 0, scale: 0.75, transformOrigin: "50% 50%", duration: 0.2, ease: "power2.in" });
+          gsap.to(sticker, { rotate: 0, scale: 1, transformOrigin: "50% 50%", duration: 0.25, ease: "power2.out" });
+        };
+
+        sticker.addEventListener("mouseenter", onEnter);
+        sticker.addEventListener("mouseleave", onLeave);
+
+        return () => {
+          sticker.removeEventListener("mouseenter", onEnter);
+          sticker.removeEventListener("mouseleave", onLeave);
+        };
+      });
+
+      return () => cleanups.forEach((cleanup) => cleanup());
+    },
+    { scope: svgRef }
+  );
+
   return (
     <svg
       ref={svgRef}
@@ -124,7 +162,10 @@ export default function AppleInteractive() {
       style={{ overflow: "visible", width: "100%", maxWidth: 480 }}
     >
       <defs>
-        <style></style>
+        <style>{`
+          .sticker-group { cursor: pointer; transform-box: fill-box; }
+          .sv1, .sv2 { transform-box: fill-box; }
+        `}</style>      
       </defs>
 
       {/* ── Apple body ── */}
@@ -187,22 +228,19 @@ export default function AppleInteractive() {
             transform="translate(913.266 1030.6625)"
             fillRule="evenodd"
             d="M254.328 0L351.468 94.5928L334.145 276.49L172.788 338.675L20.4795 262.228L0 147.313L65.4033 0H254.328ZM84.9082 30L31.1465 151.092L47.376 242.161L174.384 305.909L306.039 255.171L320.24 106.058L242.135 30H84.9082Z"
-            fill="white" opacity="0.45"
+            fill="white" opacity="1"
           />
           <path
             transform="translate(944.453 1062.0455)"
             d="M274.893 225.171L143.238 275.909L16.2298 212.161L0 121.092L53.7614 0H210.988L289.094 76.0576L274.893 225.171Z"
             fill="#FFDE88"
           />
-          <text
-            x="1089" y="1200"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontFamily="var(--font-geist-sans), Arial, sans-serif"
-            fontWeight="900"
-            fontSize="118"
-            fill="#341208"
-          >yǔ</text>
+          {/* yǔ — exact vector strokes from design */}
+          <g transform="translate(976.5 1095.5)">
+            <path fillRule="evenodd" clipRule="evenodd" d="M122.505 11.1135L159.958 39.2372L185.533 0L163.079 3.95918L156.103 17.3744L145.156 7.11958L122.505 11.1135Z" fill="#341208" />
+            <path d="M39.5696 208.717L51.3364 155.668L0 74.1438L32.4987 68.4134L61.8839 123.345L71.3001 61.5717L103.208 55.9455L71.6743 203.056L39.5696 208.717Z" fill="#341208" />
+            <path d="M146.816 145.534C152.779 147.867 160.027 148.282 168.562 146.777C174.734 145.689 180.191 143.237 184.934 139.422C188.424 136.674 191.129 132.815 193.047 127.844L195.164 139.852L224.905 134.608L207.784 37.506L178.042 42.7501L183.703 74.8549C185.046 82.4707 186.011 89.4763 186.597 95.8717C187.183 102.267 186.553 107.523 184.706 111.64C182.991 115.733 179.113 118.312 173.073 119.377C168.346 120.211 164.693 119.839 162.113 118.263C159.534 116.687 157.661 114.513 156.495 111.74C155.306 108.836 154.434 105.808 153.878 102.656L144.362 48.6889L114.621 53.9331L125.213 114.006C126.556 121.622 128.996 128.165 132.533 133.634C136.07 139.102 140.831 143.069 146.816 145.534Z" fill="#341208" />
+          </g>
         </g>
       </g>
 
@@ -242,7 +280,7 @@ export default function AppleInteractive() {
             transform="translate(664.5505 884.373)"
             fillRule="evenodd"
             d="M271.283 0L374.899 100.898L356.421 294.923L184.308 361.254L21.8447 279.709L0 157.134L69.7637 0H271.283ZM90.5684 32L33.2227 161.164L50.5342 258.305L186.01 326.304L326.441 272.182L341.59 113.128L258.276 32H90.5684Z"
-            fill="white" opacity="0.45"
+            fill="white" opacity="1"
           />
           <path
             transform="translate(697.8165 917.8485)"
