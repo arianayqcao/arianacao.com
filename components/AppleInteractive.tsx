@@ -188,6 +188,13 @@ export default function AppleInteractive() {
         fill="#341208"
       />
 
+      {/* ── Vector caterpillar (morphs in from nothing alongside the leaf) ── */}
+      <g ref={caterpillarGroupRef} transform={`translate(${CATERPILLAR_OFFSET})`}>
+        {CATERPILLAR_PATHS.map((p, i) => (
+          <path key={i} d={p.d} fill={p.fill} />
+        ))}
+      </g>
+
       {/* ── Worm ── */}
 
       <foreignObject x="320" y="710" width="310" height="370" data-cursor="stop" style={{ pointerEvents: "all", cursor: "none" }}>
