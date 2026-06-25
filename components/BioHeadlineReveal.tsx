@@ -28,9 +28,9 @@ export default function BioHeadlineReveal() {
 
       gsap.from(split.lines, {
         y: 40,
-        duration: 0.7,
+        duration: 0.6,
         ease: "circ.out",
-        stagger: 0.12,
+        stagger: 0.1,
         delay: INTRO_REVEAL_DELAY,
       });
 
