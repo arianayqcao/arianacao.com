@@ -447,8 +447,10 @@ export default function WorkPage() {
               </div>
 
               {/* loves */}
-              <div className="flex flex-col w-full md:w-[145px] shrink-0" style={{ gap: 16 }}>
-                data-cursor="text-regular"
+              <div
+                data-cursor="text-regular" 
+                className="flex flex-col w-full md:w-[145px] shrink-0" 
+                style={{ gap: 16 }}>
                 <span
                   style={{
                     fontFamily: "var(--font-mono)",

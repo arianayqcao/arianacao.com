@@ -21,7 +21,7 @@ export default function ScrambleBioText({ text }: { text: string }) {
         scrambleText: {
           text,
           chars: "upperAndLowerCase",
-          revealDelay: 0.4,
+          revealDelay: 0.7,
           speed: 0.4,
         },
       });
