@@ -172,12 +172,6 @@ export default function AppleInteractive() {
         fill="#341208"
       />
 
-      {/* ── Worm ── */}
-
-      <foreignObject x="320" y="710" width="310" height="370" data-cursor="stop" style={{ pointerEvents: "all", cursor: "none" }}>
-        <Caterpillar />
-      </foreignObject>
-
       {/* ════════════════════════════════════════════
           STICKER 1 — 雨 / yǔ   (same size as the other two — was undersized
           and mislocated on the left; Figma has it middle-right)
