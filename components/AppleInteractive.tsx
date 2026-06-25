@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, INTRO_REVEAL_DELAY } from "@/lib/gsap";
-import Caterpillar from "@/components/Caterpillar";
 
 /**
  * Interactive apple with three stickers — 雨/yǔ, 曹/cáo, 琪/qí.
@@ -194,12 +193,6 @@ export default function AppleInteractive() {
           <path key={i} d={p.d} fill={p.fill} />
         ))}
       </g>
-
-      {/* ── Worm ── */}
-
-      <foreignObject x="320" y="710" width="310" height="370" data-cursor="stop" style={{ pointerEvents: "all", cursor: "none" }}>
-        <Caterpillar />
-      </foreignObject>
 
       {/* ════════════════════════════════════════════
           STICKER 1 — 雨 / yǔ   (same size as the other two — was undersized
