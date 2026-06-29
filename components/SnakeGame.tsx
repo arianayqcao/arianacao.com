@@ -305,7 +305,7 @@ export default function SnakeGame() {
 
       {/* ── game canvas ── */}
       <div style={{
-        padding: mobileExpanded ? 0 : "2rem",
+        padding: mobileExpanded ? 0 : "1rem",
         display: "flex",
         justifyContent: "center",
         flex: mobileExpanded ? 1 : undefined,
@@ -313,9 +313,8 @@ export default function SnakeGame() {
       }}>
         <div style={{
           position: "relative",
-          ...(mobileExpanded
-            ? { width: "100%", aspectRatio: `${W} / ${H}` }
-            : {}),
+          width: "100%",
+          ...(mobileExpanded ? { aspectRatio: `${W} / ${H}` } : {}),
         }}>
           {/* canvas — dimmed on mobile idle to sit behind Play button */}
           <div className={phase === "idle" && !mobileExpanded ? "opacity-50 md:opacity-100" : ""}>
@@ -325,7 +324,9 @@ export default function SnakeGame() {
               height={H}
               style={{
                 display: "block",
-                ...(mobileExpanded ? { width: "100%", height: "100%" } : {}),
+                width: "100%",
+                height: "auto",
+                ...(mobileExpanded ? { height: "100%" } : {}),
               }}
             />
           </div>
