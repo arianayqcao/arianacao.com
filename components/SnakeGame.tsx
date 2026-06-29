@@ -42,6 +42,17 @@ export default function SnakeGame() {
   const [score, setScore] = useState(0);
   const [phase, setPhase] = useState<Phase>("idle");
   const [muted, setMuted] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+
+  /* Lock body scroll when fullscreen on mobile */
+  useEffect(() => {
+    if (mobileExpanded) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileExpanded]);
 
   /* ── draw ─────────────────────────────────────────────────── */
   const draw = useCallback(() => {
@@ -122,6 +133,25 @@ export default function SnakeGame() {
     interval.current = setInterval(step, TICK_MS);
   }, [step, draw]);
 
+  const handleMobilePlay = useCallback(() => {
+    setMobileExpanded(true);
+    startGame();
+  }, [startGame]);
+
+  const handleMobileClose = useCallback(() => {
+    if (interval.current) clearInterval(interval.current);
+    state.current = {
+      snake: INIT_SNAKE.map((p) => ({ ...p })),
+      dir: "RIGHT", next: "RIGHT",
+      apple: { x: 26, y: 11 },
+      alive: true, going: false,
+    };
+    setScore(0);
+    setPhase("idle");
+    setMobileExpanded(false);
+    draw();
+  }, [draw]);
+
   /* ── steer ────────────────────────────────────────────────── */
   const steer = useCallback((dir: Dir) => {
     const s = state.current;
@@ -173,7 +203,16 @@ export default function SnakeGame() {
 
   return (
     <div
-      style={{
+      style={mobileExpanded ? {
+        position: "fixed",
+        inset: 0,
+        zIndex: 50,
+        background: "#232323",
+        padding: 16,
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+      } : {
         background: "#232323",
         width: 634,
         maxWidth: "100%",
@@ -217,8 +256,6 @@ export default function SnakeGame() {
           </span>
         </div>
 
-        {/* controls */}
-
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           {/* mute button */}
           <button
@@ -245,24 +282,90 @@ export default function SnakeGame() {
               )}
             </svg>
           </button>
+
+          {/* close button — mobile fullscreen only */}
+          {mobileExpanded && (
+            <button
+              onClick={handleMobileClose}
+              aria-label="Close game"
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                opacity: 0.6, color: "white", padding: 0, lineHeight: 0,
+              }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
       {/* ── game canvas ── */}
-      <div style={{ padding: "2rem", display: "flex", justifyContent: "center" }}>
-        <div style={{ position: "relative" }}>
-          <canvas
-            ref={cvs}
-            width={W}
-            height={H}
-            style={{ display: "block" }}
-          />
+      <div style={{
+        padding: mobileExpanded ? 0 : "2rem",
+        display: "flex",
+        justifyContent: "center",
+        flex: mobileExpanded ? 1 : undefined,
+        alignItems: mobileExpanded ? "center" : undefined,
+      }}>
+        <div style={{
+          position: "relative",
+          ...(mobileExpanded
+            ? { width: "100%", aspectRatio: `${W} / ${H}` }
+            : {}),
+        }}>
+          {/* canvas — dimmed on mobile idle to sit behind Play button */}
+          <div className={phase === "idle" && !mobileExpanded ? "opacity-50 md:opacity-100" : ""}>
+            <canvas
+              ref={cvs}
+              width={W}
+              height={H}
+              style={{
+                display: "block",
+                ...(mobileExpanded ? { width: "100%", height: "100%" } : {}),
+              }}
+            />
+          </div>
 
-          {phase === "idle" && (
+          {/* mobile Play button overlay */}
+          {phase === "idle" && !mobileExpanded && (
             <div
+              className="flex md:hidden"
               style={{
                 position: "absolute", inset: 0,
-                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center",
+              }}
+            >
+              <button
+                onClick={handleMobilePlay}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 14,
+                  color: "white",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  border: "1px solid rgba(255,255,255,0.4)",
+                  padding: "10px 28px",
+                  cursor: "pointer",
+                  background: "rgba(35,35,35,0.8)",
+                  borderRadius: 4,
+                }}
+              >
+                Play
+              </button>
+            </div>
+          )}
+
+          {/* desktop idle hint */}
+          {phase === "idle" && (
+            <div
+              className="hidden md:flex"
+              style={{
+                position: "absolute", inset: 0,
+                flexDirection: "column",
                 alignItems: "center", justifyContent: "center", gap: 6,
                 fontFamily: "var(--font-mono)", color: "rgba(255,255,255,0.35)",
                 fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em",
