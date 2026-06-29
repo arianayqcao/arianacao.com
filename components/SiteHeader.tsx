@@ -10,7 +10,10 @@ export const NAV_LINKS = [
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
+    <>
+      {/* spacer so fixed header doesn't overlap page content */}
+      <div aria-hidden="true" className="h-[88px]" />
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white">
       <nav
         className="flex items-center justify-between"
         style={{ padding: 16 }}
@@ -64,5 +67,6 @@ export default function SiteHeader() {
         <MobileMenuOverlay />
       </nav>
     </header>
+    </>
   );
 }
