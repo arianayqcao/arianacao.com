@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 /* ─── data ──────────────────────────────────────────────────────────── */
 
@@ -74,14 +75,14 @@ const GALLERY_ROWS: GalleryRow[] = [
    URL: open.spotify.com/track/<TRACK_ID> */
 const SPOTIFY_ROWS = [
   [
-    { trackId: "TODO", title: "Forget Her", artist: "Jeff Buckley" },
-    { trackId: "TODO", title: "Love Me Like You", artist: "Little Mix" },
-    { trackId: "TODO", title: "Banana Pancakes", artist: "Jack Johnson" },
+    { trackId: "6UuVONmxXwTKN1ISepuAoQ", title: "Forget Her", artist: "Jeff Buckley" },
+    { trackId: "6L2uVVPJA9WcDc7zCZ4DHN", title: "Love Me Like You", artist: "Little Mix" },
+    { trackId: "451GvHwY99NKV4zdKPRWmv", title: "Banana Pancakes", artist: "Jack Johnson" },
   ],
   [
-    { trackId: "TODO", title: "ONLY", artist: "LEEHI" },
-    { trackId: "TODO", title: "Look What You've Done", artist: "Drake" },
-    { trackId: "TODO", title: "Defying Gravity", artist: "Wicked" },
+    { trackId: "6TBJkXHPhu3EsMk1bshwuI", title: "ONLY", artist: "LEEHI" },
+    { trackId: "7t1lBIr3WIEtqQEOdZFMUf", title: "Look What You've Done", artist: "Drake" },
+    { trackId: "184HGdGIscUiPbDuqbvHuN", title: "Defying Gravity", artist: "Wicked" },
   ],
 ];
 
@@ -391,6 +392,7 @@ export default function AboutPage() {
           ))}
         </section>
       </main>
+      <Footer />
     </>
   );
 }
