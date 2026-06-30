@@ -12,10 +12,19 @@ export default function SiteHeader() {
   return (
     <>
       {/* spacer so fixed header doesn't overlap page content */}
-      <div aria-hidden="true" className="h-[88px]" />
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white">
+      <div aria-hidden="true" className="h-[var(--nav-height)]" />
+    <header
+      className="fixed top-0 left-0 right-0 z-50 w-full pointer-events-none"
+      style={{ height: "var(--nav-fade-height)" }}
+    >
+      {/* gradient fade: opaque behind the nav row, easing to transparent below so content scrolls under with no hard edge */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{ background: "var(--gradient-nav-fade)" }}
+      />
       <nav
-        className="flex items-center justify-between"
+        className="relative z-10 flex items-center justify-between pointer-events-auto"
         style={{ padding: 16 }}
       >
         {/* logo */}
