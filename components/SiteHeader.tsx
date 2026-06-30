@@ -53,7 +53,7 @@ export default function SiteHeader() {
       >
         {/* logo */}
         <Link href="/" className="flex items-center" style={{ paddingRight: 16, paddingBlock: 0 }}>
-          <Image src="/apple_logo.svg" alt="Apple Logo" width={16} height={16} />
+          <Image src="/apple_logo.svg" alt="Apple Logo" width={24} height={24} />
         </Link>
 
         {/* centre links */}
