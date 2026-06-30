@@ -19,12 +19,12 @@ export default function SiteHeader() {
         style={{ padding: 16 }}
       >
         {/* logo */}
-        <Link href="/" className="flex items-center" style={{ paddingRight: 16, paddingBlock: 8 }}>
+        <Link href="/" className="flex items-center" style={{ paddingRight: 16, paddingBlock: 0 }}>
           <Image src="/apple_logo.svg" alt="Apple Logo" width={40} height={40} />
         </Link>
 
         {/* centre links */}
-        <div className="hidden md:flex flex-1 justify-center" style={{ paddingBlock: 8 }}>
+        <div className="hidden md:flex flex-1 justify-center" style={{ paddingBlock: 0 }}>
           <div className="flex" style={{ gap: 32 }}>
             {NAV_LINKS.map(({ href, label }) => (
               <Link
@@ -35,7 +35,7 @@ export default function SiteHeader() {
                   fontSize: "var(--text-sm)",
                   color: "#000",
                   textTransform: "uppercase",
-                  padding: "4px 8px",
+                  padding: "0px 4px",
                   lineHeight: "16px",
                 }}
               >
