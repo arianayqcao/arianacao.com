@@ -53,7 +53,7 @@ export default function SiteHeader() {
       >
         {/* logo */}
         <Link href="/" className="flex items-center" style={{ paddingRight: 16, paddingBlock: 0 }}>
-          <Image src="/apple_logo.svg" alt="Apple Logo" width={40} height={40} />
+          <Image src="/apple_logo.svg" alt="Apple Logo" width={16} height={16} />
         </Link>
 
         {/* centre links */}
@@ -86,11 +86,11 @@ export default function SiteHeader() {
           className="hidden md:inline"
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: 14.1,
+            fontSize: "var(--text-sm)",
             color: "#000",
             textTransform: "uppercase",
             letterSpacing: "var(--tracking-tight)",
-            lineHeight: "21.12px",
+            lineHeight: "16px",
           }}
         >
           Resume
