@@ -153,9 +153,6 @@
   --primitive-black-50:     rgba(0, 0, 0, 0.5);  /* Figma: black/50 — muted label text */
   --primitive-black-70:     rgba(0, 0, 0, 0.7);  /* Figma: black/70 — location blurb */
   --primitive-lime-50:      rgba(147, 242, 0, 0.5);  /* Figma: leaf-green/50 — cursor "coming soon" state */
-  --primitive-white-0:      rgba(255, 255, 255, 0);     /* nav fade — fully transparent */
-  --primitive-white-60:     rgba(255, 255, 255, 0.6);   /* nav fade — mid transition */
-  --primitive-white-85:     rgba(255, 255, 255, 0.85);  /* nav fade — near-opaque */
 
 
   /* -------------------------------------------
@@ -201,21 +198,9 @@
   --color-border-strong: rgba(0, 0, 0, 0.2);
 
   /* -------------------------------------------
-     nav fade overlay
-     fixed header background: solid behind the nav row,
-     easing through several stops to transparent below it
-     so scrolling content fades out instead of hard-cutting
+     nav
   ------------------------------------------- */
-  --nav-height:        5.5rem;       /* 88px — interactive nav row */
-  --nav-fade-height:   var(--space-40);  /* 160px — total fade zone incl. nav row */
-  --gradient-nav-fade: linear-gradient(
-    to bottom,
-    var(--color-bg) 0%,
-    var(--color-bg) 45%,
-    var(--primitive-white-85) 62%,
-    var(--primitive-white-60) 80%,
-    var(--primitive-white-0) 100%
-  );
+  --nav-height: 5.5rem;  /* 88px — fixed nav row height / spacer */
 }
 
 

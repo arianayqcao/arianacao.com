@@ -1,6 +1,13 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MobileMenuOverlay from "@/components/MobileMenuOverlay";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const NAV_LINKS = [
   { href: "/work", label: "work" },
@@ -9,22 +16,39 @@ export const NAV_LINKS = [
 ];
 
 export default function SiteHeader() {
+  const headerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (!headerRef.current) return;
+
+      // nav fades out smoothly (scrubbed to scroll position) as the page
+      // scrolls up over it, instead of staying pinned on top of content
+      const trigger = ScrollTrigger.create({
+        start: 0,
+        end: "+=200",
+        scrub: true,
+        onUpdate: (self) => {
+          gsap.set(headerRef.current, {
+            opacity: 1 - self.progress,
+            pointerEvents: self.progress > 0.9 ? "none" : "auto",
+          });
+        },
+      });
+
+      return () => trigger.kill();
+    },
+    { scope: headerRef }
+  );
+
   return (
     <>
       {/* spacer so fixed header doesn't overlap page content */}
       <div aria-hidden="true" className="h-[var(--nav-height)]" />
-    <header
-      className="fixed top-0 left-0 right-0 z-50 w-full pointer-events-none"
-      style={{ height: "var(--nav-fade-height)" }}
-    >
-      {/* gradient fade: opaque behind the nav row, easing to transparent below so content scrolls under with no hard edge */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{ background: "var(--gradient-nav-fade)" }}
-      />
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 w-full bg-white">
       <nav
-        className="relative z-10 flex items-center justify-between pointer-events-auto"
+        className="flex items-center justify-between"
         style={{ padding: 16 }}
       >
         {/* logo */}
