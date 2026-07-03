@@ -212,7 +212,7 @@ export default function WorkPage() {
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section
-          className="flex items-center justify-center w-full min-h-[100dvh] md:min-h-0"
+          className="flex items-center justify-center w-full max-h-[100dvh] md:min-h-0"
           style={{ padding: "16px" }}
         >
           <div
