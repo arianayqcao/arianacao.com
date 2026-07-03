@@ -112,7 +112,7 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
       <Link
         href={study.href}
         data-cursor={study.cursor ?? "default"}
-        className="flex flex-col overflow-clip rounded-lg shrink-0 w-full"
+        className="flex flex-col overflow-clip rounded shrink-0 w-full"
         style={{
           height: 450,
           border: isSpecialCard ? "1px solid rgba(0,0,0,0.1)" : undefined,
@@ -207,16 +207,16 @@ export default function WorkPage() {
       {/* ══ MAIN ══════════════════════════════════════════════════ */}
       <main
         className="flex flex-col items-center w-full"
-        style={{ gap: "var(--space-40)" }}
+        style={{ gap: "var(--space-16)" }}
       >
 
         {/* ── HERO ─────────────────────────────────────────────── */}
         <section
-          className="flex items-center justify-center w-full max-h-[100dvh] md:min-h-0"
-          style={{ padding: "16px" }}
+          className="flex items-start justify-center w-full max-h-[90dvh] md:min-h-0"
+          style={{ padding: "0px" }}
         >
           <div
-            className="flex flex-col items-center gap-16 md:gap-6"
+            className="flex flex-col items-center gap-0 md:gap-2"
             style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
           >
             <HeroTitleReveal text="ariana cao." />
@@ -235,7 +235,7 @@ export default function WorkPage() {
 
           <div
             className="flex flex-col w-1/2"
-            style={{ maxWidth: "var(--max-width-content)", width: "100%", gap: 24, margin: "0 auto" }}
+            style={{ maxWidth: "var(--max-width-content)", gap: 24, margin: "0 auto" }}
           >
             <BioHeadlineReveal />
 

@@ -52,7 +52,7 @@ export default function BioHeadlineReveal() {
         margin: 0,
       }}
     >
-      Ariana is a product designer with a passion for crafting magical
+      Ariana is a product designer with a passion for crafting playful
       experiences that feel{" "}
       <br className="md:hidden" />
       <span
