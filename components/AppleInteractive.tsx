@@ -326,7 +326,7 @@ export default function AppleInteractive() {
       viewBox="310 665 1090 1015"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="Interactive apple with name stickers"
-      style={{ overflow: "visible", width: "100%", maxWidth: 480 }}
+      style={{ overflow: "visible", width: "100%", maxWidth: 480, display: "block", marginInline: "auto" }}
     >
       <defs>
         <style>{`
