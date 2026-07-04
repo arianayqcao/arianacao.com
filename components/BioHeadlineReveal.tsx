@@ -24,14 +24,16 @@ export default function BioHeadlineReveal() {
       const split = SplitText.create(paragraphRef.current, {
         type: "lines",
         linesClass: "split-line",
-      });
-
-      gsap.from(split.lines, {
-        y: 40,
-        duration: 0.6,
-        ease: "circ.out",
-        stagger: 0.1,
-        delay: INTRO_REVEAL_DELAY,
+        autoSplit: true,
+        onSplit: (self) => {
+          return gsap.from(self.lines, {
+            y: 40,
+            duration: 0.6,
+            ease: "circ.out",
+            stagger: 0.1,
+            delay: INTRO_REVEAL_DELAY,
+          });
+        },
       });
 
       return () => split.revert();
@@ -42,7 +44,7 @@ export default function BioHeadlineReveal() {
   return (
     <p
       ref={paragraphRef}
-      className="text-[28px] md:text-[length:var(--text-2xl)]"
+      className="text-[28px] md:text-[30px]"
       data-cursor="text-medium"
       style={{
         fontFamily: "var(--font-primary)",

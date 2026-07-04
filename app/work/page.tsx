@@ -23,62 +23,6 @@ interface CaseStudy {
 const CASE_STUDIES: CaseStudy[][] = [
   [
     {
-      eyebrow: "Design for America · 2026",
-      title: "Spur",
-      description:
-        "Designing civic action tools that mobilize student volunteers for community service.",
-      href: "/work/spur",
-      coverStyle: {
-        backgroundImage: 'url("/images/Case Study Cover Images/Spur - Cover Image - Case Study.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      },
-      cursor: "view-case-study"
-    },
-    {
-      eyebrow: "DubHacks · 2026",
-      title: "DubHacks 2026",
-      description:
-        "Designing cooking-themed annual website for largest hackathon in the Pacific Northwest.",
-      href: "/work/dubhacks-2026",
-      coverStyle: {
-        backgroundImage: 'url("/images/Case Study Cover Images/DubHacks 2026 - Cover Image - Case Study.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      },
-      cursor: "coming-soon"
-    },
-  ],
-  [
-    {
-      eyebrow: "WINFO Hackathon · 2025",
-      title: "Cura",
-      description:
-        "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
-      href: "/work/cura",
-      coverStyle: {
-        backgroundImage: 'url("/images/Case Study Cover Images/Cura - Cover Image - Case Study.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      },
-      cursor: "view-case-study"
-    },
-    {
-      eyebrow: "DubHacks · 2026",
-      title: "DubCoin Reward System",
-      description:
-        "Redesigning the DubCoin experience and DubCoin distribution system.",
-      href: "/work/dubcoin-system",
-      coverStyle: {
-        backgroundImage: 'url("/images/Case Study Cover Images/DubCoin Reward System - Cover Image - Case Study.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      },
-      cursor: "view-case-study"
-    },
-  ],
-  [
-    {
       eyebrow: "Lily's Salvadorean · 2025",
       title: "Lily's Salvadorean",
       description: "Redesigned local family business's restaurant website.",
@@ -167,6 +111,197 @@ function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isS
   );
 }
 
+/* ─── featured case studies (spur / cura / dubcoin / dubhacks 2026) ── */
+
+const BEZELS = {
+  iphone17: {
+    src: "/images/bezels/iphone-17-black.png",
+    naturalRatio: 600 / 1227,
+    inset: { top: 7.99, right: 5.33, bottom: 2.53, left: 5.33 },
+  },
+  iphone17pro: {
+    src: "/images/bezels/iphone-17-pro-silver.png",
+    naturalRatio: 900 / 1840,
+    inset: { top: 7.99, right: 5.33, bottom: 2.5, left: 5.33 },
+  },
+  iphone16: {
+    src: "/images/bezels/iphone-16.png",
+    naturalRatio: 968 / 1361,
+    inset: { top: 0, right: 6.71, bottom: 4.78, left: 6.71 },
+  },
+} as const;
+
+function PhoneMockup({
+  bezel,
+  widthPct,
+  maxWidthPx,
+  children,
+}: {
+  bezel: (typeof BEZELS)[keyof typeof BEZELS];
+  widthPct: number;
+  maxWidthPx: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className="absolute"
+      style={{
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+        width: `${widthPct}%`,
+        maxWidth: maxWidthPx,
+        aspectRatio: bezel.naturalRatio,
+      }}
+    >
+      <Image src={bezel.src} alt="" fill sizes="(max-width: 768px) 60vw, 420px" style={{ objectFit: "fill" }} />
+      <div
+        className="absolute overflow-hidden"
+        style={{
+          top: `${bezel.inset.top}%`,
+          left: `${bezel.inset.left}%`,
+          right: `${bezel.inset.right}%`,
+          bottom: `${bezel.inset.bottom}%`,
+          borderRadius: "10%",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+interface FeaturedCard {
+  eyebrow: string;
+  title: string;
+  description: string;
+  href: string;
+  cursor: string;
+  bg: string;
+  textDark?: boolean;
+  gradient: string;
+  aspectRatio?: string;
+  heightPx?: number;
+  order: number;
+}
+
+function FeaturedCoverCard({
+  card,
+  gridClassName,
+  children,
+}: {
+  card: FeaturedCard;
+  gridClassName: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={card.href}
+      data-cursor={card.cursor}
+      className={`relative block overflow-hidden rounded w-full ${gridClassName}`}
+      style={{
+        background: card.bg,
+        aspectRatio: card.heightPx ? undefined : card.aspectRatio,
+        height: card.heightPx,
+        order: card.order,
+      }}
+    >
+      {children}
+      <div
+        className="absolute bottom-0 left-0 w-full flex flex-col"
+        style={{ padding: 32, gap: 4, background: card.gradient }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "var(--text-xxs)",
+            color: card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)",
+            letterSpacing: "var(--tracking-wider)",
+            textTransform: "uppercase",
+            lineHeight: "var(--leading-snug)",
+          }}
+        >
+          {card.eyebrow}
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-primary)",
+            fontWeight: "var(--weight-bold)",
+            fontSize: "var(--text-xl)",
+            color: card.textDark ? "#000" : "#fff",
+            lineHeight: "normal",
+          }}
+        >
+          {card.title}
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-primary)",
+            fontWeight: "var(--weight-regular)",
+            fontSize: "var(--text-md)",
+            color: card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)",
+            lineHeight: "var(--leading-body)",
+          }}
+        >
+          {card.description}
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+const DARK_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.75) 100%)";
+const LIGHT_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.06) 100%)";
+
+const SPUR_CARD: FeaturedCard = {
+  eyebrow: "Design for America · 2026",
+  title: "Spur",
+  description: "Creative inspiration is often saved impulsively and forgotten quickly, turning meaningful content into digital clutter.",
+  href: "/work/spur",
+  cursor: "view-case-study",
+  bg: "var(--primitive-spur-black)",
+  gradient: DARK_GRADIENT,
+  aspectRatio: "696 / 900",
+  order: 1,
+};
+
+const CURA_CARD: FeaturedCard = {
+  eyebrow: "WINFO Hackathon · 2025",
+  title: "Cura",
+  description: "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
+  href: "/work/cura",
+  cursor: "view-case-study",
+  bg: "rgba(0,0,0,0.05)",
+  textDark: true,
+  gradient: LIGHT_GRADIENT,
+  aspectRatio: "696 / 1226",
+  order: 2,
+};
+
+const DUBCOIN_CARD: FeaturedCard = {
+  eyebrow: "DubHacks · 2025",
+  title: "DubCoin Reward System",
+  description: "Redesigning the DubCoin experience and DubCoin distribution system.",
+  href: "/work/dubcoin-system",
+  cursor: "view-case-study",
+  bg: "var(--primitive-hot-pink)",
+  gradient: DARK_GRADIENT,
+  aspectRatio: "696 / 845",
+  order: 3,
+};
+
+const DUBHACKS_2026_CARD: FeaturedCard = {
+  eyebrow: "DubHacks · 2026",
+  title: "DubHacks 2026",
+  description: "Designing cooking-themed annual website for largest hackathon in the Pacific Northwest.",
+  href: "/work/dubhacks-2026",
+  cursor: "coming-soon",
+  bg: "var(--primitive-dubhacks-blue)",
+  gradient: DARK_GRADIENT,
+  heightPx: 520,
+  order: 4,
+};
+
 /* ─── logo strip ────────────────────────────────────────────────── */
 
 const LOGOS = [
@@ -250,17 +385,68 @@ export default function WorkPage() {
           className="flex items-start justify-center w-full"
           style={{ padding: 16 }}
         >
-          <div 
-            className="flex flex-col flex-1 min-w-0" 
+          <div
+            className="flex flex-col flex-1 min-w-0"
             style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
             >
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
+              <FeaturedCoverCard card={SPUR_CARD} gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1">
+                <PhoneMockup bezel={BEZELS.iphone17} widthPct={43} maxWidthPx={300}>
+                  <video
+                    src="/videos/spur/spur-adding-content.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 size-full object-cover"
+                  />
+                </PhoneMockup>
+              </FeaturedCoverCard>
+
+              <FeaturedCoverCard card={CURA_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
+                <PhoneMockup bezel={BEZELS.iphone17pro} widthPct={58} maxWidthPx={402}>
+                  <Image
+                    src="/images/cura-home.png"
+                    alt="Cura app home screen showing today's caregiving schedule"
+                    fill
+                    sizes="(max-width: 768px) 60vw, 420px"
+                    className="object-cover"
+                  />
+                </PhoneMockup>
+              </FeaturedCoverCard>
+
+              <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
+                <PhoneMockup bezel={BEZELS.iphone16} widthPct={60} maxWidthPx={420}>
+                  <Image
+                    src="/images/Case Study Cover Images/DubCoin Prizes.png"
+                    alt="DubCoin prizes screen showing a QR code to redeem coins"
+                    fill
+                    sizes="(max-width: 768px) 60vw, 420px"
+                    className="object-cover"
+                  />
+                </PhoneMockup>
+              </FeaturedCoverCard>
+
+              <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
+                <video
+                  src="/videos/Sponsor-Us-Button-Animation-DH26-Jitter.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute object-cover"
+                  style={{ left: 83.5, top: 46.5, width: 673.5, height: 435.8 }}
+                />
+              </FeaturedCoverCard>
+            </div>
+
             {CASE_STUDIES.map((row, ri) => (
               <div key={ri} className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
                 {row.map((study, ci) => (
                   <CaseStudyCard
                     key={study.title}
                     study={study}
-                    isSpecialCard={ri === 2 && ci === 0}
+                    isSpecialCard={ri === 0 && ci === 0}
                   />
                 ))}
               </div>

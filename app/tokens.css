@@ -138,6 +138,9 @@
   --primitive-near-black:   #191918;   /* footer background */
   --primitive-surface-dark: #232323;   /* snake game / dark card bg */
   --primitive-navy:         #0c307a;   /* Lily's Salvadorean card bg */
+  --primitive-spur-black:   #202020;   /* Spur featured card bg */
+  --primitive-hot-pink:     #ff3693;   /* DubCoin Reward System featured card bg */
+  --primitive-dubhacks-blue: #00538e;  /* DubHacks 2026 featured card bg */
 
   /* accent underlines (bio blurb highlights) */
   --primitive-green:        #7bc100;   /* "intuitive" underline */
