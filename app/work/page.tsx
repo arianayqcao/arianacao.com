@@ -124,11 +124,6 @@ const BEZELS = {
     naturalRatio: 900 / 1840,
     inset: { top: 7.99, right: 5.33, bottom: 2.5, left: 5.33 },
   },
-  iphone16: {
-    src: "/images/bezels/iphone-16.png",
-    naturalRatio: 968 / 1361,
-    inset: { top: 0, right: 6.71, bottom: 4.78, left: 6.71 },
-  },
 } as const;
 
 function PhoneMockup({
@@ -148,6 +143,17 @@ function PhoneMockup({
   // maxWidthPx — this is what keeps the phone from ever overlapping the
   // bottom text overlay, at any card width (mobile included).
   const capHeightPx = maxWidthPx / bezel.naturalRatio;
+
+  // The screen cutout is much taller than it is wide, so a single "X%"
+  // border-radius (X% of width horizontally, X% of height vertically) draws
+  // an oval instead of matching the bezel's circular corner. Compensate by
+  // scaling the vertical radius by the screen's own aspect ratio so both
+  // resolve to the same pixel radius.
+  const screenWidthPct = 100 - bezel.inset.left - bezel.inset.right;
+  const screenHeightPct = 100 - bezel.inset.top - bezel.inset.bottom;
+  const screenAspect = (screenWidthPct / screenHeightPct) * bezel.naturalRatio;
+  const cornerRadiusPctX = 14;
+  const cornerRadiusPctY = cornerRadiusPctX * screenAspect;
 
   return (
     <div
@@ -169,7 +175,7 @@ function PhoneMockup({
             left: `${bezel.inset.left}%`,
             right: `${bezel.inset.right}%`,
             bottom: `${bezel.inset.bottom}%`,
-            borderRadius: "10%",
+            borderRadius: `${cornerRadiusPctX}% / ${cornerRadiusPctY}%`,
           }}
         >
           {children}
@@ -306,7 +312,7 @@ const DUBHACKS_2026_CARD: FeaturedCard = {
   cursor: "coming-soon",
   bg: "var(--primitive-dubhacks-blue)",
   gradient: DARK_GRADIENT,
-  heightPx: 520,
+  heightPx: 460,
   order: 4,
 };
 
@@ -424,7 +430,7 @@ export default function WorkPage() {
               </FeaturedCoverCard>
 
               <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
-                <PhoneMockup bezel={BEZELS.iphone16} maxWidthPx={420} textClearancePx={170}>
+                <PhoneMockup bezel={BEZELS.iphone17} maxWidthPx={320} textClearancePx={170}>
                   <Image
                     src="/images/Case Study Cover Images/DubCoin Prizes.png"
                     alt="DubCoin prizes screen showing a QR code to redeem coins"
@@ -443,7 +449,7 @@ export default function WorkPage() {
                   muted
                   playsInline
                   className="absolute object-cover"
-                  style={{ left: 83.5, top: 46.5, width: 673.5, height: 435.8 }}
+                  style={{ left: 83.5, top: 16.5, width: 673.5, height: 435.8 }}
                 />
               </FeaturedCoverCard>
             </div>
