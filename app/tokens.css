@@ -185,6 +185,9 @@
   --color-accent-delightful: var(--primitive-red);
   --color-accent-rose:       var(--primitive-rose);
 
+  /* intro overlay */
+  --color-intro-overlay-bg:   var(--primitive-apple-red);
+
   /* custom cursor */
   --color-cursor-default:     var(--primitive-lime);
   --color-cursor-stop:        var(--primitive-apple-red);

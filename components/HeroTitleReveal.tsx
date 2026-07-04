@@ -4,9 +4,9 @@ import { useRef } from "react";
 import { gsap, SplitText, useGSAP, INTRO_REVEAL_DELAY } from "@/lib/gsap";
 
 /**
- * Character-reveal heading for the work-page hero. Starts at 1.6s so it
- * lands as IntroOverlay (components/IntroOverlay.tsx) finishes fading out,
- * rather than running invisibly underneath it.
+ * Character-reveal heading for the work-page hero. Starts at
+ * INTRO_REVEAL_DELAY so it lands as IntroOverlay (components/IntroOverlay.tsx)
+ * finishes fading out, rather than running invisibly underneath it.
  */
 export default function HeroTitleReveal({ text }: { text: string }) {
   const headingRef = useRef<HTMLHeadingElement>(null);

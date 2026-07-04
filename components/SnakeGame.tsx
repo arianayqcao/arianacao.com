@@ -46,11 +46,8 @@ export default function SnakeGame() {
 
   /* Lock body scroll when fullscreen on mobile */
   useEffect(() => {
-    if (mobileExpanded) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!mobileExpanded) return;
+    document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
   }, [mobileExpanded]);
 
