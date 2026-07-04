@@ -220,7 +220,7 @@ export default function WorkPage() {
             style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
           >
             <HeroTitleReveal text="ariana cao." />
-            <div style={{ width: 575, maxWidth: "100%", height: 510 }}>
+            <div style={{ width: 575, maxWidth: "100%", height: 510, marginTop: -40 }}>
               <AppleInteractive />
             </div>
           </div>

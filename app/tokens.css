@@ -186,7 +186,9 @@
   --color-accent-rose:       var(--primitive-rose);
 
   /* intro overlay */
-  --color-intro-overlay-bg:   var(--primitive-apple-red);
+  --color-intro-overlay-bg:       var(--primitive-apple-red);
+  --color-intro-overlay-bg-2:     var(--primitive-green);   /* phase-2 hard-cut target */
+  --color-intro-overlay-bg-2-end: var(--primitive-lime);    /* phase-2 eased-to color */
 
   /* custom cursor */
   --color-cursor-default:     var(--primitive-lime);
@@ -203,7 +205,7 @@
   /* -------------------------------------------
      nav
   ------------------------------------------- */
-  --nav-height: 5.5rem;  /* 88px — fixed nav row height / spacer */
+  --nav-height: 3.5rem;  /* 88px — fixed nav row height / spacer */
 }
 
 

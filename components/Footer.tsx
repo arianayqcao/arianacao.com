@@ -73,7 +73,7 @@ export default function Footer() {
                 Say hi
               </span>
               {[
-                { label: "linkedin", href: "https://linkedin.com/in/arianayqcao" },
+                { label: "linkedin", href: "https://www.linkedin.com/in/ariana-yq-cao/" },
                 { label: "resume", href: "/resume.pdf" },
                 { label: "email", href: "mailto:ariana.yq.cao@gmail.com" },
               ].map(({ label, href }) => (
