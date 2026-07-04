@@ -39,6 +39,11 @@ export default function SnakeGame() {
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStart = useRef({ x: 0, y: 0 });
 
+  const biteSound = useRef<HTMLAudioElement | null>(null);
+  const dieSound = useRef<HTMLAudioElement | null>(null);
+  const loseSound = useRef<HTMLAudioElement | null>(null);
+  const mutedRef = useRef(false);
+
   const [score, setScore] = useState(0);
   const [phase, setPhase] = useState<Phase>("idle");
   const [muted, setMuted] = useState(false);
@@ -100,6 +105,16 @@ export default function SnakeGame() {
     ) {
       s.alive = false;
       if (interval.current) clearInterval(interval.current);
+      if (!mutedRef.current && dieSound.current) {
+        dieSound.current.currentTime = 0;
+        dieSound.current.play().catch(() => {});
+        dieSound.current.onended = () => {
+          if (!mutedRef.current && loseSound.current) {
+            loseSound.current.currentTime = 0;
+            loseSound.current.play().catch(() => {});
+          }
+        };
+      }
       setPhase("over");
       return;
     }
@@ -109,6 +124,10 @@ export default function SnakeGame() {
     if (ate) {
       s.apple = randPos(s.snake);
       setScore((n) => n + 1);
+      if (!mutedRef.current && biteSound.current) {
+        biteSound.current.currentTime = 0;
+        biteSound.current.play().catch(() => {});
+      }
     } else {
       s.snake.pop();
     }
@@ -195,6 +214,17 @@ export default function SnakeGame() {
     return () => { if (interval.current) clearInterval(interval.current); };
   }, [draw]);
 
+  /* ── audio ───────────────────────────────────────────── */
+  useEffect(() => {
+    biteSound.current = new Audio("/audio/bite.wav");
+    dieSound.current = new Audio("/audio/die.wav");
+    loseSound.current = new Audio("/audio/lose.wav");
+  }, []);
+
+  useEffect(() => {
+    mutedRef.current = muted;
+  }, [muted]);
+
   const W = COLS * CELL; // 544
   const H = ROWS * CELL; // 352
 
@@ -217,6 +247,7 @@ export default function SnakeGame() {
         display: "flex",
         flexDirection: "column",
         gap: 20,
+        margin: "0 auto",
       }}
     >
       {/* ── header ── */}

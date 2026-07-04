@@ -21,116 +21,120 @@ export default function Footer() {
           gap: 128,
         }}
       >
-        {/* ── CTA + nav links ──────────────────────────────────── */}
+
+        {/* ── nav links + snake game ──────────────────────────────────── */}
         <div
-          className="flex flex-col md:flex-row items-start justify-between w-full shrink-0 gap-8 md:gap-0"
+          className="flex flex-col md: flex-row w-full shrink-0 gap-8"
           style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
         >
-          {/* left: heading + tagline */}
-          <div className="flex flex-col shrink-0 w-full md:w-[340px]" style={{ gap: 19 }}>
-            <h2
-              data-cursor="text-large"
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontWeight: "var(--weight-bold)",
-                fontSize: "var(--text-3xl)",
-                color: "white",
-                lineHeight: "normal",
-                margin: 0,
-              }}
-            >
-              Hey, have you played yet today?
-            </h2>
-            <p
-              data-cursor="text-regular"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "var(--text-md)",
-                color: "white",
-                lineHeight: "var(--leading-body)",
-                margin: 0,
-                fontStyle: "normal",
-              }}
-            >
-              MADE WITH &lt;3 AND LOTS OF PLAY.
-            </p>
-          </div>
-
-          {/* right: link columns */}
-          <div className="flex items-center shrink-0" style={{ gap: 32 }}>
-            {/* say hi */}
-            <div className="flex flex-col" style={{ gap: 8, width: 145 }}>
-              <span
+          {/* ── col 1: CTA + nav links ──────────────────────────────────── */}
+          <div className="flex flex-col justify-between w-full md:w-1/3 gap-8 md:gap-0">
+            {/* top: heading + tagline */}
+            <div className="flex flex-col shrink-0 w-full md:w-[340px]" style={{ gap: 19 }}>
+              <h2
+                data-cursor="text-large"
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-xxs)",
+                  fontFamily: "var(--font-primary)",
+                  fontWeight: "var(--weight-bold)",
+                  fontSize: "var(--text-3xl)",
                   color: "white",
-                  textTransform: "uppercase",
-                  letterSpacing: "var(--tracking-wider)",
-                  lineHeight: "var(--leading-snug)",
+                  lineHeight: "normal",
+                  margin: 0,
                 }}
               >
-                Say hi
-              </span>
-              {[
-                { label: "linkedin", href: "https://www.linkedin.com/in/ariana-yq-cao/" },
-                { label: "resume", href: "/resume.pdf" },
-                { label: "email", href: "mailto:ariana.yq.cao@gmail.com" },
-              ].map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-md)",
-                    color: "#6b6b6b",
-                    lineHeight: "var(--leading-body)",
-                    textDecoration: "none",
-                  }}
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-
-            {/* page */}
-            <div className="flex flex-col" style={{ gap: 8, width: 145 }}>
-              <span
+                Hey, have you played yet today?
+              </h2>
+              <p
+                data-cursor="text-regular"
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-xxs)",
+                  fontSize: "var(--text-md)",
                   color: "white",
-                  textTransform: "uppercase",
-                  letterSpacing: "var(--tracking-wider)",
-                  lineHeight: "var(--leading-snug)",
+                  lineHeight: "var(--leading-body)",
+                  margin: 0,
+                  fontStyle: "normal",
                 }}
               >
-                Page
-              </span>
-              {NAV_LINKS.map(({ href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
+                MADE WITH &lt;3 AND LOTS OF PLAY.
+              </p>
+            </div>
+
+            {/* bottom: link columns */}
+            <div className="flex items-center shrink-0" style={{ gap: 32 }}>
+              {/* say hi */}
+              <div className="flex flex-col" style={{ gap: 8, width: 145 }}>
+                <span
                   style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-md)",
-                    color: "#6b6b6b",
-                    lineHeight: "var(--leading-body)",
-                    textDecoration: "none",
+                    fontSize: "var(--text-xxs)",
+                    color: "white",
+                    textTransform: "uppercase",
+                    letterSpacing: "var(--tracking-wider)",
+                    lineHeight: "var(--leading-snug)",
                   }}
                 >
-                  {label}
-                </Link>
-              ))}
+                  Say hi
+                </span>
+                {[
+                  { label: "linkedin", href: "https://www.linkedin.com/in/ariana-yq-cao/" },
+                  { label: "resume", href: "/resume.pdf" },
+                  { label: "email", href: "mailto:ariana.yq.cao@gmail.com" },
+                ].map(({ label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-md)",
+                      color: "#6b6b6b",
+                      lineHeight: "var(--leading-body)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+
+              {/* page */}
+              <div className="flex flex-col" style={{ gap: 8, width: 145 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "var(--text-xxs)",
+                    color: "white",
+                    textTransform: "uppercase",
+                    letterSpacing: "var(--tracking-wider)",
+                    lineHeight: "var(--leading-snug)",
+                  }}
+                >
+                  Page
+                </span>
+                {NAV_LINKS.map(({ href, label }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-md)",
+                      color: "#6b6b6b",
+                      lineHeight: "var(--leading-body)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* ── snake game ───────────────────────────────────────── */}
-        <div className="shrink-0" style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}>
-          <SnakeGame />
+          {/* ── col 2: snake game ───────────────────────────────────────── */}
+          <div className="shrink-0 w-full md:w-2/3" >
+            <SnakeGame />
+          </div>
         </div>
 
         {/* ── bottom bar ───────────────────────────────────────── */}
@@ -165,7 +169,7 @@ export default function Footer() {
 
           <div className="flex items-center" style={{ gap: 32 }}>
             <a
-              href="https://github.com/arianacaoyu"
+              href="https://github.com/arianayqcao"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -192,7 +196,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/arianacaoyu"
+              href="https://linkedin.com/in/ariana-yq-cao"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

@@ -133,39 +133,47 @@ const BEZELS = {
 
 function PhoneMockup({
   bezel,
-  widthPct,
   maxWidthPx,
+  textClearancePx,
   children,
 }: {
   bezel: (typeof BEZELS)[keyof typeof BEZELS];
-  widthPct: number;
   maxWidthPx: number;
+  /** vertical space to always leave clear at the bottom of the card for the eyebrow/title/description overlay */
+  textClearancePx: number;
   children: React.ReactNode;
 }) {
+  // Height-driven sizing: fills up to 90% of the space above the reserved text
+  // area, but never taller than what would make the phone wider than
+  // maxWidthPx — this is what keeps the phone from ever overlapping the
+  // bottom text overlay, at any card width (mobile included).
+  const capHeightPx = maxWidthPx / bezel.naturalRatio;
+
   return (
     <div
-      className="absolute"
-      style={{
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
-        width: `${widthPct}%`,
-        maxWidth: maxWidthPx,
-        aspectRatio: bezel.naturalRatio,
-      }}
+      className="absolute flex items-center justify-center"
+      style={{ top: 0, left: 0, right: 0, bottom: textClearancePx }}
     >
-      <Image src={bezel.src} alt="" fill sizes="(max-width: 768px) 60vw, 420px" style={{ objectFit: "fill" }} />
       <div
-        className="absolute overflow-hidden"
+        className="relative"
         style={{
-          top: `${bezel.inset.top}%`,
-          left: `${bezel.inset.left}%`,
-          right: `${bezel.inset.right}%`,
-          bottom: `${bezel.inset.bottom}%`,
-          borderRadius: "10%",
+          height: `min(90%, ${capHeightPx}px)`,
+          aspectRatio: bezel.naturalRatio,
         }}
       >
-        {children}
+        <Image src={bezel.src} alt="" fill sizes="(max-width: 768px) 60vw, 420px" style={{ objectFit: "fill" }} />
+        <div
+          className="absolute overflow-hidden"
+          style={{
+            top: `${bezel.inset.top}%`,
+            left: `${bezel.inset.left}%`,
+            right: `${bezel.inset.right}%`,
+            bottom: `${bezel.inset.bottom}%`,
+            borderRadius: "10%",
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -391,7 +399,7 @@ export default function WorkPage() {
             >
             <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
               <FeaturedCoverCard card={SPUR_CARD} gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1">
-                <PhoneMockup bezel={BEZELS.iphone17} widthPct={43} maxWidthPx={300}>
+                <PhoneMockup bezel={BEZELS.iphone17} maxWidthPx={300} textClearancePx={170}>
                   <video
                     src="/videos/spur/spur-adding-content.mp4"
                     autoPlay
@@ -404,7 +412,7 @@ export default function WorkPage() {
               </FeaturedCoverCard>
 
               <FeaturedCoverCard card={CURA_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
-                <PhoneMockup bezel={BEZELS.iphone17pro} widthPct={58} maxWidthPx={402}>
+                <PhoneMockup bezel={BEZELS.iphone17pro} maxWidthPx={402} textClearancePx={190}>
                   <Image
                     src="/images/cura-home.png"
                     alt="Cura app home screen showing today's caregiving schedule"
@@ -416,7 +424,7 @@ export default function WorkPage() {
               </FeaturedCoverCard>
 
               <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
-                <PhoneMockup bezel={BEZELS.iphone16} widthPct={60} maxWidthPx={420}>
+                <PhoneMockup bezel={BEZELS.iphone16} maxWidthPx={420} textClearancePx={170}>
                   <Image
                     src="/images/Case Study Cover Images/DubCoin Prizes.png"
                     alt="DubCoin prizes screen showing a QR code to redeem coins"
