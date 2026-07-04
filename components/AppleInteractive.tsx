@@ -36,9 +36,11 @@ const LEAF_DEGENERATE_D = "M1013.9965 786.6935L1013.9965 786.6935L1013.9965 786.
    "apple", frame 26:1170) — already in the same coordinate units as
    the body/leaf/stem, just offset by this frame's absolute Figma
    position. Rendered inside a single translated <g> so the raw local
-   `d` strings below can be used unmodified. This is a separate,
-   one-shot vector reveal — unrelated to the always-on raster
-   eye-blinking <Caterpillar /> rendered via <foreignObject> below. */
+   `d` strings below can be used unmodified. Paths 0-13 are the body
+   (never change); paths 14-15 are the pupils, whose `d` also gets
+   driven post-reveal by the mouse-tracking effect below. The separate
+   `components/Caterpillar.tsx` (raster, timer-cycled) is unused and
+   unrelated to this one-shot vector reveal. */
 const CATERPILLAR_OFFSET = "336.0365 730.9094";
 const CATERPILLAR_PATHS: { d: string; degenerateD: string; fill: string }[] = [
   { fill: "#C8FF31", d: "M69.2028 153.333L89.1605 174.578L89.7092 175.323L51.0557 202.9L34.3241 186.169L34.3105 186.115L69.1772 153.042L69.2028 153.333Z", degenerateD: "M62.0099 177.971L62.0099 177.971L62.0099 177.971Z" },
@@ -59,6 +61,54 @@ const CATERPILLAR_PATHS: { d: string; degenerateD: string; fill: string }[] = [
   { fill: "#341208", d: "M25.3011 25.4754L31.3195 29.0599L31.9307 33.1115L30.5512 35.9697L24.5329 36.3852L22.9263 32.2369L25.3011 25.4754Z", degenerateD: "M27.4285 30.9303L27.4285 30.9303L27.4285 30.9303Z" },
 ];
 
+/* ─── eye-tracking gaze states ──────────────────────────────────────
+   Pupil `d` pairs per compass direction, pulled from the 8 Figma
+   exports in public/caterpillar/*.svg. Each export's own path order
+   isn't a reliable left/right indicator (4 of 8 files list the right
+   eye first) — these were classified by x-coordinate range instead
+   (lower x = left eye) and cross-checked against the "left" entry,
+   which matches the default pose baked into CATERPILLAR_PATHS[14-15]
+   above. ──────────────────────────────────────────────────────────── */
+type GazeDirection = "up" | "down" | "left" | "right" | "up-left" | "up-right" | "down-left" | "down-right";
+
+const EYE_PUPIL_PATHS: Record<GazeDirection, { left: string; right: string }> = {
+  left: {
+    left:  "M9.18519 29.7686L15.0959 26.4934L16.9114 32.1666L16.7719 36.2616L10.8612 37.5368L8.06816 34.0745L9.18519 29.7686Z",
+    right: "M25.3011 25.4759L31.3195 29.0604L31.9307 33.112L30.5512 35.9702L24.5329 36.3857L22.9263 32.2374L25.3011 25.4759Z",
+  },
+  right: {
+    left:  "M44.6979 24.2073L38.6796 27.7918L38.0684 31.8434L39.4478 34.7016L45.4662 35.1171L47.0727 30.9689L44.6979 24.2073Z",
+    right: "M60.8138 28.5L54.9031 25.2248L53.0876 30.898L53.2272 34.9931L59.1379 36.2683L61.9309 32.8059L60.8138 28.5Z",
+  },
+  up: {
+    left:  "M32.013 6.14098L25.1097 7.33028L23.087 10.8936L23.3503 14.0564L28.8199 16.6013L31.8065 13.3045L32.013 6.14098Z",
+    right: "M43.7242 7.403L37.0789 6.17724L37.1615 12.1333L38.5959 15.9715L44.6054 15.301L46.1525 11.1303L43.7242 7.403Z",
+  },
+  down: {
+    left:  "M25.6366 53.4487L32.2938 52.2888L32.1522 58.2438L30.6798 62.0675L24.6774 61.3377L23.1716 57.1518L25.6366 53.4487Z",
+    right: "M36.4267 51.9729L43.4315 52.02L46.0085 55.2056L46.2647 58.369L41.2836 61.7722L37.7991 59.0067L36.4267 51.9729Z",
+  },
+  "up-left": {
+    left:  "M19.0291 31.2897L12.4835 33.7847L8.92709 31.7498L7.54177 28.8944L10.9507 23.9172L15.2005 25.2316L19.0291 31.2897Z",
+    right: "M24.9579 19.2795L22.5292 25.5854L17.4948 22.4016L14.9726 19.1724L18.6854 14.3999L23.0497 15.2611L24.9579 19.2795Z",
+  },
+  "up-right": {
+    left:  "M49.6684 5.76844L51.2803 12.3308L56.6768 9.80899L59.5871 6.92467L56.5075 1.72097L52.0693 2.02353L49.6684 5.76844Z",
+    right: "M54.0308 18.4317L60.2084 21.7342L63.9935 20.1653L65.7287 17.5079L62.9764 12.1397L58.5945 12.9062L54.0308 18.4317Z",
+  },
+  "down-left": {
+    left:  "M12.324 40.3207L18.8525 42.065L16.2221 47.4094L13.2795 50.2607L8.13915 47.0765L8.53137 42.6454L12.324 40.3207Z",
+    right: "M22.6108 44.3869L27.825 49.0647L27.6434 53.1581L25.7387 55.6967L19.7532 54.9438L18.9768 50.5636L22.6108 44.3869Z",
+  },
+  "down-right": {
+    left:  "M48.4429 38.3273L43.7832 43.5577L44.4203 47.6053L46.5964 49.9155L52.4605 48.4995L52.7434 44.06L48.4429 38.3273Z",
+    right: "M58.2116 33.1393L51.9185 35.6011L55.1288 40.6186L58.3711 43.1239L63.1241 39.3861L62.24 35.0264L58.2116 33.1393Z",
+  },
+};
+
+const DIRECTION_BY_OCTANT: GazeDirection[] =
+  ["right", "down-right", "down", "down-left", "left", "up-left", "up", "up-right"];
+
 const STICKER_CENTERS: Record<string, string> = {
   yu: "1089 1200",
   cao: "852 1065",
@@ -72,10 +122,17 @@ export default function AppleInteractive() {
   const leafPathRef = useRef<SVGPathElement>(null);
   const stemPathRef = useRef<SVGPathElement>(null);
   const caterpillarGroupRef = useRef<SVGGElement>(null);
+  const pupilLeftPathRef = useRef<SVGPathElement>(null);
+  const pupilRightPathRef = useRef<SVGPathElement>(null);
+  const introSettledRef = useRef(false);
+  const reconcileEyesRef = useRef<(() => void) | null>(null);
 
   useGSAP(
     () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        introSettledRef.current = true;
+        return;
+      }
       if (!bodyPathRef.current || !leafPathRef.current || !stemPathRef.current) return;
 
       const bodyPath = bodyPathRef.current;
@@ -93,7 +150,13 @@ export default function AppleInteractive() {
       gsap.set(stemPath, { y: -40, opacity: 0 });
       caterpillarPaths.forEach((p, i) => gsap.set(p, { attr: { d: CATERPILLAR_PATHS[i].degenerateD } }));
 
-      const tl = gsap.timeline({ delay: INTRO_REVEAL_DELAY });
+      const tl = gsap.timeline({
+        delay: INTRO_REVEAL_DELAY,
+        onComplete: () => {
+          introSettledRef.current = true;
+          reconcileEyesRef.current?.();
+        },
+      });
 
       tl.to(bodyPath, { morphSVG: { shape: APPLE_SHAPE_2, type: "rotational", shapeIndex: "auto" }, duration: 0.3, ease: "back.out(1.7)" })
         .to(bodyPath, { morphSVG: { shape: APPLE_SHAPE_3, type: "rotational", shapeIndex: "auto" }, duration: 0.3, ease: "back.out(1.7)" })
@@ -161,6 +224,102 @@ export default function AppleInteractive() {
     { scope: svgRef }
   );
 
+  // ── Caterpillar eye-tracking ──
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (!window.matchMedia("(pointer: fine)").matches) return;
+
+      const pupilLeft = pupilLeftPathRef.current;
+      const pupilRight = pupilRightPathRef.current;
+      if (!pupilLeft || !pupilRight) return;
+
+      let anchorX = 0;
+      let anchorY = 0;
+      let anchorDirty = true;
+      let anchorFrame: number | null = null;
+
+      function measureAnchor() {
+        anchorFrame = null;
+        if (!pupilLeft || !pupilRight) return;
+        const leftRect = pupilLeft.getBoundingClientRect();
+        const rightRect = pupilRight.getBoundingClientRect();
+        const minX = Math.min(leftRect.left, rightRect.left);
+        const maxX = Math.max(leftRect.right, rightRect.right);
+        const minY = Math.min(leftRect.top, rightRect.top);
+        const maxY = Math.max(leftRect.bottom, rightRect.bottom);
+        anchorX = (minX + maxX) / 2;
+        anchorY = (minY + maxY) / 2;
+        anchorDirty = false;
+      }
+
+      function scheduleAnchorRemeasure() {
+        anchorDirty = true;
+        if (anchorFrame === null) anchorFrame = requestAnimationFrame(measureAnchor);
+      }
+
+      measureAnchor();
+
+      let currentDirection: GazeDirection | null = null;
+      let hasMoved = false;
+      let pendingX = 0;
+      let pendingY = 0;
+      let moveFrame: number | null = null;
+
+      function applyDirection(direction: GazeDirection) {
+        if (direction === currentDirection) return;
+        currentDirection = direction;
+        const { left, right } = EYE_PUPIL_PATHS[direction];
+        gsap.to(pupilLeft, { morphSVG: left, duration: 0.15, ease: "power2.out" });
+        gsap.to(pupilRight, { morphSVG: right, duration: 0.15, ease: "power2.out" });
+      }
+
+      function reconcile() {
+        moveFrame = null;
+        if (!hasMoved || !introSettledRef.current) return;
+        if (anchorDirty) measureAnchor();
+
+        const dx = pendingX - anchorX;
+        const dy = pendingY - anchorY;
+        const angleDeg = (Math.atan2(dy, dx) * 180 / Math.PI + 360) % 360;
+        const octant = Math.round(angleDeg / 45) % 8;
+        applyDirection(DIRECTION_BY_OCTANT[octant]);
+      }
+
+      function handlePointerMove(e: PointerEvent) {
+        pendingX = e.clientX;
+        pendingY = e.clientY;
+        hasMoved = true;
+        if (moveFrame === null) moveFrame = requestAnimationFrame(reconcile);
+      }
+
+      function handleResizeOrScroll() {
+        scheduleAnchorRemeasure();
+      }
+
+      // let the intro timeline's onComplete reconcile immediately against
+      // wherever the mouse already is, instead of waiting for the next move
+      reconcileEyesRef.current = reconcile;
+
+      document.addEventListener("pointermove", handlePointerMove);
+      window.addEventListener("resize", handleResizeOrScroll);
+      window.addEventListener("scroll", handleResizeOrScroll, { passive: true });
+
+      return () => {
+        document.removeEventListener("pointermove", handlePointerMove);
+        window.removeEventListener("resize", handleResizeOrScroll);
+        window.removeEventListener("scroll", handleResizeOrScroll);
+        if (moveFrame !== null) cancelAnimationFrame(moveFrame);
+        if (anchorFrame !== null) cancelAnimationFrame(anchorFrame);
+        gsap.killTweensOf(pupilLeft);
+        gsap.killTweensOf(pupilRight);
+        if (reconcileEyesRef.current === reconcile) reconcileEyesRef.current = null;
+      };
+    },
+    { scope: svgRef }
+  );
+
   return (
     <svg
       ref={svgRef}
@@ -199,7 +358,12 @@ export default function AppleInteractive() {
       {/* ── Vector caterpillar (morphs in from nothing alongside the leaf) ── */}
       <g ref={caterpillarGroupRef} transform={`translate(${CATERPILLAR_OFFSET})`}>
         {CATERPILLAR_PATHS.map((p, i) => (
-          <path key={i} d={p.d} fill={p.fill} />
+          <path
+            key={i}
+            ref={i === 14 ? pupilLeftPathRef : i === 15 ? pupilRightPathRef : undefined}
+            d={p.d}
+            fill={p.fill}
+          />
         ))}
       </g>
 
