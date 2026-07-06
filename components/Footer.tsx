@@ -24,7 +24,7 @@ export default function Footer() {
 
         {/* ── nav links + snake game ──────────────────────────────────── */}
         <div
-          className="flex flex-col md: flex-row w-full shrink-0 gap-8"
+          className="flex flex-col md:flex-row w-full shrink-0 gap-8"
           style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
         >
           {/* ── col 1: CTA + nav links ──────────────────────────────────── */}

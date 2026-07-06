@@ -75,10 +75,11 @@ export default function MobileMenuOverlay() {
           {/* middle: hero text + links, split top/bottom */}
           <div className="flex flex-1 flex-col items-center justify-between w-full" style={{ paddingBlock: 64 }}>
             <h2
-              className="text-[96px] leading-[64px] text-center w-full"
+              className="flex flex-col text-[72px] leading-[80px] text-center w-full"
               style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--weight-black)", color: "var(--color-heading)" }}
             >
-              ariana cao.
+              <span>ariana</span>
+              <span>cao.</span>
             </h2>
 
             <div className="flex flex-col items-start w-full gap-16">
