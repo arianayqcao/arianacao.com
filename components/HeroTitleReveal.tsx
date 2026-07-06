@@ -17,7 +17,7 @@ export default function HeroTitleReveal({ text }: { text: string }) {
       if (!headingRef.current) return;
 
       const split = SplitText.create(headingRef.current, {
-        type: "chars",
+        type: "words, chars",
         mask: "chars",
       });
 
@@ -37,7 +37,7 @@ export default function HeroTitleReveal({ text }: { text: string }) {
   return (
     <h1
       ref={headingRef}
-      className="text-[96px] leading-[64px] md:text-[length:var(--text-4xl)] md:leading-[var(--leading-tight)]"
+      className="text-[96px] leading-[92px] md:text-[length:var(--text-4xl)] md:leading-[var(--leading-tight)]"
       style={{
         fontFamily: "var(--font-primary)",
         fontWeight: "var(--weight-black)",
