@@ -8,109 +8,6 @@ import BioHeadlineReveal from "@/components/BioHeadlineReveal";
 import SiteHeader, { NAV_LINKS } from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 
-/* ─── case studies ─────────────────────────────────────────────── */
-
-interface CaseStudy {
-  eyebrow: string;
-  title: string;
-  description: string;
-  href: string;
-  coverStyle: React.CSSProperties;
-  coverContent?: React.ReactNode;
-  cursor?: string;
-}
-
-const CASE_STUDIES: CaseStudy[][] = [
-  [
-    {
-      eyebrow: "Lily's Salvadorean · 2025",
-      title: "Lily's Salvadorean",
-      description: "Redesigned local family business's restaurant website.",
-      href: "/work/lilys",
-      coverStyle: {
-        backgroundImage: 'url("/images/Case Study Cover Images/Lily\'s Salvadorean - Cover Image - Case Study.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      },
-      cursor: "coming-soon"
-    },
-    {
-      eyebrow: "DubHacks · 2025",
-      title: "DubHacks 2025",
-      description:
-        "Led website design and prototyping for DubHacks 2025, supporting 1,100+ participants.",
-      href: "/work/dubhacks-2025",
-      coverStyle: {
-        backgroundImage: 'url("/images/Case Study Cover Images/DubHacks 2025 - Cover Image - Case Study.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      },
-      cursor: "coming-soon"
-    },
-  ],
-];
-
-function CaseStudyCard({ study, isSpecialCard = false }: { study: CaseStudy; isSpecialCard?: boolean }) {
-  return (
-    <div className="flex flex-col flex-1 min-w-0 overflow-clip" style={{ gap: 16 }}>
-      <Link
-        href={study.href}
-        data-cursor={study.cursor ?? "default"}
-        className="flex flex-col overflow-clip rounded shrink-0 w-full"
-        style={{
-          height: 450,
-          border: isSpecialCard ? "1px solid rgba(0,0,0,0.1)" : undefined,
-        }}
-      >
-        <div
-          className="flex-1 relative w-full"
-          style={study.coverStyle}
-        >
-          {study.coverContent}
-        </div>
-      </Link>
-
-      {/* description */}
-      <div className="flex flex-col shrink-0 w-full" data-cursor="text-regular" style={{ gap: 4 }}>
-        <span
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "var(--text-xxs)",
-            color: "rgba(0,0,0,0.5)",
-            letterSpacing: "var(--tracking-wider)",
-            textTransform: "uppercase",
-            lineHeight: "var(--leading-snug)",
-          }}
-        >
-          {study.eyebrow}
-        </span>
-        <span
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-bold)",
-            fontSize: "var(--text-xl)",
-            color: "#000",
-            lineHeight: "normal",
-          }}
-        >
-          {study.title}
-        </span>
-        <span
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-regular)",
-            fontSize: "var(--text-md)",
-            color: "rgba(0,0,0,0.5)",
-            lineHeight: "var(--leading-body)",
-          }}
-        >
-          {study.description}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 /* ─── featured case studies (spur / cura / dubcoin / dubhacks 2026) ── */
 
 const BEZELS = {
@@ -456,18 +353,6 @@ export default function WorkPage() {
                 />
               </FeaturedCoverCard>
             </div>
-
-            {CASE_STUDIES.map((row, ri) => (
-              <div key={ri} className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
-                {row.map((study, ci) => (
-                  <CaseStudyCard
-                    key={study.title}
-                    study={study}
-                    isSpecialCard={ri === 0 && ci === 0}
-                  />
-                ))}
-              </div>
-            ))}
           </div>
         </section>
 
