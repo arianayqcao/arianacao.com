@@ -356,7 +356,7 @@ export default function WorkPage() {
       {/* ══ MAIN ══════════════════════════════════════════════════ */}
       <main
         className="flex flex-col items-center w-full"
-        style={{ gap: "var(--space-16)" }}
+        style={{ gap: "var(--space-0)" }}
       >
 
         {/* ── HERO ─────────────────────────────────────────────── */}
@@ -369,7 +369,7 @@ export default function WorkPage() {
             style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
           >
             <HeroTitleReveal text="ariana cao." />
-            <div style={{ width: 575, maxWidth: "100%", height: 510, marginTop: -40, marginInline: "auto" }}>
+            <div style={{ width: 575, maxWidth: "100%", height: 510, marginTop: -40, marginBottom: -80, marginInline: "auto" }}>
               <AppleInteractive />
             </div>
           </div>
@@ -383,7 +383,7 @@ export default function WorkPage() {
         >
 
           <div
-            className="flex flex-col w-1/2"
+            className="flex flex-col w-1/2 md:w-full"
             style={{ maxWidth: "var(--max-width-content)", gap: 24, margin: "0 auto" }}
           >
             <BioHeadlineReveal />
@@ -399,8 +399,8 @@ export default function WorkPage() {
           className="flex items-start justify-center w-full"
           style={{ padding: 16 }}
         >
-          <div
-            className="flex flex-col flex-1 min-w-0"
+          <div 
+            className="flex flex-col flex-1 min-w-0" 
             style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
             >
             <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
