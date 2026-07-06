@@ -187,7 +187,7 @@ export default function IntroOverlay() {
 
       STICKERS.forEach(({ key, rotateFrom, start }) => {
         const el = stickerRefs.current[key];
-        gsap.set(el, { rotation: rotateFrom, scale: 1, transformOrigin: "50% 50%" });
+        gsap.set(el, { rotation: rotateFrom, scale: 1, opacity: 1, transformOrigin: "50% 50%" });
         tl.to(el, { rotation: 0, duration: SETTLE_DURATION, ease: "introRotate" }, start);
         tl.to(el, { scale: 2, duration: SETTLE_DURATION, ease: springBounce }, start);
       });
@@ -224,6 +224,15 @@ export default function IntroOverlay() {
         { opacity: 0, pointerEvents: "none", duration: OVERLAY_FADE_DURATION, ease: "power1.in" },
         OVERLAY_FADE_START
       );
+
+      tl.to(
+        containerRef.current,
+        { opacity: 0, pointerEvents: "none", duration: OVERLAY_FADE_DURATION, ease: "power1.in" },
+        OVERLAY_FADE_START
+      );
+
+    tl.seek(0.18);
+
     },
     { scope: containerRef }
   );
@@ -249,6 +258,7 @@ export default function IntroOverlay() {
             right: `${inset.right}%`,
             bottom: `${inset.bottom}%`,
             left: `${inset.left}%`,
+            opacity: 0,
           }}
         >
           <img src={src} alt="" className="w-full h-full" draggable={false} />

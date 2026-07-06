@@ -283,7 +283,7 @@ export default function WorkPage() {
         >
 
           <div
-            className="flex flex-col w-1/2 md:w-full"
+            className="flex flex-col w-full md:w-1/2"
             style={{ maxWidth: "var(--max-width-content)", gap: 24, margin: "0 auto" }}
           >
             <BioHeadlineReveal />
