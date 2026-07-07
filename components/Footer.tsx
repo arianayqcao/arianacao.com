@@ -1,7 +1,5 @@
 import Link from "next/link";
 import SnakeGame from "@/components/SnakeGame"
-import Image from "next/image";
-import MobileMenuOverlay from "@/components/MobileMenuOverlay";
 
 export const NAV_LINKS = [
   { href: "/work", label: "work" },
@@ -77,7 +75,7 @@ export default function Footer() {
                 </span>
                 {[
                   { label: "linkedin", href: "https://www.linkedin.com/in/ariana-yq-cao/" },
-                  { label: "resume", href: "/resume.pdf" },
+                  { label: "resume", href: "/resume" },
                   { label: "email", href: "mailto:ariana.yq.cao@gmail.com" },
                 ].map(({ label, href }) => (
                   <a
@@ -196,7 +194,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/ariana-yq-cao"
+              href="https://www.linkedin.com/in/ariana-yq-cao/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

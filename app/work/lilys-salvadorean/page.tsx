@@ -1,3 +1,3 @@
-export default function CuraPage() {
-     return <div>Cura</div>
+export default function LilysSalvadoreanPage() {
+     return <div>Lily&apos;s Salvadorean</div>
    }

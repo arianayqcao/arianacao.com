@@ -56,7 +56,7 @@ export default function BioHeadlineReveal() {
     >
       Ariana is a product designer with a passion for crafting playful
       experiences that feel{" "}
-      <span className="block md: hidden" aria-hidden="true" />
+      <span className="block md:hidden" aria-hidden="true" />
       <span
         style={{
           textDecoration: "underline",

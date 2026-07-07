@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 /* ─── data ──────────────────────────────────────────────────────── */
 
@@ -148,13 +149,13 @@ const PLAY_ITEMS: PlayItem[] = [
 
 /* ─── card ──────────────────────────────────────────────────────── */
 
-function PlayCardMedia({ media, overlayPlayIcon }: { media: PlayMedia; overlayPlayIcon?: boolean }) {
+function PlayCardMedia({ title, media, overlayPlayIcon }: { title: string; media: PlayMedia; overlayPlayIcon?: boolean }) {
   if (media.kind === "grid3") {
     return (
       <div className="flex w-full overflow-hidden rounded-lg">
-        {media.srcs.map((src) => (
+        {media.srcs.map((src, i) => (
           <div key={src} className="relative w-1/3 shrink-0" style={{ aspectRatio: media.aspect }}>
-            <Image src={src} alt="" fill sizes="(max-width: 768px) 33vw, 17vw" className="object-cover" />
+            <Image src={src} alt={`${title} — photo ${i + 1} of ${media.srcs.length}`} fill sizes="(max-width: 768px) 33vw, 17vw" className="object-cover" />
           </div>
         ))}
       </div>
@@ -166,6 +167,7 @@ function PlayCardMedia({ media, overlayPlayIcon }: { media: PlayMedia; overlayPl
       {media.kind === "video" ? (
         <video
           src={media.src}
+          aria-label={title}
           className="absolute inset-0 size-full object-cover"
           autoPlay
           loop
@@ -174,7 +176,7 @@ function PlayCardMedia({ media, overlayPlayIcon }: { media: PlayMedia; overlayPl
           preload="metadata"
         />
       ) : (
-        <Image src={media.src} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+        <Image src={media.src} alt={title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
       )}
       {overlayPlayIcon && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -196,7 +198,7 @@ function PlayCard({ item }: { item: PlayItem }) {
       className="play-grid-item flex flex-col w-full"
       style={{ gap: 16, "--play-col": item.desktopColumn, "--play-row": item.desktopRow } as React.CSSProperties}
     >
-      <PlayCardMedia media={item.media} overlayPlayIcon={item.overlayPlayIcon} />
+      <PlayCardMedia title={item.title} media={item.media} overlayPlayIcon={item.overlayPlayIcon} />
       <div className="flex flex-col w-full" style={{ gap: 4 }}>
         <span
           style={{
@@ -276,6 +278,8 @@ export default function PlayPage() {
           ))}
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 }

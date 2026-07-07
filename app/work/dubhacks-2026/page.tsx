@@ -1,3 +1,3 @@
-export default function CuraPage() {
-     return <div>Cura</div>
+export default function DubHacks2026Page() {
+     return <div>DubHacks 2026</div>
    }

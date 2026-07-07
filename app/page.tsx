@@ -6,82 +6,10 @@ import AppleInteractive from "@/components/AppleInteractive";
 import HeroTitleReveal from "@/components/HeroTitleReveal";
 import ScrambleBioText from "@/components/ScrambleBioText";
 import BioHeadlineReveal from "@/components/BioHeadlineReveal";
-import SiteHeader, { NAV_LINKS } from "@/components/SiteHeader";
+import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 
 /* ─── featured case studies (spur / cura / dubcoin / dubhacks 2026) ── */
-
-const BEZELS = {
-  iphone17: {
-    src: "/images/bezels/iphone-17-black.png",
-    naturalRatio: 600 / 1227,
-    inset: { top: 7.99, right: 5.33, bottom: 2.53, left: 5.33 },
-  },
-  iphone17pro: {
-    src: "/images/bezels/iphone-17-pro-silver.png",
-    naturalRatio: 900 / 1840,
-    inset: { top: 7.99, right: 5.33, bottom: 2.5, left: 5.33 },
-  },
-} as const;
-
-function PhoneMockup({
-  bezel,
-  maxWidthPx,
-  textClearancePx,
-  children,
-}: {
-  bezel: (typeof BEZELS)[keyof typeof BEZELS];
-  maxWidthPx: number;
-  /** vertical space to always leave clear at the bottom of the card for the eyebrow/title/description overlay */
-  textClearancePx: number;
-  children: React.ReactNode;
-}) {
-  // Height-driven sizing: fills up to 90% of the space above the reserved text
-  // area, but never taller than what would make the phone wider than
-  // maxWidthPx — this is what keeps the phone from ever overlapping the
-  // bottom text overlay, at any card width (mobile included).
-  const capHeightPx = maxWidthPx / bezel.naturalRatio;
-
-  // The screen cutout is much taller than it is wide, so a single "X%"
-  // border-radius (X% of width horizontally, X% of height vertically) draws
-  // an oval instead of matching the bezel's circular corner. Compensate by
-  // scaling the vertical radius by the screen's own aspect ratio so both
-  // resolve to the same pixel radius.
-  const screenWidthPct = 100 - bezel.inset.left - bezel.inset.right;
-  const screenHeightPct = 100 - bezel.inset.top - bezel.inset.bottom;
-  const screenAspect = (screenWidthPct / screenHeightPct) * bezel.naturalRatio;
-  const cornerRadiusPctX = 14;
-  const cornerRadiusPctY = cornerRadiusPctX * screenAspect;
-
-  return (
-    <div
-      className="absolute flex items-center justify-center"
-      style={{ top: 0, left: 0, right: 0, bottom: textClearancePx }}
-    >
-      <div
-        className="relative"
-        style={{
-          height: `min(90%, ${capHeightPx}px)`,
-          aspectRatio: bezel.naturalRatio,
-        }}
-      >
-        <Image src={bezel.src} alt="" fill sizes="(max-width: 768px) 60vw, 420px" style={{ objectFit: "fill" }} />
-        <div
-          className="absolute overflow-hidden"
-          style={{
-            top: `${bezel.inset.top}%`,
-            left: `${bezel.inset.left}%`,
-            right: `${bezel.inset.right}%`,
-            bottom: `${bezel.inset.bottom}%`,
-            borderRadius: `${cornerRadiusPctX}% / ${cornerRadiusPctY}%`,
-          }}
-        >
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 interface FeaturedCard {
   eyebrow: string;
@@ -107,23 +35,23 @@ function FeaturedCoverCard({
   gridClassName: string;
   children: React.ReactNode;
 }) {
-  return (
-    <Link
-      href={card.href}
-      data-cursor={card.cursor}
-      className={`group relative block overflow-hidden rounded w-full ${gridClassName}`}
-      style={{
-        background: card.bg,
-        aspectRatio: card.heightPx ? undefined : card.aspectRatio,
-        height: card.heightPx,
-        order: card.order,
-      }}
-    >
+  const comingSoon = card.cursor === "coming-soon";
+
+  const className = `group relative block overflow-hidden rounded w-full ${gridClassName}`;
+  const style = {
+    background: card.bg,
+    aspectRatio: card.heightPx ? undefined : card.aspectRatio,
+    height: card.heightPx,
+    order: card.order,
+  };
+
+  const content = (
+    <>
       {children}
 
       {/* hover darken overlay */}
       <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200 pointer-events-none" />
-      
+
       <div
         className="absolute bottom-0 left-0 w-full flex flex-col"
         style={{ padding: 32, gap: 4, background: card.gradient }}
@@ -163,6 +91,20 @@ function FeaturedCoverCard({
           {card.description}
         </span>
       </div>
+    </>
+  );
+
+  if (comingSoon) {
+    return (
+      <div data-cursor={card.cursor} className={className} style={style}>
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <Link href={card.href} data-cursor={card.cursor} className={className} style={style}>
+      {content}
     </Link>
   );
 }
@@ -188,7 +130,7 @@ const CURA_CARD: FeaturedCard = {
   title: "Cura",
   description: "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
   href: "/work/cura",
-  cursor: "view-case-study",
+  cursor: "coming-soon",
   bg: "#EAEAF0",
   textDark: true,
   gradient: LIGHT_GRADIENT,

@@ -80,7 +80,7 @@ export default function SiteHeader() {
 
         {/* resume */}
         <a
-          href="/resume/"
+          href="/resume"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline"

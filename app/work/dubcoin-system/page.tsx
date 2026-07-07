@@ -155,7 +155,7 @@ function FeatureRow({ feature }: { feature: Feature }) {
       <div className="relative w-full md:w-[498px] shrink-0" style={{ aspectRatio: feature.aspect }}>
         <Image
           src={feature.image}
-          alt=""
+          alt={`${feature.title} screen in the DubCoin app`}
           fill
           sizes="(max-width: 768px) 100vw, 498px"
           className={feature.fit === "cover" ? "object-cover" : "object-contain"}
@@ -171,6 +171,7 @@ interface InsightCard {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   imageAspect?: string;
   quote?: { author: string; text: string };
 }
@@ -180,6 +181,7 @@ const INSIGHTS: InsightCard[] = [
     title: "Manual",
     description: "Every transaction required a staff member to edit a spreadsheet by hand.",
     image: "/images/DubCoin/insight-manual.png",
+    imageAlt: "Screenshot of the Google Sheet DubHacks staff used to manually track DubCoin prize redemptions",
     imageAspect: "268.53 / 264.36",
   },
   {
@@ -233,7 +235,7 @@ function InsightCardView({ card }: { card: InsightCard }) {
       >
         {card.image ? (
           <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: card.imageAspect }}>
-            <Image src={card.image} alt="" fill className="object-cover" />
+            <Image src={card.image} alt={card.imageAlt ?? ""} fill className="object-cover" />
           </div>
         ) : (
           <div
@@ -531,7 +533,7 @@ export default function DubcoinSystemPage() {
               <div className="relative w-full" style={{ aspectRatio: "922 / 519" }}>
                 <Image
                   src="/images/DubCoin/reflection.png"
-                  alt=""
+                  alt="Photo of two DubHacks staff members smiling together after the event"
                   fill
                   sizes="(max-width: 768px) 100vw, 922px"
                   className="object-cover rounded-lg"
@@ -634,7 +636,7 @@ export default function DubcoinSystemPage() {
             </span>
             <div className="flex items-center" style={{ gap: 32 }}>
               <a
-                href="https://linkedin.com/in/arianacaoyu"
+                href="https://www.linkedin.com/in/ariana-yq-cao/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center"
@@ -653,7 +655,7 @@ export default function DubcoinSystemPage() {
                            1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" />
                 </svg>
               </a>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <a href="/resume" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
                 <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-sm)", color: "#000" }}>
                   Resume
                 </span>
