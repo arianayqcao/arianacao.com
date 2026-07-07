@@ -28,3 +28,15 @@ html.custom-cursor-active * {
     grid-row: var(--play-row);
   }
 }
+
+/* Homepage featured case-study cards: taller 1:1.5 (w:h) crop on mobile;
+   md+ restores each card's own square/custom ratio via --card-aspect-desktop
+   (see FeaturedCoverCard in app/page.tsx). */
+.case-study-card {
+  aspect-ratio: 1 / 1.5;
+}
+@media (min-width: 768px) {
+  .case-study-card {
+    aspect-ratio: var(--card-aspect-desktop, 1 / 1);
+  }
+}

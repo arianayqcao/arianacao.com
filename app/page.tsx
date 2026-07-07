@@ -37,13 +37,13 @@ function FeaturedCoverCard({
 }) {
   const comingSoon = card.cursor === "coming-soon";
 
-  const className = `group relative block overflow-hidden rounded w-full ${gridClassName}`;
+  const className = `group relative block overflow-hidden rounded w-full ${card.heightPx ? "" : "case-study-card"} ${gridClassName}`;
   const style = {
     background: card.bg,
-    aspectRatio: card.heightPx ? undefined : card.aspectRatio,
     height: card.heightPx,
     order: card.order,
-  };
+    ...(card.heightPx ? {} : { "--card-aspect-desktop": card.aspectRatio }),
+  } as React.CSSProperties;
 
   const content = (
     <>
