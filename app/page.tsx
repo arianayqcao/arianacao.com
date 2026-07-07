@@ -249,7 +249,7 @@ export default function Home() {
           {/* ── CASE STUDIES ─────────────────────────────────────── */}
           <section
             className="flex items-start justify-center w-full"
-            style={{ padding: 16 }}
+            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
           >
             <div 
               className="flex flex-col flex-1 min-w-0" 
