@@ -105,7 +105,7 @@ export default function MobileMenuOverlay() {
 
               <div className="flex flex-col items-center justify-center w-full">
                 <a
-                  href="/resume.pdf"
+                  href="/resume"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
