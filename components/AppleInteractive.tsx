@@ -344,7 +344,7 @@ export default function AppleInteractive() {
         ref={leafPathRef}
         d={LEAF_D}
         fill="#93F200"
-        data-cursor="stop"
+        data-cursor="red"
         style={{ pointerEvents: "all", cursor: "none" }}
       />
 

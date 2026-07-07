@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import JumpNav from "@/components/JumpNav";
 
 /* ─── jump nav ──────────────────────────────────────────────────── */
 
@@ -300,34 +301,7 @@ export default function SpurPage() {
         </div>
 
         {/* ── JUMP NAV ─────────────────────────────────────────── */}
-        <nav
-          className="sticky z-40 bg-white w-full flex justify-center"
-          style={{ top: 69, paddingTop: 16, paddingBottom: 16 }}
-        >
-          <div
-            className="flex items-center overflow-x-auto w-full"
-            style={{ maxWidth: 1200, gap: 32, paddingInline: 16 }}
-          >
-            {JUMP_LINKS.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="shrink-0"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-xs)",
-                  color: "#000",
-                  textTransform: "uppercase",
-                  letterSpacing: "1.2px",
-                  lineHeight: "16.8px",
-                  textDecoration: "none",
-                }}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </nav>
+        <JumpNav links={JUMP_LINKS} />
 
         {/* ── CONTENT ──────────────────────────────────────────── */}
         <div className="flex flex-col items-center w-full">

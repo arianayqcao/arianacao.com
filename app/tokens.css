@@ -125,6 +125,10 @@
   --transition-base:   250ms ease;
   --transition-slow:   400ms ease-in-out;
 
+  /* -------------------------------------------
+     interaction states
+  ------------------------------------------- */
+  --opacity-hover: 0.5;
 
   /* -------------------------------------------
      PRIMITIVE color tokens
@@ -208,9 +212,8 @@
   /* -------------------------------------------
      nav
   ------------------------------------------- */
-  --nav-height: 3.5rem;  /* 88px — fixed nav row height / spacer */
+  --nav-height: 3.5rem;  /* 56px — fixed nav row height / spacer */
 }
-
 
 /* -------------------------------------------
    responsive base size

@@ -1,6 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
+import JumpNav from "@/components/JumpNav";
 import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 /* ─── jump nav ──────────────────────────────────────────────────── */
 
@@ -373,34 +374,7 @@ export default function DubcoinSystemPage() {
         </div>
 
         {/* ── JUMP NAV ─────────────────────────────────────────── */}
-        <nav
-          className="sticky z-40 bg-white w-full flex justify-center"
-          style={{ top: 69, paddingTop: 16, paddingBottom: 16 }}
-        >
-          <div
-            className="flex items-center overflow-x-auto w-full"
-            style={{ maxWidth: 1200, gap: 32, paddingInline: 16 }}
-          >
-            {JUMP_LINKS.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="shrink-0"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-xs)",
-                  color: "#000",
-                  textTransform: "uppercase",
-                  letterSpacing: "1.2px",
-                  lineHeight: "16.8px",
-                  textDecoration: "none",
-                }}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </nav>
+        <JumpNav links={JUMP_LINKS} />
 
         {/* ── CONTENT ──────────────────────────────────────────── */}
         <div className="flex flex-col items-center w-full" style={{ padding: 16 }}>
@@ -594,76 +568,7 @@ export default function DubcoinSystemPage() {
       </main>
 
       {/* ── FOOTER ──────────────────────────────────────────────── */}
-      <footer
-        className="w-full flex justify-center relative"
-        style={{ background: "var(--primitive-grey-96)", borderTop: "1px solid var(--primitive-black-10)" }}
-      >
-        <div className="flex flex-col w-full" style={{ maxWidth: 1280, padding: 40, gap: 20 }}>
-          <div className="flex items-end justify-between w-full">
-            <Link
-              href="/work"
-              className="flex items-center"
-              style={{ gap: 10, textDecoration: "none" }}
-            >
-              <span aria-hidden="true">←</span>
-              <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-md)", color: "var(--color-text-subtle)" }}>
-                Back to home
-              </span>
-            </Link>
-            <Link
-              href="/work/cura"
-              className="flex flex-col items-end"
-              style={{ gap: 2, textDecoration: "none" }}
-            >
-              <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-md)", color: "var(--color-text-subtle)" }}>
-                Next project
-              </span>
-              <span className="flex items-center" style={{ gap: 10 }}>
-                <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-md)", color: "var(--color-text-subtle)" }}>
-                  Cura
-                </span>
-                <span aria-hidden="true">→</span>
-              </span>
-            </Link>
-          </div>
-
-          <div
-            className="flex flex-col md:flex-row md:items-center md:justify-between w-full"
-            style={{ gap: 16, borderTop: "1px solid rgba(21,21,21,0.16)", paddingTop: 23, opacity: 0.86 }}
-          >
-            <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-md)", color: "var(--color-text-subtle)" }}>
-              © Built by Ariana Cao
-            </span>
-            <div className="flex items-center" style={{ gap: 32 }}>
-              <a
-                href="https://www.linkedin.com/in/ariana-yq-cao/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
-                style={{ gap: 8, textDecoration: "none" }}
-              >
-                <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-sm)", color: "#000" }}>
-                  Linkedin
-                </span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39
-                           0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037
-                           c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711z
-                           M5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337
-                           9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1
-                           2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582
-                           1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" />
-                </svg>
-              </a>
-              <a href="/resume" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                <span style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-sm)", color: "#000" }}>
-                  Resume
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

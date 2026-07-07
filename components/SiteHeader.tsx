@@ -4,10 +4,18 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MobileMenuOverlay from "@/components/MobileMenuOverlay";
+import NavLink from "./NavLink";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const HEADER_LINK_STYLE = {
+  fontSize: "var(--text-sm)",
+  letterSpacing: "var(--tracking-tight)",
+  lineHeight: "16px",
+  fontWeight: "var(--weight-regular)", // or regular/bold/black
+} as const;
 
 export const NAV_LINKS = [
   { href: "/work", label: "work" },
@@ -60,41 +68,25 @@ export default function SiteHeader() {
         <div className="hidden md:flex flex-1 justify-center" style={{ paddingBlock: 0 }}>
           <div className="flex" style={{ gap: 32 }}>
             {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={label}
+              <NavLink
+                key={href}
                 href={href}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-sm)",
-                  color: "#000",
-                  textTransform: "uppercase",
-                  padding: "0px 4px",
-                  lineHeight: "16px",
-                }}
-              >
-                {label}
-              </Link>
+                label={label}
+                style={HEADER_LINK_STYLE}
+              />
             ))}
           </div>
         </div>
 
         {/* resume */}
-        <a
+        <NavLink
           href="/resume"
+          label="resume"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline"
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "var(--text-sm)",
-            color: "#000",
-            textTransform: "uppercase",
-            letterSpacing: "var(--tracking-tight)",
-            lineHeight: "16px",
-          }}
-        >
-          Resume
-        </a>
+          style={HEADER_LINK_STYLE}
+        />
 
         {/* mobile menu */}
         <MobileMenuOverlay />

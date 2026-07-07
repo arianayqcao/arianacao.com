@@ -10,7 +10,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 export type CursorVariant =
   | "default"           // 16×16 green circle
-  | "stop"              // 16×16 red circle
+  | "red"              // 16×16 red circle
   | "view-case-study"   // pill — "view case study"
   | "coming-soon"       // pill — "coming soon" (lime/50)
   | "text-large"        // I-beam 4×128  (display, h2)
@@ -20,7 +20,7 @@ export type CursorVariant =
 
 const CURSOR_VARIANTS: readonly CursorVariant[] = [
   "default",
-  "stop",
+  "red",
   "view-case-study",
   "coming-soon",
   "text-large",
@@ -48,10 +48,10 @@ const PILL_VARIANTS = new Set<CursorVariant>([
 /* ─── I-beam sizes ──────────────────────────────────────────────── */
 
 const BAR_SIZE: Partial<Record<CursorVariant, { width: number; height: number }>> = {
-  "text-large":   { width: 4, height: 128 },
-  "text-medium":  { width: 3, height: 64 },
-  "text-regular": { width: 2, height: 32 },
-  "text-small":   { width: 2, height: 20 },
+  "text-large":   { width: 3, height: 128 },
+  "text-medium":  { width: 2, height: 48 },
+  "text-regular": { width: 1, height: 28 },
+  "text-small":   { width: .5, height: 18 },
 };
 
 /* ─── fine-pointer detection ────────────────────────────────────── */
@@ -120,8 +120,8 @@ export default function CustomCursor() {
   const label    = PILL_LABEL[variant];
 
   const background =
-    variant === "stop"
-      ? "var(--color-cursor-stop)"
+    variant === "red"
+      ? "var(--color-cursor-red)"
       : variant === "coming-soon"
       ? "var(--color-cursor-disabled)"
       : "var(--color-cursor-default)";
@@ -133,8 +133,8 @@ export default function CustomCursor() {
       className="fixed top-0 left-0 z-[100] flex items-center justify-center pointer-events-none"
       style={{
         opacity:      visible ? 1 : 0,
-        width:        isPill ? "auto" : (barSize?.width  ?? 16),
-        height:       isPill ? 24     : (barSize?.height ?? 16),
+        width:        isPill ? "auto" : (barSize?.width  ?? 8),
+        height:       isPill ? 24     : (barSize?.height ?? 8),
         padding:      isPill ? "4px 12px" : 0,
         borderRadius: "var(--radius-full)",
         background,

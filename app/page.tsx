@@ -54,7 +54,7 @@ function FeaturedCoverCard({
 
       <div
         className="absolute bottom-0 left-0 w-full flex flex-col"
-        style={{ padding: 32, gap: 4, background: card.gradient }}
+        style={{ padding: 16, gap: 4, background: card.gradient }}
       >
         <span
           style={{
@@ -109,13 +109,13 @@ function FeaturedCoverCard({
   );
 }
 
-const DARK_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%)";
+const DARK_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 100%)";
 const LIGHT_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.06) 100%)";
 
 const SPUR_CARD: FeaturedCard = {
   eyebrow: "Design for America · 2026",
   title: "Spur",
-  description: "Creative inspiration is often saved impulsively and forgotten quickly, turning meaningful content into digital clutter.",
+  description: "Creative inspiration is often saved impulsively, quickly forgotten, and turns into digital clutter.",
   href: "/work/spur",
   cursor: "view-case-study",
   bg: "var(--primitive-black)",
@@ -301,7 +301,7 @@ export default function Home() {
                     muted
                     playsInline
                     className="absolute object-cover"
-                    style={{ left: 83.5, top: 16.5, width: 673.5, height: 435.8 }}
+                    style={{ left: 83.5, top: 0, width: 673.5, height: 435.8 }}
                   />
                 </FeaturedCoverCard>
               </div>
@@ -365,7 +365,7 @@ export default function Home() {
 
               {/* photo */}
               <div
-                className="w-full md:flex-1 md:min-w-0 relative rounded-lg overflow-hidden"
+                className="w-full md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden"
                 style={{ aspectRatio: "346 / 448" }}
               >
                 <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
@@ -522,7 +522,7 @@ export default function Home() {
 
               {/* portrait */}
               <div
-                className="relative rounded-lg overflow-hidden shrink-0 w-full md:w-[411px]"
+                className="relative rounded-sm overflow-hidden shrink-0 w-full md:w-[411px]"
                 style={{ aspectRatio: "411 / 546" }}
               >
                 <Image src="/images/lilies.png" alt="Lilies" fill className="object-cover" />
