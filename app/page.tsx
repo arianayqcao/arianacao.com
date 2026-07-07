@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import IntroOverlay from "@/components/IntroOverlay";
 import AppleInteractive from "@/components/AppleInteractive";
 import HeroTitleReveal from "@/components/HeroTitleReveal";
 import ScrambleBioText from "@/components/ScrambleBioText";
@@ -249,344 +250,349 @@ const LOVES = [
 
 /* ─── page ──────────────────────────────────────────────────────── */
 
-export default function WorkPage() {
+export default function Home() {
   return (
-    <div className="bg-white flex flex-col items-center min-h-screen">
+    <>
+      <IntroOverlay />
 
-      {/* ══ HEADER ════════════════════════════════════════════════ */}
-      <SiteHeader />
+      <div className="bg-white flex flex-col items-center min-h-screen">
 
-      {/* ══ MAIN ══════════════════════════════════════════════════ */}
-      <main
-        className="flex flex-col items-center w-full"
-        style={{ gap: "var(--space-0)" }}
-      >
+        {/* ══ HEADER ════════════════════════════════════════════════ */}
+        <SiteHeader />
 
-        {/* ── HERO ─────────────────────────────────────────────── */}
-        <section
-          className="flex items-start justify-center w-full max-h-[90dvh] md:min-h-0"
-          style={{ padding: "0px" }}
-        >
-          <div
-            className="flex flex-col items-center gap-0 md:gap-2"
-            style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
-          >
-            <HeroTitleReveal text="ariana cao." />
-            <div
-              className="mt-6 md:mt-[-40px]"
-              style={{ width: 575, maxWidth: "100%", height: 510, marginBottom: -80, marginInline: "auto" }}
-            >
-              <AppleInteractive />
-            </div>
-          </div>
-        </section>
-
-        {/* ── BIO ──────────────────────────────────────────────── */}
-
-        <section
+        {/* ══ MAIN ══════════════════════════════════════════════════ */}
+        <main
           className="flex flex-col items-center w-full"
-          style={{ padding: 16 }}
+          style={{ gap: "var(--space-0)" }}
         >
 
-          <div
-            className="flex flex-col w-full md:w-1/2"
-            style={{ maxWidth: "var(--max-width-content)", gap: 24, margin: "0 auto" }}
+          {/* ── HERO ─────────────────────────────────────────────── */}
+          <section
+            className="flex items-start justify-center w-full max-h-[90dvh] md:min-h-0"
+            style={{ padding: "0px" }}
           >
-            <BioHeadlineReveal />
-
-            <ScrambleBioText
-              text={"Based in Seattle, WA.\nConstantly collecting free magazines, making tea."}
-            />
-          </div>
-        </section>
-
-        {/* ── CASE STUDIES ─────────────────────────────────────── */}
-        <section
-          className="flex items-start justify-center w-full"
-          style={{ padding: 16 }}
-        >
-          <div 
-            className="flex flex-col flex-1 min-w-0" 
-            style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+            <div
+              className="flex flex-col items-center gap-0 md:gap-2"
+              style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
             >
-            <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
-              <FeaturedCoverCard card={SPUR_CARD} gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1">
-                <div
-                  className="absolute flex items-center justify-center"
-                  style={{ top: 0, left: 0, right: 0, bottom: SPUR_CARD.textClearancePx }}
-                >
+              <HeroTitleReveal text="ariana cao." />
+              <div
+                className="mt-6 md:mt-[-40px]"
+                style={{ width: 575, maxWidth: "100%", height: 510, marginBottom: -80, marginInline: "auto" }}
+              >
+                <AppleInteractive />
+              </div>
+            </div>
+          </section>
+
+          {/* ── BIO ──────────────────────────────────────────────── */}
+
+          <section
+            className="flex flex-col items-center w-full"
+            style={{ padding: 16 }}
+          >
+
+            <div
+              className="flex flex-col w-full md:w-1/2"
+              style={{ maxWidth: "var(--max-width-content)", gap: 24, margin: "0 auto" }}
+            >
+              <BioHeadlineReveal />
+
+              <ScrambleBioText
+                text={"Based in Seattle, WA.\nConstantly collecting free magazines, making tea."}
+              />
+            </div>
+          </section>
+
+          {/* ── CASE STUDIES ─────────────────────────────────────── */}
+          <section
+            className="flex items-start justify-center w-full"
+            style={{ padding: 16 }}
+          >
+            <div 
+              className="flex flex-col flex-1 min-w-0" 
+              style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+              >
+              <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
+                <FeaturedCoverCard card={SPUR_CARD} gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1">
+                  <div
+                    className="absolute flex items-center justify-center"
+                    style={{ top: 0, left: 0, right: 0, bottom: SPUR_CARD.textClearancePx }}
+                  >
+                    <video
+                      src="/videos/spur/spur-adding-content.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-auto object-contain"
+                      style={{ height: "90%"}}
+                    />
+                  </div>
+                </FeaturedCoverCard>
+
+                <FeaturedCoverCard card={CURA_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
+                  <Image
+                    src="/images/Case Study Cover Images/Updated-Cura-Cover-Image-4k-1-1-ratio.png"
+                    alt="Cura app home screen showing today's caregiving schedule"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 696px"
+                    className="object-cover"
+                  />
+                </FeaturedCoverCard>
+                
+                <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
+                  <Image
+                    src="/images/Case Study Cover Images/4k-1-1-ratio-Redeem-DubCoins.png"
+                    alt="DubCoin prizes screen showing a QR code to redeem coins"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 1000px"
+                    className="object-cover"
+                  />
+                </FeaturedCoverCard>
+
+                <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
                   <video
-                    src="/videos/spur/spur-adding-content.mp4"
+                    src="/videos/Sponsor-Us-Button-Animation-DH26-Jitter.mp4"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="w-auto object-contain"
-                    style={{ height: "90%"}}
+                    className="absolute object-cover"
+                    style={{ left: 83.5, top: 16.5, width: 673.5, height: 435.8 }}
                   />
-                </div>
-              </FeaturedCoverCard>
-
-              <FeaturedCoverCard card={CURA_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
-                <Image
-                  src="/images/Case Study Cover Images/Updated-Cura-Cover-Image-4k-1-1-ratio.png"
-                  alt="Cura app home screen showing today's caregiving schedule"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 696px"
-                  className="object-cover"
-                />
-              </FeaturedCoverCard>
-              
-              <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
-                <Image
-                  src="/images/Case Study Cover Images/4k-1-1-ratio-Redeem-DubCoins.png"
-                  alt="DubCoin prizes screen showing a QR code to redeem coins"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 1000px"
-                  className="object-cover"
-                />
-              </FeaturedCoverCard>
-
-              <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
-                <video
-                  src="/videos/Sponsor-Us-Button-Animation-DH26-Jitter.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute object-cover"
-                  style={{ left: 83.5, top: 16.5, width: 673.5, height: 435.8 }}
-                />
-              </FeaturedCoverCard>
-            </div>
-          </div>
-        </section>
-
-        {/* ── ABOUT ────────────────────────────────────────────── */}
-        <section
-          className="flex flex-col items-start w-full"
-          style={{ padding: 16 }}
-        >
-          <div 
-            className="flex flex-col md:flex-row items-start w-full" 
-            style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
-          >
-            {/* text */}
-            <div
-              className="flex flex-col flex-1 min-w-0 self-stretch"
-              style={{ gap: 16 }}
-            >
-              <h2
-                data-cursor="text-large"
-                style={{
-                  fontFamily: "var(--font-primary)",
-                  fontWeight: "var(--weight-bold)",
-                  fontSize: "var(--text-3xl)",
-                  color: "#000",
-                  lineHeight: "40px",
-                  margin: 0,
-                }}
-              >
-                Student at UW-Seattle, from the Bay Area.
-              </h2>
-              <div
-                data-cursor="text-regular"
-                style={{
-                  fontFamily: "var(--font-primary)",
-                  fontWeight: "var(--weight-regular)",
-                  fontSize: "var(--text-md)",
-                  color: "#000",
-                  lineHeight: "normal",
-                  whiteSpace: "pre-wrap",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
-                }}
-              >
-                <p style={{ margin: 0 }}>
-                  I&apos;m a 3rd-year undergrad student pursuing Informatics at the
-                  University of Washington in Seattle.
-                </p>
-                <p style={{ margin: 0 }}>
-                  I&apos;m driven by a desire to make technology more accessible and more
-                  magical ✨, especially through women-centered tech initiatives.
-                </p>
+                </FeaturedCoverCard>
               </div>
             </div>
+          </section>
 
-            {/* 1/3 spacer */}
-            <div className="hidden md:block self-stretch shrink-0 bg-white" style={{ width: 223 }} />
-
-            {/* photo */}
-            <div
-              className="w-full md:flex-1 md:min-w-0 relative rounded-lg overflow-hidden"
-              style={{ aspectRatio: "346 / 448" }}
-            >
-              <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
-            </div>
-          </div>
-        </section>
-
-        {/* ── LOGO STRIP ───────────────────────────────────────── */}
-        <section
-          className="flex flex-col items-start w-full overflow-hidden"
-          style={{ padding: 16 }}
-        >
-          <div className="overflow-hidden w-full">
-            <div
-              className="flex items-center shrink-0"
-              style={{
-                gap: 128,
-                height: 32,
-                animation: "marquee 30s linear infinite",
-                width: "max-content",
-              }}
-            >
-              {[...LOGOS, ...LOGOS].map(({ name, src }, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={i}
-                  src={src}
-                  alt={name}
-                  style={{
-                    height: 28,
-                    width: "auto",
-                    opacity: 1,
-                    userSelect: "none",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── SKILLS ───────────────────────────────────────────── */}
-        <section
-          className="flex flex-col items-start w-full"
-          style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
-        >
-          <div 
-            className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16"
-            style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+          {/* ── ABOUT ────────────────────────────────────────────── */}
+          <section
+            className="flex flex-col items-start w-full"
+            style={{ padding: 16 }}
           >
-            {/* left: grid + loves */}
-            <div className="flex flex-col md:flex-row flex-1 min-w-0 w-full" style={{ gap: 32 }}>
-              {/* practices / toolkit grid */}
+            <div 
+              className="flex flex-col md:flex-row items-start w-full" 
+              style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+            >
+              {/* text */}
               <div
-                data-cursor="text-regular"
-                className="w-full md:w-[299px] shrink-0"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                  columnGap: 32,
-                  rowGap: 16,
-                }}
+                className="flex flex-col flex-1 min-w-0 self-stretch"
+                style={{ gap: 16 }}
               >
-                {/* headers */}
-                <span
+                <h2
+                  data-cursor="text-large"
                   style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-xxs)",
-                    color: "rgba(0,0,0,0.5)",
-                    textTransform: "uppercase",
-                    letterSpacing: "var(--tracking-wider)",
-                    lineHeight: "var(--leading-snug)",
+                    fontFamily: "var(--font-primary)",
+                    fontWeight: "var(--weight-bold)",
+                    fontSize: "var(--text-3xl)",
+                    color: "#000",
+                    lineHeight: "40px",
+                    margin: 0,
                   }}
                 >
-                  Practices
-                </span>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-xxs)",
-                    color: "rgba(0,0,0,0.5)",
-                    textTransform: "uppercase",
-                    letterSpacing: "var(--tracking-wider)",
-                    lineHeight: "var(--leading-snug)",
-                  }}
-                >
-                  Toolkit
-                </span>
-
-                {/* rows */}
-                {PRACTICES.map(({ label, tools }) => (
-                  <Fragment key={label}>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontWeight: "var(--weight-regular)",
-                        fontSize: "var(--text-md)",
-                        color: "#000",
-                        lineHeight: "var(--leading-body)",
-                      }}
-                    >
-                      {label}
-                    </span>
-                    <div
-                      className="flex flex-col"
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontWeight: "var(--weight-regular)",
-                        fontSize: "var(--text-md)",
-                        color: "#000",
-                        lineHeight: "var(--leading-body)",
-                      }}
-                    >
-                      {tools.map((t) => (
-                        <span key={t}>{t}</span>
-                      ))}
-                    </div>
-                  </Fragment>
-                ))}
-              </div>
-
-              {/* loves */}
-              <div
-                data-cursor="text-regular" 
-                className="flex flex-col w-full md:w-[145px] shrink-0" 
-                style={{ gap: 16 }}>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-xxs)",
-                    color: "rgba(0,0,0,0.5)",
-                    textTransform: "uppercase",
-                    letterSpacing: "var(--tracking-wider)",
-                    lineHeight: "var(--leading-snug)",
-                  }}
-                >
-                  Loves
-                </span>
+                  Student at UW-Seattle, from the Bay Area.
+                </h2>
                 <div
-                  className="flex flex-col"
+                  data-cursor="text-regular"
                   style={{
                     fontFamily: "var(--font-primary)",
                     fontWeight: "var(--weight-regular)",
                     fontSize: "var(--text-md)",
                     color: "#000",
-                    lineHeight: "var(--leading-body)",
+                    lineHeight: "normal",
+                    whiteSpace: "pre-wrap",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 12,
                   }}
                 >
-                  {LOVES.map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
+                  <p style={{ margin: 0 }}>
+                    I&apos;m a 3rd-year undergrad student pursuing Informatics at the
+                    University of Washington in Seattle.
+                  </p>
+                  <p style={{ margin: 0 }}>
+                    I&apos;m driven by a desire to make technology more accessible and more
+                    magical ✨, especially through women-centered tech initiatives.
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* portrait */}
-            <div
-              className="relative rounded-lg overflow-hidden shrink-0 w-full md:w-[411px]"
-              style={{ aspectRatio: "411 / 546" }}
+              {/* 1/3 spacer */}
+              <div className="hidden md:block self-stretch shrink-0 bg-white" style={{ width: 223 }} />
+
+              {/* photo */}
+              <div
+                className="w-full md:flex-1 md:min-w-0 relative rounded-lg overflow-hidden"
+                style={{ aspectRatio: "346 / 448" }}
+              >
+                <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
+              </div>
+            </div>
+          </section>
+
+          {/* ── LOGO STRIP ───────────────────────────────────────── */}
+          <section
+            className="flex flex-col items-start w-full overflow-hidden"
+            style={{ padding: 16 }}
+          >
+            <div className="overflow-hidden w-full">
+              <div
+                className="flex items-center shrink-0"
+                style={{
+                  gap: 128,
+                  height: 32,
+                  animation: "marquee 30s linear infinite",
+                  width: "max-content",
+                }}
+              >
+                {[...LOGOS, ...LOGOS].map(({ name, src }, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={i}
+                    src={src}
+                    alt={name}
+                    style={{
+                      height: 28,
+                      width: "auto",
+                      opacity: 1,
+                      userSelect: "none",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ── SKILLS ───────────────────────────────────────────── */}
+          <section
+            className="flex flex-col items-start w-full"
+            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
+          >
+            <div 
+              className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16"
+              style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
             >
-              <Image src="/images/lilies.png" alt="Lilies" fill className="object-cover" />
-            </div>
-          </div>
-        </section>
-      </main>
+              {/* left: grid + loves */}
+              <div className="flex flex-col md:flex-row flex-1 min-w-0 w-full" style={{ gap: 32 }}>
+                {/* practices / toolkit grid */}
+                <div
+                  data-cursor="text-regular"
+                  className="w-full md:w-[299px] shrink-0"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                    columnGap: 32,
+                    rowGap: 16,
+                  }}
+                >
+                  {/* headers */}
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-xxs)",
+                      color: "rgba(0,0,0,0.5)",
+                      textTransform: "uppercase",
+                      letterSpacing: "var(--tracking-wider)",
+                      lineHeight: "var(--leading-snug)",
+                    }}
+                  >
+                    Practices
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-xxs)",
+                      color: "rgba(0,0,0,0.5)",
+                      textTransform: "uppercase",
+                      letterSpacing: "var(--tracking-wider)",
+                      lineHeight: "var(--leading-snug)",
+                    }}
+                  >
+                    Toolkit
+                  </span>
 
-      {/* ══ FOOTER ════════════════════════════════════════════════ */}
-      <Footer />
-    </div>
+                  {/* rows */}
+                  {PRACTICES.map(({ label, tools }) => (
+                    <Fragment key={label}>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-primary)",
+                          fontWeight: "var(--weight-regular)",
+                          fontSize: "var(--text-md)",
+                          color: "#000",
+                          lineHeight: "var(--leading-body)",
+                        }}
+                      >
+                        {label}
+                      </span>
+                      <div
+                        className="flex flex-col"
+                        style={{
+                          fontFamily: "var(--font-primary)",
+                          fontWeight: "var(--weight-regular)",
+                          fontSize: "var(--text-md)",
+                          color: "#000",
+                          lineHeight: "var(--leading-body)",
+                        }}
+                      >
+                        {tools.map((t) => (
+                          <span key={t}>{t}</span>
+                        ))}
+                      </div>
+                    </Fragment>
+                  ))}
+                </div>
+
+                {/* loves */}
+                <div
+                  data-cursor="text-regular" 
+                  className="flex flex-col w-full md:w-[145px] shrink-0" 
+                  style={{ gap: 16 }}>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-xxs)",
+                      color: "rgba(0,0,0,0.5)",
+                      textTransform: "uppercase",
+                      letterSpacing: "var(--tracking-wider)",
+                      lineHeight: "var(--leading-snug)",
+                    }}
+                  >
+                    Loves
+                  </span>
+                  <div
+                    className="flex flex-col"
+                    style={{
+                      fontFamily: "var(--font-primary)",
+                      fontWeight: "var(--weight-regular)",
+                      fontSize: "var(--text-md)",
+                      color: "#000",
+                      lineHeight: "var(--leading-body)",
+                    }}
+                  >
+                    {LOVES.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* portrait */}
+              <div
+                className="relative rounded-lg overflow-hidden shrink-0 w-full md:w-[411px]"
+                style={{ aspectRatio: "411 / 546" }}
+              >
+                <Image src="/images/lilies.png" alt="Lilies" fill className="object-cover" />
+              </div>
+            </div>
+          </section>
+        </main>
+
+        {/* ══ FOOTER ════════════════════════════════════════════════ */}
+        <Footer />
+      </div>
+      
+    </>
   );
 }
