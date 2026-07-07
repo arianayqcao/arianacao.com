@@ -31,7 +31,7 @@ export default function ScrambleBioText({ text }: { text: string }) {
             scrambleText: {
               text,
               chars: "upperAndLowerCase",
-              revealDelay: 0,   // 0 = start revealing immediately
+              revealDelay: 0.2,   // 0 = start revealing immediately
               speed: 0.9,         // lower = slower
               delimiter: "",      // char by char, not word for word
             },
