@@ -93,6 +93,7 @@ interface FeaturedCard {
   gradient: string;
   aspectRatio?: string;
   heightPx?: number;
+  textClearancePx?: number;
   order: number;
 }
 
@@ -109,7 +110,7 @@ function FeaturedCoverCard({
     <Link
       href={card.href}
       data-cursor={card.cursor}
-      className={`relative block overflow-hidden rounded w-full ${gridClassName}`}
+      className={`group relative block overflow-hidden rounded w-full ${gridClassName}`}
       style={{
         background: card.bg,
         aspectRatio: card.heightPx ? undefined : card.aspectRatio,
@@ -118,6 +119,10 @@ function FeaturedCoverCard({
       }}
     >
       {children}
+
+      {/* hover darken overlay */}
+      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200 pointer-events-none" />
+      
       <div
         className="absolute bottom-0 left-0 w-full flex flex-col"
         style={{ padding: 32, gap: 4, background: card.gradient }}
@@ -161,7 +166,7 @@ function FeaturedCoverCard({
   );
 }
 
-const DARK_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.75) 100%)";
+const DARK_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%)";
 const LIGHT_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.06) 100%)";
 
 const SPUR_CARD: FeaturedCard = {
@@ -170,9 +175,10 @@ const SPUR_CARD: FeaturedCard = {
   description: "Creative inspiration is often saved impulsively and forgotten quickly, turning meaningful content into digital clutter.",
   href: "/work/spur",
   cursor: "view-case-study",
-  bg: "var(--primitive-spur-black)",
+  bg: "var(--primitive-black)",
   gradient: DARK_GRADIENT,
-  aspectRatio: "696 / 900",
+  aspectRatio: "1 / 1",
+  textClearancePx: 190,
   order: 1,
 };
 
@@ -182,10 +188,10 @@ const CURA_CARD: FeaturedCard = {
   description: "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
   href: "/work/cura",
   cursor: "view-case-study",
-  bg: "rgba(0,0,0,0.05)",
+  bg: "#EAEAF0",
   textDark: true,
   gradient: LIGHT_GRADIENT,
-  aspectRatio: "696 / 1226",
+  aspectRatio: "1 / 1",
   order: 2,
 };
 
@@ -197,7 +203,7 @@ const DUBCOIN_CARD: FeaturedCard = {
   cursor: "view-case-study",
   bg: "var(--primitive-hot-pink)",
   gradient: DARK_GRADIENT,
-  aspectRatio: "696 / 845",
+  aspectRatio: "1 / 1",
   order: 3,
 };
 
@@ -209,7 +215,7 @@ const DUBHACKS_2026_CARD: FeaturedCard = {
   cursor: "coming-soon",
   bg: "var(--primitive-dubhacks-blue)",
   gradient: DARK_GRADIENT,
-  heightPx: 460,
+  aspectRatio: "1 / 1",
   order: 4,
 };
 
@@ -305,40 +311,40 @@ export default function WorkPage() {
             >
             <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
               <FeaturedCoverCard card={SPUR_CARD} gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1">
-                <PhoneMockup bezel={BEZELS.iphone17} maxWidthPx={300} textClearancePx={170}>
+                <div
+                  className="absolute flex items-center justify-center"
+                  style={{ top: 0, left: 0, right: 0, bottom: SPUR_CARD.textClearancePx }}
+                >
                   <video
                     src="/videos/spur/spur-adding-content.mp4"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="absolute inset-0 size-full object-cover"
+                    className="w-auto object-contain"
+                    style={{ height: "90%"}}
                   />
-                </PhoneMockup>
+                </div>
               </FeaturedCoverCard>
 
               <FeaturedCoverCard card={CURA_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
-                <PhoneMockup bezel={BEZELS.iphone17pro} maxWidthPx={402} textClearancePx={190}>
-                  <Image
-                    src="/images/cura-home.png"
-                    alt="Cura app home screen showing today's caregiving schedule"
-                    fill
-                    sizes="(max-width: 768px) 60vw, 420px"
-                    className="object-cover"
-                  />
-                </PhoneMockup>
+                <Image
+                  src="/images/Case Study Cover Images/Updated-Cura-Cover-Image-4k-1-1-ratio.png"
+                  alt="Cura app home screen showing today's caregiving schedule"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 696px"
+                  className="object-cover"
+                />
               </FeaturedCoverCard>
-
+              
               <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
-                <PhoneMockup bezel={BEZELS.iphone17} maxWidthPx={320} textClearancePx={170}>
-                  <Image
-                    src="/images/Case Study Cover Images/DubCoin Prizes.png"
-                    alt="DubCoin prizes screen showing a QR code to redeem coins"
-                    fill
-                    sizes="(max-width: 768px) 60vw, 420px"
-                    className="object-cover"
-                  />
-                </PhoneMockup>
+                <Image
+                  src="/images/Case Study Cover Images/4k-1-1-ratio-Redeem-DubCoins.png"
+                  alt="DubCoin prizes screen showing a QR code to redeem coins"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1000px"
+                  className="object-cover"
+                />
               </FeaturedCoverCard>
 
               <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
