@@ -165,14 +165,14 @@ const DUBHACKS_2026_CARD: FeaturedCard = {
 /* ─── logo strip ────────────────────────────────────────────────── */
 
 const LOGOS = [
-  { name: "Figma", src: "/logos/Figma-logo-lockup.jpg" },
+  { name: "Figma", src: "/logos/figma-logo-lockup-trimmed.jpg" },
   { name: "Adobe CC", src: "/logos/Adobe_Creative_Cloud_rainbow_icon.svg" },
   { name: "Blender", src: "/logos/Logo_Blender.svg" },
-  { name: "React", src: "/logos/reactjs_logo_icon_170805.svg" },
+  { name: "React", src: "/logos/reactjs_logo_icon_cropped.svg" },
   { name: "Tailwind CSS", src: "/logos/Tailwind_CSS_logo_with_dark_text.svg" },
   { name: "Jitter", src: "/logos/Jitter_logo.png" },
   { name: "Lovable", src: "/logos/lovable-dark-png.png" },
-  { name: "GSAP", src: "/logos/GSAP_logo.jpeg" },
+  { name: "GSAP", src: "/logos/gsap-logo-trimmed.jpeg" },
 ];
 
 /* ─── skills data ───────────────────────────────────────────────── */
