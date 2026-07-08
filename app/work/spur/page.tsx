@@ -121,7 +121,7 @@ const FEATURES: Feature[] = [
   {
     title: "Figma Integration",
     description: "Spur's Figma plugin lets you easily import your workspaces as separate images.",
-    image: "/images/Spur/feature-figma-integration.png",
+    image: "/images/Spur/figma-plugin.webp",
     aspect: "605.13 / 424.42",
   },
 ];
@@ -235,7 +235,7 @@ export default function SpurPage() {
         <div className="flex flex-col items-start w-full" style={{ gap: 48 }}>
           <div className="relative w-full" style={{ aspectRatio: "1440 / 513" }}>
             <Image
-              src="/images/Spur/hero-cover.jpg"
+              src="/images/Spur/final-designs.webp"
               alt="Spur app cover"
               fill
               sizes="100vw"
@@ -358,7 +358,7 @@ export default function SpurPage() {
                 />
                 <div className="w-full flex justify-center">
                   <div className="relative" style={{ width: 342, aspectRatio: "342 / 300.08" }}>
-                    <Image src="/images/Spur/survey-collage.png" alt="Collage summarizing Spur's user research: over 100 survey responses, 8 recorded interviews, and 25 literature reviews" fill sizes="342px" className="object-contain" />
+                    <Image src="/images/Spur/initial-research.webp" alt="Collage summarizing Spur's user research: over 100 survey responses, 8 recorded interviews, and 25 literature reviews" fill sizes="342px" className="object-contain" />
                   </div>
                 </div>
                 <h3
@@ -416,7 +416,7 @@ export default function SpurPage() {
                 description="We conducted competitive analyses on four different solutions: mymind, Milanote, Eagle, and Obsidian."
               >
                 <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                  <Image src="/images/Spur/competitive-analysis.jpg" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
+                  <Image src="/images/Spur/competitive-analysis.webp" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
                 </div>
               </SectionIntro>
 
@@ -426,7 +426,7 @@ export default function SpurPage() {
                 description="We sketched flows for saving, searching, and organizing inspiration—mapping how someone could move from a single save to a finished idea."
               >
                 <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                  <Image src="/images/Spur/user-flows.jpg" alt="Four sketched user flow diagrams for Spur: media search, importing inspiration, project creation, and onboarding" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
+                  <Image src="/images/Spur/user-flows.webp" alt="Four sketched user flow diagrams for Spur: media search, importing inspiration, project creation, and onboarding" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
                 </div>
               </SectionIntro>
 
@@ -435,19 +435,8 @@ export default function SpurPage() {
                 heading="We vibe coded a mid-fidelity prototype to better understand how users would upload content and create spaces."
                 description="We discovered that users would find more value creating insights and actions in the workspace rather than purely in the inspiration feed."
               >
-                <div className="w-full flex justify-center mt-6" style={{ background: "#bdbdbd", padding: 16 }}>
-                  <div className="flex w-full" style={{ gap: 10 }}>
-                    {[
-                      { src: "/images/Spur/prototype-1.png", aspect: "214.89 / 419.33", alt: "Spur prototype screen showing the saved image library" },
-                      { src: "/images/Spur/prototype-2.png", aspect: "214.91 / 434.52", alt: "Spur prototype screen showing a saved image with tags and album options" },
-                      { src: "/images/Spur/prototype-3.png", aspect: "214.89 / 431.33", alt: "Spur prototype screen for saving content by pasting a link" },
-                      { src: "/images/Spur/prototype-4.png", aspect: "214.91 / 438.53", alt: "Spur prototype screen showing a workspace canvas with pinned images" },
-                    ].map(({ src, aspect, alt }) => (
-                      <div key={src} className="relative flex-1" style={{ aspectRatio: aspect }}>
-                        <Image src={src} alt={alt} fill sizes="(max-width: 768px) 25vw, 215px" className="object-contain" />
-                      </div>
-                    ))}
-                  </div>
+                <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
+                  <Image src="/images/Spur/user-testing.webp" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
                 </div>
               </SectionIntro>
 
@@ -456,7 +445,7 @@ export default function SpurPage() {
                 heading="Our current direction prioritized curation over action. How can we tailor Spur to exist closer in the space between image discovery and creation?"
               >
                 <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 331.67" }}>
-                  <Image src="/images/Spur/pivot-visual.png" alt="Dock of app icons illustrating Spur's pivot, positioned between discovery apps like Pinterest, Cosmos, and Are.na, and creation tools like Figma" fill sizes="(max-width: 768px) 100vw, 922px" className="object-contain" />
+                  <Image src="/images/Spur/pivot.webp" alt="Dock of app icons illustrating Spur's pivot, positioned between discovery apps like Pinterest, Cosmos, and Are.na, and creation tools like Figma" fill sizes="(max-width: 768px) 100vw, 922px" className="object-contain" />
                 </div>
               </SectionIntro>
             </div>
@@ -472,7 +461,7 @@ export default function SpurPage() {
               />
               <div className="relative w-full" style={{ aspectRatio: "921.59 / 655.36" }}>
                 <Image
-                  src="/images/Spur/final-design-cover.jpg"
+                  src="/images/Spur/final-designs.webp"
                   alt="Spur app screens"
                   fill
                   sizes="(max-width: 768px) 100vw, 922px"
@@ -533,7 +522,7 @@ export default function SpurPage() {
                 ))}
               </div>
               <div className="relative w-full" style={{ aspectRatio: "921.59 / 515.75" }}>
-                <Image src="/images/Spur/reflection.jpg" alt="Spur app splash screen with the tagline 'Turn your cluttered saves into creative action'" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover rounded-lg" />
+                <Image src="/images/Spur/spur-gradient.webp" alt="Spur app splash screen with the tagline 'Turn your cluttered saves into creative action'" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover rounded-lg" />
               </div>
             </div>
           </section>
