@@ -170,7 +170,7 @@ const LOGOS = [
   { name: "Blender", src: "/logos/Logo_Blender.svg" },
   { name: "React", src: "/logos/reactjs_logo_icon_cropped.svg" },
   { name: "Tailwind CSS", src: "/logos/Tailwind_CSS_logo_with_dark_text.svg" },
-  { name: "Jitter", src: "/logos/Jitter_logo.png" },
+  { name: "Jitter", src: "/logos/Jitter_logo-cropped.png" },
   { name: "Lovable", src: "/logos/lovable-dark-png.png" },
   { name: "GSAP", src: "/logos/gsap-logo-trimmed.jpeg" },
 ];
@@ -365,7 +365,7 @@ export default function Home() {
 
               {/* photo */}
               <div
-                className="w-full md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden"
+                className="w-1/2 md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden"
                 style={{ aspectRatio: "346 / 448" }}
               >
                 <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
