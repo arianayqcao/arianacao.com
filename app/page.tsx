@@ -170,7 +170,7 @@ const LOGOS = [
   { name: "Blender", src: "/logos/Logo_Blender.svg" },
   { name: "React", src: "/logos/reactjs_logo_icon_cropped.svg" },
   { name: "Tailwind CSS", src: "/logos/Tailwind_CSS_logo_with_dark_text.svg" },
-  { name: "Jitter", src: "/logos/Jitter_logo-cropped.png" },
+  { name: "Jitter", src: "/logos/Jitter_logo-cropped.PNG" },
   { name: "Lovable", src: "/logos/lovable-dark-png.png" },
   { name: "GSAP", src: "/logos/gsap-logo-trimmed.jpeg" },
 ];
