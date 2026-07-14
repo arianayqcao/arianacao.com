@@ -16,7 +16,7 @@ export default function Footer() {
           paddingTop: 64,
           paddingBottom: 16,
           paddingInline: 16,
-          gap: 128,
+          gap: 64,
         }}
       >
 
