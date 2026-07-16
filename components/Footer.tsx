@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SnakeGame from "@/components/SnakeGame"
+import ContentCopy from '@mui/icons-material/ContentCopy';
 
 export const NAV_LINKS = [
   { href: "/work", label: "work" },

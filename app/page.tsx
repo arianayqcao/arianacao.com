@@ -327,7 +327,7 @@ export default function Home() {
                   style={{
                     fontFamily: "var(--font-primary)",
                     fontWeight: "var(--weight-bold)",
-                    fontSize: "var(--text-3xl)",
+                    fontSize: "var(--text-2xl)",
                     color: "#000",
                     lineHeight: "40px",
                     margin: 0,

@@ -20,13 +20,20 @@ html.custom-cursor-active * {
   cursor: none !important;
 }
 
-/* Play page: explicit two-column placement only kicks in at md+,
-   so the same DOM order reads top-to-bottom on mobile. */
+/* Play page: CSS multi-column so cards stack tightly within each
+   column instead of being aligned by a shared row grid; single
+   column (no columns) below md keeps mobile reading order unchanged. */
+.play-columns {
+  column-gap: 16px;
+}
 @media (min-width: 768px) {
-  .play-grid-item {
-    grid-column: var(--play-col);
-    grid-row: var(--play-row);
+  .play-columns {
+    columns: 3;
   }
+}
+.play-card {
+  break-inside: avoid;
+  margin-bottom: 16px;
 }
 
 /* Homepage featured case-study cards: taller 1:1.5 (w:h) crop on mobile;
