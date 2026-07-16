@@ -16,6 +16,7 @@ interface PlayItem {
   description: string;
   media: PlayMedia;
   overlayPlayIcon?: boolean;
+  url?: string;
 }
 
 // Order here is the single source of reading order for both mobile (single
@@ -204,7 +205,9 @@ function PlayCard({ item }: { item: PlayItem }) {
   );
 
   if (item.url) {
-    return <Link href={item.url} target="_blank">{card}</Link>;
+    return <Link href={item.url} target="_blank" rel="noopener noreferrer">
+      {card}
+    </Link>;
   }
 
   return card;
