@@ -115,7 +115,7 @@ const WORDMARKS: Wordmark[] = [
     // tuned so its settled (xEnd) position lands flush with the screen's
     // right edge, at a 1440x900-ish desktop viewport.
     src: "/svg/cao%20wordmark.svg",
-    layout: { bottom: -3, height: 56, width: 172.045, right: 27.16 },
+    layout: { bottom: 5, height: 45, width: 167.045, right: 27.16 },
     xStart: -78.0387,
     slideStart: WORDMARK_HOLD_END,
     xEnd: 25.2585,
@@ -129,7 +129,7 @@ const WORDMARKS: Wordmark[] = [
     // cao's), and `top` is pulled up so the x-height band (not the dot)
     // overflows the screen top by the same "a little bit" as before.
     src: "/svg/ariana%20wordmark.svg",
-    layout: { top: -23.9864, height: 76.9864, width: 308.93, left: 19.87 },
+    layout: { top: -15, height: 67, width: 289.93, left: 19.87 },
     xStart: -9.5107,
     xJump: { at: WORDMARK_COLOR_EASE_END, to: -53.1054 },
     slideStart: WORDMARK_COLOR_EASE_END,
@@ -196,33 +196,33 @@ export default function IntroOverlay() {
         gsap.set(wordmarkRefs.current[key], { xPercent: xStart, opacity: 0 });
       });
 
-      // hard-cut seam: stickers out, wordmarks in, bg red -> green — all instant, same beat
-      tl.set(Object.values(stickerRefs.current), { opacity: 0 }, STICKERS_SETTLE_END);
-      tl.set(Object.values(wordmarkRefs.current), { opacity: 1 }, STICKERS_SETTLE_END);
-      tl.set(containerRef.current, { backgroundColor: introBgPhase2 }, STICKERS_SETTLE_END);
+      // // hard-cut seam: stickers out, wordmarks in, bg red -> green — all instant, same beat
+      // tl.set(Object.values(stickerRefs.current), { opacity: 0 }, STICKERS_SETTLE_END);
+      // tl.set(Object.values(wordmarkRefs.current), { opacity: 1 }, STICKERS_SETTLE_END);
+      // tl.set(containerRef.current, { backgroundColor: introBgPhase2 }, STICKERS_SETTLE_END);
 
-      tl.to(
-        containerRef.current,
-        { backgroundColor: introBgPhase2End, duration: WORDMARK_COLOR_EASE_END - WORDMARK_HOLD_END, ease: "introColorEaseIn" },
-        STICKERS_SETTLE_END + WORDMARK_HOLD_END
-      );
+      // tl.to(
+      //   containerRef.current,
+      //   { backgroundColor: introBgPhase2End, duration: WORDMARK_COLOR_EASE_END - WORDMARK_HOLD_END, ease: "introColorEaseIn" },
+      //   STICKERS_SETTLE_END + WORDMARK_HOLD_END
+      // );
 
       WORDMARKS.forEach(({ key, xJump, slideStart, xEnd, ease }) => {
         const el = wordmarkRefs.current[key];
-        if (xJump) {
-          tl.set(el, { xPercent: xJump.to }, STICKERS_SETTLE_END + xJump.at);
-        }
-        tl.to(
-          el,
-          { xPercent: xEnd, duration: WORDMARK_PHASE_DURATION - slideStart, ease },
-          STICKERS_SETTLE_END + slideStart
-        );
+        // if (xJump) {
+        //   tl.set(el, { xPercent: xJump.to }, STICKERS_SETTLE_END + xJump.at);
+        // }
+        // tl.to(
+        //   el,
+        //   { xPercent: xEnd, duration: WORDMARK_PHASE_DURATION - slideStart, ease },
+        //   STICKERS_SETTLE_END + slideStart
+        // );
       });
 
       tl.to(
         containerRef.current,
         { opacity: 0, pointerEvents: "none", duration: OVERLAY_FADE_DURATION, ease: "power1.in" },
-        OVERLAY_FADE_START
+        STICKERS_SETTLE_END + WORDMARK_PHASE_DURATION
       );
 
       tl.to(
@@ -231,7 +231,7 @@ export default function IntroOverlay() {
         OVERLAY_FADE_START
       );
 
-    tl.seek(0.18);
+    tl.seek(0.1);
 
     },
     { scope: containerRef }
@@ -264,7 +264,7 @@ export default function IntroOverlay() {
           <img src={src} alt="" className="w-full h-full" draggable={false} />
         </div>
       ))}
-      {WORDMARKS.map(({ key, src, layout }) => (
+      {/* {WORDMARKS.map(({ key, src, layout }) => (
         <div
           key={key}
           ref={(el) => {
@@ -283,7 +283,7 @@ export default function IntroOverlay() {
         >
           <img src={src} alt="" className="w-full h-full" draggable={false} />
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
