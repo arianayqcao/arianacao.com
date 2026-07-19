@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 
 type PlayMedia =
   | { kind: "image"; src: string; aspect: string }
-  | { kind: "video"; src: string; aspect: string }
-  | { kind: "grid3"; srcs: [string, string, string]; aspect: string };
+  | { kind: "video"; src: string; aspect: string; videoType?: "youtube" | "self-hosted" }
+  | { kind: "grid3"; src: [string, string, string]; aspect: string };
 
 interface PlayItem {
   id: string;
@@ -37,22 +37,10 @@ const PLAY_ITEMS: PlayItem[] = [
     media: { kind: "video", src: "/videos/can_you_see_me.mp4", aspect: "1920 / 1080" },
   },
   {
-    id: "did-you-play-today-poster",
-    title: "did you play today? conceptual poster",
-    description: "played around with Figma shaders and shader fills: lens distortion, warp, and water caustic.",
-    media: { kind: "image", src: "/images/Play/did-you-play-today.png", aspect: "820 / 1210" },
-  },
-  {
-    id: "glowing-orb",
-    title: "glowing orb",
-    description: "Created in AfterEffects",
-    media: { kind: "video", src: "/videos/glowing_orb.mp4", aspect: "1920 / 1920" },
-  },
-  {
-    id: "still-art",
-    title: "still art & light study",
-    description: "created in Procreate",
-    media: { kind: "image", src: "/images/Play/still-art-light-study.jpg", aspect: "346 / 448" },
+    id: "charged-up-tshirt",
+    title: "Charged Up! T-Shirt 2022-2023 Design",
+    description: "robotics team merchandise for mario kart-themed FRC competition.",
+    media: { kind: "image", src: "/images/Play/charged-up-tshirt.png", aspect: "696 / 900" },
   },
   {
     id: "rough",
@@ -75,10 +63,23 @@ const PLAY_ITEMS: PlayItem[] = [
     },
   },
   {
-    id: "charged-up-tshirt",
-    title: "Charged Up! T-Shirt 2022-2023 Design",
-    description: "robotics team merchandise for mario kart-themed FRC competition.",
-    media: { kind: "image", src: "/images/Play/charged-up-tshirt.png", aspect: "696 / 900" },
+    id: "digital-animation",
+    title: "Digital Animation 2023 for Paly Robotics",
+    description: "using Blender, AfterEffects, and Premiere Pro.",
+    media: { kind: "video", videoType: "youtube", src: "https://www.youtube.com/embed/SGmWCeR20CE?si=fFpQk1PLK6O1RiBf", aspect: "16 / 9" },
+    overlayPlayIcon: false,
+  },
+  {
+    id: "still-art",
+    title: "still art & light study",
+    description: "created in Procreate",
+    media: { kind: "image", src: "/images/Play/still-art-light-study.jpg", aspect: "346 / 448" },
+  },
+  {
+    id: "glowing-orb",
+    title: "glowing orb",
+    description: "Created in AfterEffects",
+    media: { kind: "video", src: "/videos/glowing_orb.mp4", aspect: "1920 / 1920" },
   },
   {
     id: "informatics-tshirt",
@@ -100,17 +101,16 @@ const PLAY_ITEMS: PlayItem[] = [
     media: { kind: "image", src: "/images/Play/abyss.png", aspect: "400 / 398.41" },
   },
   {
+    id: "did-you-play-today-poster",
+    title: "did you play today? conceptual poster",
+    description: "played around with Figma shaders and shader fills: lens distortion, warp, and water caustic.",
+    media: { kind: "image", src: "/images/Play/did-you-play-today.png", aspect: "820 / 1210" },
+  },
+  {
     id: "team8-logo-animation",
     title: "Team 8 Logo Animation",
     description: "Custom animation for Paly Robotics Team 8 using Adobe Illustrator, AfterEffects, and Premiere Pro. Sound up!",
     media: { kind: "video", src: "/videos/team-8-logo-animation.mp4", aspect: "1388 / 780" },
-  },
-  {
-    id: "digital-animation",
-    title: "Digital Animation 2023 for Paly Robotics",
-    description: "using Blender, AfterEffects, and Premiere Pro.",
-    media: { kind: "video", videoType: "youtube", src: "https://www.youtube.com/embed/SGmWCeR20CE?si=fFpQk1PLK6O1RiBf", aspect: "16 / 9" },
-    overlayPlayIcon: false,
   },
   {
     id: "alvaldi-tshirt",
@@ -143,18 +143,17 @@ function PlayCardMedia({ title, media, overlayPlayIcon }: { title: string; media
 
   return (
     <div className="relative w-full overflow-hidden rounded-sm" style={{ aspectRatio: media.aspect }}>
-      {media.kind === "video" ? (
-        media.videoType === "youtube" ? (
-          <iframe
-            src={media.src}
-            title={title}
-            frameBorder="0"
-            className="absolute inset-0 size-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        ) : (
+      {media.kind === "video" && media.videoType === "youtube" ? (
+        <iframe
+          src={media.src}
+          title={title}
+          frameBorder="0"
+          className="absolute inset-0 size-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      ) : media.kind === "video" ? (
         <video
           src={media.src}
           aria-label={title}
