@@ -54,7 +54,7 @@ const PLAY_ITEMS: PlayItem[] = [
     description: "Instagram grid design for cafe fundraiser using Illustrator.",
     media: {
       kind: "grid3",
-      srcs: [
+      src: [
         "/images/Play/atd-cafe-post-3-menu.png",
         "/images/Play/atd-cafe-post-2-photobooth.png",
         "/images/Play/atd-cafe-post-1.png",
