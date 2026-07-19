@@ -132,9 +132,9 @@ function PlayCardMedia({ title, media, overlayPlayIcon }: { title: string; media
   if (media.kind === "grid3") {
     return (
       <div className="flex w-full overflow-hidden rounded-sm">
-        {media.srcs.map((src, i) => (
+        {media.src.map((src, i) => (
           <div key={src} className="relative w-1/3 shrink-0" style={{ aspectRatio: media.aspect }}>
-            <Image src={src} alt={`${title} — photo ${i + 1} of ${media.srcs.length}`} fill sizes="(max-width: 768px) 33vw, 11vw" className="object-cover" />
+            <Image src={src} alt={`${title} — photo ${i + 1} of ${media.src.length}`} fill sizes="(max-width: 768px) 33vw, 11vw" className="object-cover" />
           </div>
         ))}
       </div>
