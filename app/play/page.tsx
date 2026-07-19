@@ -58,7 +58,7 @@ const PLAY_ITEMS: PlayItem[] = [
     id: "rough",
     title: "“rough”",
     description: "created in Illustrator with texture effects",
-    media: { kind: "image", src: "/images/Play/rough-sketch.png", aspect: "2550 / 3300" },
+    media: { kind: "image", src: "/images/Play/rough-design.png", aspect: "2550 / 3300" },
   },
   {
     id: "smiski-cafe-popup",
@@ -103,20 +103,20 @@ const PLAY_ITEMS: PlayItem[] = [
     id: "team8-logo-animation",
     title: "Team 8 Logo Animation",
     description: "Custom animation for Paly Robotics Team 8 using Adobe Illustrator, AfterEffects, and Premiere Pro. Sound up!",
-    media: { kind: "image", src: "/images/Play/team8-logo-animation-poster.jpg", aspect: "1388 / 780" },
+    media: { kind: "video", src: "/videos/team-8-logo-animation.mp4", aspect: "1388 / 780" },
   },
   {
     id: "digital-animation",
     title: "Digital Animation 2023 for Paly Robotics",
     description: "using Blender, AfterEffects, and Premiere Pro.",
-    media: { kind: "image", src: "/images/Play/digital-animation-thumb.png", aspect: "459.33 / 343.54" },
-    overlayPlayIcon: true,
+    media: { kind: "video", videoType: "youtube", src: "https://www.youtube.com/embed/SGmWCeR20CE?si=fFpQk1PLK6O1RiBf", aspect: "16 / 9" },
+    overlayPlayIcon: false,
   },
   {
     id: "alvaldi-tshirt",
     title: "Alvaldi T-Shirt 2022-2023 Design",
     description: "Traced design using pen tool of CAD of Team 8\nrobot: 'Alvaldi' using Adobe Illustrator for FRC.",
-    media: { kind: "image", src: "/images/Play/alvaldi-tshirt.png", aspect: "400 / 572.8" },
+    media: { kind: "image", src: "/images/Play/Alvaldi-CAD-Shirt.png", aspect: "1083 / 1082" },
   },
   {
     id: "interact-hippos-tshirt",
@@ -144,6 +144,17 @@ function PlayCardMedia({ title, media, overlayPlayIcon }: { title: string; media
   return (
     <div className="relative w-full overflow-hidden rounded-sm" style={{ aspectRatio: media.aspect }}>
       {media.kind === "video" ? (
+        media.videoType === "youtube" ? (
+          <iframe
+            src={media.src}
+            title={title}
+            frameBorder="0"
+            className="absolute inset-0 size-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        ) : (
         <video
           src={media.src}
           aria-label={title}

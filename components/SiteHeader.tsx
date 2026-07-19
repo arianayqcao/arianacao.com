@@ -68,6 +68,7 @@ export default function SiteHeader() {
       <div aria-hidden="true" className="h-[var(--nav-height)]" />
     <header
       ref={headerRef}
+      data-cursor="default"
       className="fixed top-0 left-0 right-0 z-[100] w-full bg-white"
     >
       <nav
