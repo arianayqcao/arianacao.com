@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import SnakeGame from "@/components/SnakeGame"
 import ContentCopy from '@mui/icons-material/ContentCopy';
+
+const EMAIL = "ariana.yq.cao@gmail.com";
 
 export const NAV_LINKS = [
   { href: "/work", label: "work" },
@@ -9,6 +14,14 @@ export const NAV_LINKS = [
 ];
 
 export default function Footer() {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    await navigator.clipboard.writeText(EMAIL);
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 1500);
+  };
+
   return (
     <footer
         className="relative flex flex-col items-center justify-center overflow-hidden w-full"
@@ -77,24 +90,48 @@ export default function Footer() {
                 {[
                   { label: "linkedin", href: "https://www.linkedin.com/in/ariana-yq-cao/" },
                   { label: "resume", href: "/resume" },
-                  { label: "email", href: "mailto:ariana.yq.cao@gmail.com" },
-                ].map(({ label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "var(--text-md)",
-                      color: "#6b6b6b",
-                      lineHeight: "var(--leading-body)",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {label}
-                  </a>
-                ))}
+                  { label: "email", href: null },
+                ].map(({ label, href }) =>
+                  href === null ? (
+                    <button
+                      key={label}
+                      type="button"
+                      onClick={handleCopyEmail}
+                      aria-label={emailCopied ? "Email copied to clipboard" : "Copy email address"}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "var(--text-md)",
+                        color: "#6b6b6b",
+                        lineHeight: "var(--leading-body)",
+                        textDecoration: "none",
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        margin: 0,
+                        textAlign: "left",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {emailCopied ? "copied!" : label}
+                    </button>
+                  ) : (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "var(--text-md)",
+                        color: "#6b6b6b",
+                        lineHeight: "var(--leading-body)",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {label}
+                    </a>
+                  )
+                )}
               </div>
 
               {/* page */}

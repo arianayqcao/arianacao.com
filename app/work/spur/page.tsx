@@ -86,6 +86,7 @@ interface Feature {
   video?: string;
   aspect: string;
   dark?: boolean;
+  maxHeight?: number;
 }
 
 const FEATURES: Feature[] = [
@@ -93,30 +94,55 @@ const FEATURES: Feature[] = [
     title: "Search Intentionally",
     description:
       "Search intentionally reminds you what to look for, and encourages quick deep dives than long rabbit holes. All uploads will go directly to your active workspace.",
-    video: "/videos/spur/Search-Intentionally.mp4",
-    aspect: "605 / 622",
+    video: "/videos/spur/search-intentionally.mp4",
+    aspect: "1400 / 1086",
     dark: true,
   },
   {
     title: "Inspiration Feed",
     description:
       "Spur keeps a library of all your saved inspirations. Use search tools to find the inspirations you need, and resurface the ones you missed.",
-    image: "/images/Spur/feature-screenshot.jpg",
-    aspect: "605.13 / 759.23",
+    video: "/videos/spur/inspiration-feed.mp4",
+    aspect: "700 / 700",
   },
   {
     title: "Insights",
     description:
       "Images will automatically upload with a brief description. Add your own descriptions to provide further context. Insights help you dive deeper into why you saved the image.",
-    image: "/images/Spur/feature-screenshot.jpg",
-    aspect: "605.13 / 759.23",
+    video: "/videos/spur/insights.mp4",
+    aspect: "700 / 700",
+  },
+  {
+    title: "Albums",
+    description:
+      "Organize your saved content into albums to make it easier to revisit inspiration and take creative action.",
+    video: "/videos/spur/albums.mp4",
+    aspect: "700 / 700",
+    maxHeight: 300,
+  },
+  {
+    title: "Creating Workspaces",
+    description:
+      "Workspaces provide sub-boards tailored to your initial intentions.",
+    video: "/videos/spur/creating-workspace.mp4",
+    aspect: "700 / 700",
+    maxHeight: 300,
   },
   {
     title: "Workspace - Notes",
     description:
       "Take notes on-the-go using voice memos or the note tool to capture your immediate thoughts on your saved content and refer back to them later.",
-    image: "/images/Spur/feature-screenshot.jpg",
-    aspect: "605.13 / 759.23",
+    image: "/images/Spur/spur-notes.png",
+    aspect: "510 / 518",
+    maxHeight: 200,
+  },
+  {
+    title: "Exporting",
+    description:
+      "Export your workspace as a PNG.",
+    image: "/images/Spur/spur-exporting.png",
+    aspect: "150 / 113",
+    maxHeight: 200,
   },
   {
     title: "Figma Integration",
@@ -464,7 +490,7 @@ export default function SpurPage() {
                   src="/images/Spur/final-designs.webp"
                   alt="Spur app screens"
                   fill
-                  sizes="(max-width: 768px) 100vw, 922px"
+                  sizes="(max-width: 700px) 70vw, 922px"
                   className="object-cover"
                 />
               </div>
