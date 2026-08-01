@@ -513,8 +513,8 @@ export default function SpurPage() {
                       className="shrink-0"
                       style={{
                         fontFamily: "var(--font-primary)",
-                        fontSize: "24px",
-                        lineHeight: "33.6px",
+                        fontSize: "var(--text-md)",
+                        lineHeight: "var(--leading-body)",
                         color: "var(--color-accent-rose)",
                         width: 27,
                       }}
@@ -537,7 +537,7 @@ export default function SpurPage() {
                         style={{
                           fontFamily: "var(--font-primary)",
                           fontSize: "var(--text-md)",
-                          color: "#000",
+                          color: "var(--color-text)",
                           lineHeight: "var(--leading-body)",
                         }}
                       >

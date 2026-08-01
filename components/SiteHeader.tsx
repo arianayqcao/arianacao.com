@@ -49,7 +49,7 @@ export default function SiteHeader() {
           gsap.to(headerRef.current, {
             yPercent: hide ? -100 : 0,
             opacity: hide ? 0 : 1,
-            pointerEvents: hide ? "none" : "auto",
+            // pointerEvents: hide ? "none" : "auto",
             duration: 0.35,
             ease: "power2.inOut",
             overwrite: true,

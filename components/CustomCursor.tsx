@@ -130,7 +130,7 @@ export default function CustomCursor() {
     <div
       ref={cursorRef}
       aria-hidden="true"
-      className="fixed top-0 left-0 z-[100] flex items-center justify-center pointer-events-none"
+      className="fixed top-0 left-0 z-[999] flex items-center justify-center pointer-events-none"
       style={{
         opacity:      visible ? 1 : 0,
         width:        isPill ? "auto" : (barSize?.width  ?? 8),
