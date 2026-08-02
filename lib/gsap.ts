@@ -25,6 +25,6 @@ export const OVERLAY_FADE_DURATION = 0.6;
 /** When the hero + bio intro reveals start, in seconds after mount — the
  * midpoint of IntroOverlay's exit fade, so reveals begin while the overlay
  * is already half-transparent rather than waiting for a hard cut. */
-export const INTRO_REVEAL_DELAY = OVERLAY_FADE_START + OVERLAY_FADE_DURATION / 2;
+export const INTRO_REVEAL_DELAY = OVERLAY_FADE_START / 2;
 
 export { gsap, SplitText, ScrambleTextPlugin, MorphSVGPlugin, useGSAP };

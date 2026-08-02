@@ -23,7 +23,7 @@ CustomEase.create("introRotate", "M0,0,C0.5,0,0.5,1,1,1");
 const springBounce = (t: number) =>
   1 - Math.exp(-t * 7.1866) * (Math.cos(t * 22.3441) + 0.3216 * Math.sin(t * 22.3441));
 
-const SETTLE_DURATION = 0.8;
+const SETTLE_DURATION = 1;
 
 /* Figma "cubic-bezier(0.42,0,1,1)" (= CSS ease-in), same conversion as
    introRotate — drives the phase-2 background color ease. */
@@ -196,18 +196,7 @@ export default function IntroOverlay() {
         gsap.set(wordmarkRefs.current[key], { xPercent: xStart, opacity: 0 });
       });
 
-      // // hard-cut seam: stickers out, wordmarks in, bg red -> green — all instant, same beat
-      // tl.set(Object.values(stickerRefs.current), { opacity: 0 }, STICKERS_SETTLE_END);
-      // tl.set(Object.values(wordmarkRefs.current), { opacity: 1 }, STICKERS_SETTLE_END);
-      // tl.set(containerRef.current, { backgroundColor: introBgPhase2 }, STICKERS_SETTLE_END);
-
-      // tl.to(
-      //   containerRef.current,
-      //   { backgroundColor: introBgPhase2End, duration: WORDMARK_COLOR_EASE_END - WORDMARK_HOLD_END, ease: "introColorEaseIn" },
-      //   STICKERS_SETTLE_END + WORDMARK_HOLD_END
-      // );
-
-      WORDMARKS.forEach(({ key, xJump, slideStart, xEnd, ease }) => {
+      WORDMARKS.forEach(({ key }) => {
         const el = wordmarkRefs.current[key];
         // if (xJump) {
         //   tl.set(el, { xPercent: xJump.to }, STICKERS_SETTLE_END + xJump.at);
@@ -221,15 +210,20 @@ export default function IntroOverlay() {
 
       tl.to(
         containerRef.current,
-        { opacity: 0, pointerEvents: "none", duration: OVERLAY_FADE_DURATION, ease: "power1.in" },
-        STICKERS_SETTLE_END + WORDMARK_PHASE_DURATION
+        {
+          yPercent: -100,
+          pointerEvents: "none",
+          duration: OVERLAY_FADE_DURATION,
+          ease: "power1.in"
+        },
+        STICKERS_SETTLE_END
       );
 
-      tl.to(
-        containerRef.current,
-        { opacity: 0, pointerEvents: "none", duration: OVERLAY_FADE_DURATION, ease: "power1.in" },
-        OVERLAY_FADE_START
-      );
+      // tl.to(
+      //   containerRef.current,
+      //   { opacity: 0, pointerEvents: "none", duration: OVERLAY_FADE_DURATION, ease: "power1.in" },
+      //   OVERLAY_FADE_START
+      // );
 
     tl.seek(0.1);
 
