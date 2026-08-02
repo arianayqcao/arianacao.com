@@ -6,12 +6,13 @@ import JumpNav from "@/components/JumpNav";
 /* ─── jump nav ──────────────────────────────────────────────────── */
 
 const JUMP_LINKS = [
-  { href: "#context", label: "context" },
-  { href: "#goals", label: "goals" },
-  { href: "#process", label: "process" },
-  { href: "#final-design", label: "final design" },
-  { href: "#impact", label: "impact" },
-  { href: "#next-steps", label: "next steps" },
+  { href: "#overview", label: "overview" },
+  { href: "#define", label: "define" },
+  { href: "#insights", label: "insights" },
+  { href: "#ideation", label: "ideation" },
+  { href: "#iteration", label: "iteration" },
+  { href: "#solution", label: "solution" },
+  { href: "#reflection", label: "reflection" },
 ];
 
 /* ─── shared section intro (eyebrow + heading + description) ──────── */
@@ -259,9 +260,9 @@ export default function SpurPage() {
       <main className="flex flex-col items-center w-full">
         {/* ── HERO ─────────────────────────────────────────────── */}
         <div className="flex flex-col items-start w-full" style={{ gap: 48 }}>
-          <div className="relative w-full" style={{ aspectRatio: "1440 / 513" }}>
+          <div className="relative w-full" style={{ aspectRatio: "1440 / 400" }}>
             <Image
-              src="/images/Spur/final-designs.webp"
+              src="/images/Spur/spur-hero.png"
               alt="Spur app cover"
               fill
               sizes="100vw"
@@ -331,7 +332,7 @@ export default function SpurPage() {
 
         {/* ── CONTENT ──────────────────────────────────────────── */}
         <div className="flex flex-col items-center w-full">
-          <section id="context" className="w-full flex justify-center" style={{ padding: 16 }}>
+          <section id="overview" className="w-full flex justify-center" style={{ padding: 16 }}>
             <div className="flex flex-col items-start w-full" style={{ maxWidth: 922 }}>
               <SectionIntro
                 eyebrow="overview"
@@ -364,7 +365,7 @@ export default function SpurPage() {
             </div>
           </section>
 
-          <section id="goals" className="w-full flex justify-center" style={{ background: "#000", padding: "64px 16px" }}>
+          <section id="define" className="w-full flex justify-center" style={{ background: "#000", padding: "64px 16px" }}>
             <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, paddingInline: 0 }}>
               <SectionIntro
                 eyebrow="define"
@@ -374,7 +375,7 @@ export default function SpurPage() {
             </div>
           </section>
 
-          <section id="process" className="w-full flex justify-center" style={{ padding: 16 }}>
+          <section id="insights" className="w-full flex justify-center" style={{ padding: 16 }}>
             <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 96 }}>
               <div className="flex flex-col items-start w-full" style={{ gap: 32 }}>
                 <SectionIntro
@@ -434,7 +435,6 @@ export default function SpurPage() {
                     </div>
                   ))}
                 </div>
-              </div>
 
               <SectionIntro
                 eyebrow="insights"
@@ -446,26 +446,38 @@ export default function SpurPage() {
                 </div>
               </SectionIntro>
 
-              <SectionIntro
-                eyebrow="ideation"
-                heading="We drafted initial user flows."
-                description="We sketched flows for saving, searching, and organizing inspiration—mapping how someone could move from a single save to a finished idea."
-              >
-                <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                  <Image src="/images/Spur/user-flows.webp" alt="Four sketched user flow diagrams for Spur: media search, importing inspiration, project creation, and onboarding" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
-                </div>
-              </SectionIntro>
+              </div>
+            </div>
+          </section>
 
-              <SectionIntro
-                eyebrow="ideation"
-                heading="We vibe coded a mid-fidelity prototype to better understand how users would upload content and create spaces."
-                description="We discovered that users would find more value creating insights and actions in the workspace rather than purely in the inspiration feed."
-              >
-                <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                  <Image src="/images/Spur/user-testing.webp" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
-                </div>
-              </SectionIntro>
+          <section id="ideation" className="w-full flex justify-center" style={{ padding: "64px 16px" }}>
+            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 96 }}>
+              <div className="flex flex-col items-start w-full" style={{ gap: 32 }}>
 
+                <SectionIntro
+                  eyebrow="ideation"
+                  heading="We drafted initial user flows."
+                  description="We sketched flows for saving, searching, and organizing inspiration—mapping how someone could move from a single save to a finished idea."
+                >
+                  <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
+                    <Image src="/images/Spur/user-flows.webp" alt="Four sketched user flow diagrams for Spur: media search, importing inspiration, project creation, and onboarding" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
+                  </div>
+                </SectionIntro>
+
+                <SectionIntro
+                  eyebrow="ideation"
+                  heading="We vibe coded a mid-fidelity prototype to better understand how users would upload content and create spaces."
+                  description="We discovered that users would find more value creating insights and actions in the workspace rather than purely in the inspiration feed."
+                >
+                  <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
+                    <Image src="/images/Spur/user-testing.webp" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
+                  </div>
+                </SectionIntro>
+              </div>
+            </div>
+          </section>
+
+          <section id="iteration" className="w-full flex justify-center" style={{ padding: 16 }}>
               <SectionIntro
                 eyebrow="iteration"
                 heading="Our current direction prioritized curation over action. How can we tailor Spur to exist closer in the space between image discovery and creation?"
@@ -474,10 +486,9 @@ export default function SpurPage() {
                   <Image src="/images/Spur/pivot.webp" alt="Dock of app icons illustrating Spur's pivot, positioned between discovery apps like Pinterest, Cosmos, and Are.na, and creation tools like Figma" fill sizes="(max-width: 768px) 100vw, 922px" className="object-contain" />
                 </div>
               </SectionIntro>
-            </div>
           </section>
 
-          <section id="final-design" className="w-full flex justify-center" style={{ padding: 16 }}>
+          <section id="solution" className="w-full flex justify-center" style={{ padding: 16 }}>
             <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 32 }}>
               <SectionIntro
                 eyebrow="solution"

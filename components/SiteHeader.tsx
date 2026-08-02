@@ -76,8 +76,13 @@ export default function SiteHeader() {
         style={{ padding: "var(--space-4)" }}
       >
         {/* logo */}
-        <Link href="/" className="flex items-center" style={{ paddingRight: "var(--space-4)", paddingBlock: 0 }}>
-          <Image src="/apple_logo.svg" alt="Apple Logo" width={24} height={24} />
+        <Link href="/" 
+              className="flex items-center" 
+              style={{ paddingRight: "var(--space-4)", paddingBlock: 0 }}>
+          <Image 
+            src="/apple_logo.svg" alt="Apple Logo" width={24} height={24}
+            className="hover:scale-110 hover:-rotate-8 transition-all"
+          />
         </Link>
 
         {/* centre links */}

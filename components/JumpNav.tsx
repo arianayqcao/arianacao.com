@@ -14,7 +14,7 @@ interface JumpNavProps {
 export default function JumpNav({ links }: JumpNavProps) {
     return (
         <nav
-          className="sticky z-40 bg-white w-full flex justify-center"
+          className="sticky z-50 bg-white w-full flex justify-center"
           style={{ 
             top: 0, paddingTop: 16, paddingBottom: 16,
             background: "rgba(255, 255, 255, 0.8)", 

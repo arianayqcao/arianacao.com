@@ -1,4 +1,6 @@
-import { Fragment } from "react";
+"use client";
+
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import IntroOverlay from "@/components/IntroOverlay";
@@ -35,6 +37,7 @@ function FeaturedCoverCard({
   gridClassName: string;
   children: React.ReactNode;
 }) {
+  const [isHovering, setIsHovering] = useState(false);
   const comingSoon = card.cursor === "coming-soon";
 
   const className = `group relative block overflow-hidden rounded w-full ${card.heightPx ? "" : "case-study-card"} ${gridClassName}`;
@@ -44,6 +47,10 @@ function FeaturedCoverCard({
     order: card.order,
     ...(card.heightPx ? {} : { "--card-aspect-desktop": card.aspectRatio }),
   } as React.CSSProperties;
+
+  const eyebrowColor = isHovering && card.textDark ? "rgba(255,255,255,0.5)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)";
+  const titleColor = isHovering && card.textDark ? "#fff" : card.textDark ? "#000" : "#fff";
+  const descriptionColor = isHovering && card.textDark ? "rgba(255,255,255,0.7)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)";
 
   const content = (
     <>
@@ -60,8 +67,7 @@ function FeaturedCoverCard({
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "var(--text-xxs)",
-            color: card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)",
-            letterSpacing: "var(--tracking-wider)",
+            color: eyebrowColor,
             textTransform: "uppercase",
             lineHeight: "var(--leading-snug)",
           }}
@@ -73,7 +79,7 @@ function FeaturedCoverCard({
             fontFamily: "var(--font-primary)",
             fontWeight: "var(--weight-bold)",
             fontSize: "var(--text-xl)",
-            color: card.textDark ? "#000" : "#fff",
+            color: titleColor,
             lineHeight: "normal",
           }}
         >
@@ -84,7 +90,7 @@ function FeaturedCoverCard({
             fontFamily: "var(--font-primary)",
             fontWeight: "var(--weight-regular)",
             fontSize: "var(--text-md)",
-            color: card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)",
+            color: descriptionColor,
             lineHeight: "var(--leading-body)",
           }}
         >
@@ -96,14 +102,22 @@ function FeaturedCoverCard({
 
   if (comingSoon) {
     return (
-      <div data-cursor={card.cursor} className={className} style={style}>
+      <div 
+        data-cursor={card.cursor} className={className} style={style}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
         {content}
       </div>
     );
   }
 
   return (
-    <Link href={card.href} data-cursor={card.cursor} className={className} style={style}>
+    <Link 
+      href={card.href} data-cursor={card.cursor} className={className} style={style}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
       {content}
     </Link>
   );
@@ -249,7 +263,7 @@ export default function Home() {
           {/* ── CASE STUDIES ─────────────────────────────────────── */}
           <section
             className="flex items-start justify-center w-full"
-            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
+            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 200 }}
           >
             <div 
               className="flex flex-col flex-1 min-w-0" 
@@ -311,7 +325,7 @@ export default function Home() {
           {/* ── ABOUT ────────────────────────────────────────────── */}
           <section
             className="flex flex-col items-start w-full"
-            style={{ padding: 16 }}
+            style={{ padding: 16, paddingBottom: 200 }}
           >
             <div 
               className="flex flex-col md:flex-row items-start w-full" 
@@ -383,7 +397,7 @@ export default function Home() {
                 className="flex items-center shrink-0"
                 style={{
                   gap: 128,
-                  height: 32,
+                  height: 28,
                   animation: "marquee 30s linear infinite",
                   width: "max-content",
                 }}
@@ -395,7 +409,7 @@ export default function Home() {
                     src={src}
                     alt={name}
                     style={{
-                      height: 28,
+                      height: 24,
                       width: "auto",
                       opacity: 1,
                       userSelect: "none",
@@ -409,7 +423,7 @@ export default function Home() {
           {/* ── SKILLS ───────────────────────────────────────────── */}
           <section
             className="flex flex-col items-start w-full"
-            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 32 }}
+            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 200 }}
           >
             <div 
               className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16"

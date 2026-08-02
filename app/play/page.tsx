@@ -49,20 +49,6 @@ const PLAY_ITEMS: PlayItem[] = [
     media: { kind: "image", src: "/images/Play/rough-design.png", aspect: "2550 / 3300" },
   },
   {
-    id: "smiski-cafe-popup",
-    title: "smiski-themed cafe pop-up poster design",
-    description: "Instagram grid design for cafe fundraiser using Illustrator.",
-    media: {
-      kind: "grid3",
-      src: [
-        "/images/Play/atd-cafe-post-3-menu.png",
-        "/images/Play/atd-cafe-post-2-photobooth.png",
-        "/images/Play/atd-cafe-post-1.png",
-      ],
-      aspect: "1081 / 1350",
-    },
-  },
-  {
     id: "digital-animation",
     title: "Digital Animation 2023 for Paly Robotics",
     description: "using Blender, AfterEffects, and Premiere Pro.",
@@ -111,6 +97,20 @@ const PLAY_ITEMS: PlayItem[] = [
     title: "Team 8 Logo Animation",
     description: "Custom animation for Paly Robotics Team 8 using Adobe Illustrator, AfterEffects, and Premiere Pro. Sound up!",
     media: { kind: "video", src: "/videos/team-8-logo-animation.mp4", aspect: "1388 / 780" },
+  },
+  {
+    id: "smiski-cafe-popup",
+    title: "smiski-themed cafe pop-up poster design",
+    description: "Instagram grid design for cafe fundraiser using Illustrator.",
+    media: {
+      kind: "grid3",
+      src: [
+        "/images/Play/atd-cafe-post-3-menu.png",
+        "/images/Play/atd-cafe-post-2-photobooth.png",
+        "/images/Play/atd-cafe-post-1.png",
+      ],
+      aspect: "1081 / 1350",
+    },
   },
   {
     id: "alvaldi-tshirt",
