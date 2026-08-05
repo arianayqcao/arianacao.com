@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -37,6 +38,11 @@ function CaterpillarIcon({ className }: { className?: string }) {
 
 export default function MobileMenuOverlay() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -53,41 +59,63 @@ export default function MobileMenuOverlay() {
         </svg>
       </button>
 
-      {open && (
-        <div className="fixed inset-0 z-[60] bg-white flex flex-col items-center md:hidden" style={{ padding: 16 }}>
-          {/* top row: logo + close */}
-          <div className="flex items-center justify-between w-full shrink-0">
-            <Link href="/" className="flex items-center" style={{ padding: 8 }} onClick={() => setOpen(false)}>
-              <Image src="/apple_logo.svg" alt="Apple Logo" width={40} height={40} />
-            </Link>
-            <button
-              type="button"
-              aria-label="Close menu"
-              style={{ padding: 8 }}
-              onClick={() => setOpen(false)}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6L18 18M18 6L6 18" stroke="#000" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </button>
-          </div>
+      {open &&
+        mounted &&
+        createPortal(
+          <div className="fixed inset-0 z-[60] bg-white flex flex-col items-center md:hidden" style={{ padding: 16 }}>
+            {/* top row: logo + close */}
+            <div className="flex items-center justify-between w-full shrink-0">
+              <Link href="/" className="flex items-center" style={{ padding: 8 }} onClick={() => setOpen(false)}>
+                <Image src="/apple_logo.svg" alt="Apple Logo" width={40} height={40} />
+              </Link>
+              <button
+                type="button"
+                aria-label="Close menu"
+                style={{ padding: 8 }}
+                onClick={() => setOpen(false)}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 6L18 18M18 6L6 18" stroke="#000" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
 
-          {/* middle: hero text + links, split top/bottom */}
-          <div className="flex flex-1 flex-col items-center justify-between w-full" style={{ paddingBlock: 64 }}>
-            <h2
-              className="flex flex-col text-[72px] leading-[80px] text-center w-full"
-              style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--weight-black)", color: "var(--color-heading)" }}
-            >
-              <span>ariana</span>
-              <span>cao.</span>
-            </h2>
+            {/* middle: hero text + links, split top/bottom */}
+            <div className="flex flex-1 flex-col items-center justify-between w-full" style={{ paddingBlock: 64 }}>
+              <h2
+                className="flex flex-col text-[72px] leading-[80px] text-center w-full"
+                style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--weight-black)", color: "var(--color-heading)" }}
+              >
+                <span>ariana</span>
+                <span>cao.</span>
+              </h2>
 
-            <div className="flex flex-col items-start w-full gap-16">
-              <div className="flex flex-col items-center justify-center w-full gap-8">
-                {NAV_LINKS.map(({ href, label }) => (
-                  <Link
-                    key={label}
-                    href={href}
+              <div className="flex flex-col items-start w-full gap-16">
+                <div className="flex flex-col items-center justify-center w-full gap-8">
+                  {NAV_LINKS.map(({ href, label }) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "var(--text-sm)",
+                        color: "#000",
+                        textTransform: "uppercase",
+                        padding: "4px 8px",
+                        lineHeight: "16px",
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="flex flex-col items-center justify-center w-full">
+                  <a
+                    href="/resume"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
                     style={{
                       fontFamily: "var(--font-mono)",
@@ -98,37 +126,18 @@ export default function MobileMenuOverlay() {
                       lineHeight: "16px",
                     }}
                   >
-                    {label}
-                  </Link>
-                ))}
-              </div>
+                    resume
+                  </a>
+                </div>
 
-              <div className="flex flex-col items-center justify-center w-full">
-                <a
-                  href="/resume"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-sm)",
-                    color: "#000",
-                    textTransform: "uppercase",
-                    padding: "4px 8px",
-                    lineHeight: "16px",
-                  }}
-                >
-                  resume
-                </a>
-              </div>
-
-              <div className="flex items-center justify-end w-full" style={{ paddingBottom: 16 }}>
-                <CaterpillarIcon className="h-[96px] w-auto" />
+                <div className="flex items-center justify-end w-full" style={{ paddingBottom: 16 }}>
+                  <CaterpillarIcon className="h-[96px] w-auto" />
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
