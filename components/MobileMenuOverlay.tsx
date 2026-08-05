@@ -62,7 +62,7 @@ export default function MobileMenuOverlay() {
       {open &&
         mounted &&
         createPortal(
-          <div className="fixed inset-0 z-[60] bg-white flex flex-col items-center md:hidden" style={{ padding: 16 }}>
+          <div className="fixed inset-0 z-[110] bg-white flex flex-col items-center md:hidden" style={{ padding: 16 }}>
             {/* top row: logo + close */}
             <div className="flex items-center justify-between w-full shrink-0">
               <Link href="/" className="flex items-center" style={{ padding: 8 }} onClick={() => setOpen(false)}>
