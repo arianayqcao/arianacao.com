@@ -133,7 +133,7 @@ const LIGHT_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.
 const SPUR_CARD: FeaturedCard = {
   eyebrow: "Design for America · 2026",
   title: "Spur",
-  description: "Creative inspiration is often saved impulsively, quickly forgotten, and turns into digital clutter.",
+  description: "Creative inspiration is often saved impulsively, quickly forgotten, and turns into digital clutter. Won DFA Best Research-Driven Impact Award.",
   href: "/work/spur",
   cursor: "view-case-study",
   bg: "var(--primitive-black)",
