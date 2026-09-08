@@ -30,7 +30,7 @@ function SectionIntro({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-start w-full" style={{ gap: 16 }}>
+    <div className="flex flex-col items-start w-full" style={{ gap: 8 }}>
       <span
         style={{
           fontFamily: "var(--font-mono)",
@@ -308,7 +308,7 @@ export default function DubcoinSystemPage() {
 
       <main className="flex flex-col items-center w-full">
         {/* ── HERO ─────────────────────────────────────────────── */}
-        <div className="flex flex-col items-start w-full" style={{ gap: 48 }}>
+        <div className="flex flex-col items-start w-full pb-8" style={{ gap: 48 }}>
           <div className="relative w-full" style={{ aspectRatio: "1440 / 513" }}>
             <Image
               src="/images/DubCoin/hero-cover.png"
@@ -338,7 +338,7 @@ export default function DubcoinSystemPage() {
               <div className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
                 {[
                   { label: "ROLE", value: "Product Designer" },
-                  { label: "TEAM", value: "annie chang\nAriana Cao\nMedha Rawat" },
+                  { label: "TEAM", value: "Annie Chang\nAriana Cao\nMedha Rawat" },
                   { label: "TIMELINE", value: "3 months · 2025" },
                   { label: "OVERVIEW", value: "Student Hackathon Hub Platform" },
                 ].map(({ label, value }) => (

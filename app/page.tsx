@@ -26,6 +26,8 @@ interface FeaturedCard {
   heightPx?: number;
   textClearancePx?: number;
   order: number;
+  showHoverOverlay?: boolean;
+  disableHoverTextChange?: boolean;
 }
 
 function FeaturedCoverCard({
@@ -48,16 +50,18 @@ function FeaturedCoverCard({
     ...(card.heightPx ? {} : { "--card-aspect-desktop": card.aspectRatio }),
   } as React.CSSProperties;
 
-  const eyebrowColor = isHovering && card.textDark ? "rgba(255,255,255,0.5)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)";
-  const titleColor = isHovering && card.textDark ? "#fff" : card.textDark ? "#000" : "#fff";
-  const descriptionColor = isHovering && card.textDark ? "rgba(255,255,255,0.7)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)";
+  const eyebrowColor = !card.disableHoverTextChange && isHovering && card.textDark ? "rgba(255,255,255,0.5)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)";
+  const titleColor = !card.disableHoverTextChange && isHovering && card.textDark ? "#fff" : card.textDark ? "#000" : "#fff";
+  const descriptionColor = !card.disableHoverTextChange && isHovering && card.textDark ? "rgba(255,255,255,0.7)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)";
 
   const content = (
     <>
       {children}
 
       {/* hover darken overlay */}
-      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200 pointer-events-none" />
+      {card.showHoverOverlay !== false && (
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200 pointer-events-none" />
+      )}
 
       <div
         className="absolute bottom-0 left-0 w-full flex flex-col"
@@ -137,6 +141,7 @@ const SPUR_CARD: FeaturedCard = {
   aspectRatio: "1 / 1",
   textClearancePx: 190,
   order: 1,
+  showHoverOverlay: true,
 };
 
 const CURA_CARD: FeaturedCard = {
@@ -150,6 +155,8 @@ const CURA_CARD: FeaturedCard = {
   gradient: LIGHT_GRADIENT,
   aspectRatio: "1 / 1",
   order: 2,
+  showHoverOverlay: false,
+  disableHoverTextChange: true,
 };
 
 const DUBCOIN_CARD: FeaturedCard = {
@@ -162,6 +169,7 @@ const DUBCOIN_CARD: FeaturedCard = {
   gradient: DARK_GRADIENT,
   aspectRatio: "1 / 1",
   order: 3,
+  showHoverOverlay: true,
 };
 
 const DUBHACKS_2026_CARD: FeaturedCard = {
@@ -174,6 +182,7 @@ const DUBHACKS_2026_CARD: FeaturedCard = {
   gradient: DARK_GRADIENT,
   aspectRatio: "1 / 1",
   order: 4,
+  showHoverOverlay: false,
 };
 
 /* ─── logo strip ────────────────────────────────────────────────── */
