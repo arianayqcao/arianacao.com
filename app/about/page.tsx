@@ -273,8 +273,8 @@ export default function AboutPage() {
             <div className="hidden md:flex flex-1 flex-col gap-4 self-stretch">
               <div className="flex-1 relative rounded-[4px] overflow-hidden">
                 <Image
-                  src="/images/about/image-34.png"
-                  alt="A place Ariana has been"
+                  src="/images/about/ariana_sitting_in_plane_sideways.JPG"
+                  alt="Ariana sitting in plane sideways"
                   fill
                   className="object-cover"
                 />
