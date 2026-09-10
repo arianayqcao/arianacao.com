@@ -81,7 +81,7 @@ export default function MobileMenuOverlay() {
             </div>
 
             {/* middle: hero text + links, split top/bottom */}
-            <div className="flex flex-1 flex-col items-center justify-between w-full" style={{ paddingBlock: 64 }}>
+            <div className="flex flex-1 flex-col items-center justify-between w-full gap-12" style={{ paddingBlock: 64 }}>
               <h2
                 className="flex flex-col text-[72px] leading-[80px] text-center w-full"
                 style={{ fontFamily: "var(--font-primary)", fontWeight: "var(--weight-black)", color: "var(--color-heading)" }}
@@ -90,7 +90,7 @@ export default function MobileMenuOverlay() {
                 <span>cao.</span>
               </h2>
 
-              <div className="flex flex-col items-start w-full gap-16">
+              <div className="flex flex-col items-start w-full gap-12">
                 <div className="flex flex-col items-center justify-center w-full gap-8">
                   {NAV_LINKS.map(({ href, label }) => (
                     <Link

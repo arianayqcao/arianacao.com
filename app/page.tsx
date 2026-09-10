@@ -189,7 +189,7 @@ const DUBHACKS_2026_CARD: FeaturedCard = {
 
 const LOGOS = [
   { name: "Figma", src: "/logos/figma-logo-lockup-trimmed.jpg" },
-  { name: "Adobe CC", src: "/logos/Adobe_Creative_Cloud_rainbow_icon.svg" },
+  { name: "Adobe", src: "/logos/Adobe_Corporate_wordmark.svg" },
   { name: "Blender", src: "/logos/Logo_Blender.svg" },
   { name: "React", src: "/logos/reactjs_logo_icon_cropped.svg" },
   { name: "Tailwind CSS", src: "/logos/Tailwind_CSS_logo_with_dark_text.svg" },
@@ -271,8 +271,8 @@ export default function Home() {
 
           {/* ── CASE STUDIES ─────────────────────────────────────── */}
           <section
-            className="flex items-start justify-center w-full"
-            style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 200 }}
+            className="flex items-start justify-center w-full pb-4 md:pb-12"
+            style={{ paddingInline: 16, paddingTop: 16 }}
           >
             <div 
               className="flex flex-col flex-1 min-w-0" 
@@ -323,8 +323,8 @@ export default function Home() {
                     loop
                     muted
                     playsInline
-                    className="absolute object-cover"
-                    style={{ left: 83.5, top: 0, width: 673.5, height: 435.8 }}
+                    className="absolute object-cover md:h-[435.8px] h-[250px]"
+                    style={{ left: 83.5, top: 0, width: 673.5, height: 435.8, objectPosition: "left" }}
                   />
                 </FeaturedCoverCard>
               </div>
@@ -333,8 +333,8 @@ export default function Home() {
 
           {/* ── ABOUT ────────────────────────────────────────────── */}
           <section
-            className="flex flex-col items-start w-full"
-            style={{ padding: 16, paddingBottom: 200 }}
+            className="flex flex-col items-start w-full pb-4 md:pb-12"
+            style={{ padding: 16 }}
           >
             <div 
               className="flex flex-col md:flex-row items-start w-full" 
@@ -388,8 +388,8 @@ export default function Home() {
 
               {/* photo */}
               <div
-                className="w-1/2 md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden"
-                style={{ aspectRatio: "346 / 448" }}
+                className="w-1/2 md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden max-h-[80vh]"
+                style={{ aspectRatio: "36 / 45" }}
               >
                 <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
               </div>
@@ -405,7 +405,7 @@ export default function Home() {
               <div
                 className="flex items-center shrink-0"
                 style={{
-                  gap: 128,
+                  gap: 64,
                   height: 28,
                   animation: "marquee 30s linear infinite",
                   width: "max-content",
