@@ -1,574 +1,122 @@
 import Image from "next/image";
-import JumpNav from "@/components/JumpNav";
+import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import styles from "./page.module.css";
 
-/* ─── jump nav ──────────────────────────────────────────────────── */
+const sections = [
+  ["overview", "Overview"], ["context", "Context"], ["insights", "Insights"],
+  ["version-one", "Version 1"], ["learnings", "What we learned"],
+  ["version-two", "Version 2"], ["outcome", "Outcome"], ["reflection", "Reflection"], ["next-steps", "Next steps"],
+] as const;
 
-const JUMP_LINKS = [
-  { href: "#context", label: "context" },
-  { href: "#goals", label: "goals" },
-  { href: "#process", label: "process" },
-  { href: "#final-design", label: "final design" },
-  { href: "#impact", label: "impact" },
-  { href: "#next-steps", label: "next steps" },
+const stats = [
+  { value: "~3 hrs", label: "spent on prize redemption in 2024—more than 8% of the 36-hour hackathon" },
+  { value: "5–7", label: "staff members editing the same Excel sheet at once" },
+  { value: "17%", label: "of 2025 hackers added a bio, LinkedIn, or GitHub" },
+  { value: "148", label: "hackers redeemed at least one prize in 2025" },
 ];
 
-/* ─── shared section intro (eyebrow + heading + description) ──────── */
-
-function SectionIntro({
-  eyebrow,
-  heading,
-  headingSize = "sm",
-  description,
-  children,
-}: {
-  eyebrow: string;
-  heading: string;
-  headingSize?: "sm" | "lg";
-  description?: string;
-  children?: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col items-start w-full" style={{ gap: 8 }}>
-      <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "var(--text-xxs)",
-          color: "var(--color-accent-rose)",
-          textTransform: "uppercase",
-          letterSpacing: "var(--tracking-wider)",
-          lineHeight: "var(--leading-snug)",
-        }}
-      >
-        {eyebrow}
-      </span>
-      <h3
-        style={{
-          fontFamily: "var(--font-primary)",
-          fontWeight: headingSize === "lg" ? "var(--weight-bold)" : "var(--weight-semibold)",
-          fontSize: headingSize === "lg" ? "var(--text-2xl)" : "24px",
-          letterSpacing: headingSize === "lg" ? "-0.64px" : "-0.24px",
-          lineHeight: headingSize === "lg" ? "41.6px" : "33.6px",
-          color: "#000",
-          margin: 0,
-        }}
-      >
-        {heading}
-      </h3>
-      {description && (
-        <p
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-regular)",
-            fontSize: "var(--text-md)",
-            color: "var(--color-text-subtle)",
-            lineHeight: "var(--leading-body)",
-            margin: 0,
-          }}
-        >
-          {description}
-        </p>
-      )}
-      {children}
-    </div>
-  );
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return <p className={styles.eyebrow}>{children}</p>;
 }
 
-/* ─── feature row (text + screenshot) ──────────────────────────── */
-
-interface Feature {
-  title: string;
-  description: string;
-  image: string;
-  aspect: string;
-  fit?: "contain" | "cover";
+function Section({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
+  return <section className={styles.section} id={id}><Eyebrow>{label}</Eyebrow><h2>{title}</h2><div className={styles.prose}>{children}</div></section>;
 }
 
-const FEATURES: Feature[] = [
-  {
-    title: "Personalized Welcome",
-    description: "Greets each hacker by name with their live Dubcoin balance front and center.",
-    image: "/images/DubCoin/feature-personalized-welcome.png",
-    aspect: "498 / 446",
-  },
-  {
-    title: "Toggle between views",
-    description: "Switch from scanning to redeeming DubCoins.",
-    image: "/images/DubCoin/feature-toggle-views.png",
-    aspect: "498 / 84.02",
-  },
-  {
-    title: "Scan QR codes",
-    description: "Earn DubCoins by scanning QR codes at workshops.",
-    image: "/images/DubCoin/feature-scan-qr.png",
-    aspect: "498 / 498",
-  },
-  {
-    title: "Personal QR code",
-    description: "Every hacker gets one. Staff scan it at the prize table — no typing, no Excel.",
-    image: "/images/DubCoin/feature-personal-qr-redeem.png",
-    aspect: "498 / 436",
-  },
-  {
-    title: "Live earn notifications",
-    description: "Congrats, you just earned 15 Dubcoins from this workshop.",
-    image: "/images/DubCoin/feature-live-earn.png",
-    aspect: "498 / 380.23",
-  },
-  {
-    title: "Activity feed",
-    description: "A full log of every event attended and every coin earned.",
-    image: "/images/DubCoin/feature-activity-feed.png",
-    aspect: "498 / 261.44",
-  },
-];
-
-function FeatureRow({ feature }: { feature: Feature }) {
-  return (
-    <div className="flex flex-col md:flex-row items-start justify-center w-full" style={{ gap: 24 }}>
-      <div className="flex flex-col shrink-0 w-full md:w-[276px]" style={{ gap: 9 }}>
-        <h4
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-semibold)",
-            fontSize: "var(--text-lg)",
-            color: "#000",
-            lineHeight: "25.31px",
-            margin: 0,
-          }}
-        >
-          {feature.title}
-        </h4>
-        <p
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-regular)",
-            fontSize: "var(--text-md)",
-            color: "#000",
-            lineHeight: "var(--leading-body)",
-            margin: 0,
-          }}
-        >
-          {feature.description}
-        </p>
-      </div>
-      <div className="relative w-full md:w-[498px] shrink-0" style={{ aspectRatio: feature.aspect }}>
-        <Image
-          src={feature.image}
-          alt={`${feature.title} screen in the DubCoin app`}
-          fill
-          sizes="(max-width: 768px) 100vw, 498px"
-          className={feature.fit === "cover" ? "object-cover" : "object-contain"}
-        />
-      </div>
-    </div>
-  );
+function Media({ src, alt, caption, className = "" }: { src: string; alt: string; caption?: string; className?: string }) {
+  return <figure className={styles.media + " " + className}><Image src={src} alt={alt} fill sizes="(max-width: 760px) 100vw, 1100px"/><figcaption>{caption}</figcaption></figure>;
 }
-
-/* ─── insight cards (3-up) ──────────────────────────────────────── */
-
-interface InsightCard {
-  title: string;
-  description: string;
-  image?: string;
-  imageAlt?: string;
-  imageAspect?: string;
-  quote?: { author: string; text: string };
-}
-
-const INSIGHTS: InsightCard[] = [
-  {
-    title: "Manual",
-    description: "Every transaction required a staff member to edit a spreadsheet by hand.",
-    image: "/images/DubCoin/insight-manual.png",
-    imageAlt: "Screenshot of the Google Sheet DubHacks staff used to manually track DubCoin prize redemptions",
-    imageAspect: "268.53 / 264.36",
-  },
-  {
-    title: "Opaque",
-    description: "Hackers had to remember how many DubCoins they had.",
-    quote: { author: "@hacker_anon · DubHacks Slack", text: '"How many Dubcoins do I have?"' },
-  },
-  {
-    title: "Disconnected",
-    description: "Staff had to match a hacker's balance to available prizes manually.",
-    quote: {
-      author: "@hacker_anon · DubHacks Slack",
-      text: '"I showed up solo and spent the first 2 hours just walking around asking people what they knew. Felt like a job fair with no resumes."',
-    },
-  },
-];
-
-function InsightCardView({ card }: { card: InsightCard }) {
-  return (
-    <div className="flex flex-col flex-1 min-w-0 w-full" style={{ gap: 10 }}>
-      <div className="flex flex-col w-full" style={{ gap: 9 }}>
-        <h3
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-semibold)",
-            fontSize: "24px",
-            letterSpacing: "-0.24px",
-            lineHeight: "33.6px",
-            color: "#000",
-            margin: 0,
-          }}
-        >
-          {card.title}
-        </h3>
-        <p
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-regular)",
-            fontSize: "var(--text-md)",
-            color: "var(--color-text-subtle)",
-            lineHeight: "var(--leading-body)",
-            margin: 0,
-          }}
-        >
-          {card.description}
-        </p>
-      </div>
-      <div
-        className="flex items-center justify-center w-full rounded-lg"
-        style={{ background: "var(--primitive-black-10)", padding: 16, minHeight: 240 }}
-      >
-        {card.image ? (
-          <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: card.imageAspect }}>
-            <Image src={card.image} alt={card.imageAlt ?? ""} fill className="object-cover" />
-          </div>
-        ) : (
-          <div
-            className="flex flex-col w-full rounded-lg"
-            style={{ background: "var(--primitive-grey-94)", opacity: 0.82, padding: 30, gap: 8 }}
-          >
-            <span
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontSize: "var(--text-sm)",
-                color: "#666",
-              }}
-            >
-              {card.quote!.author}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-primary)",
-                fontSize: "var(--text-md)",
-                color: "var(--color-text-subtle)",
-                lineHeight: "var(--leading-body)",
-              }}
-            >
-              {card.quote!.text}
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ─── impact stat cards ────────────────────────────────────────── */
-
-const IMPACT_STATS = [
-  { stat: "300%", label: "Decrease in DubCoin Distribution Time." },
-  { stat: "Zero", label: "Manual Excel edits required." },
-  { stat: "Fewer questions", label: "From hackers, staff reported." },
-];
-
-/* ─── next steps ────────────────────────────────────────────────── */
-
-const NEXT_STEPS = [
-  {
-    number: "01",
-    title: "Collect feedback from hackers.",
-    description:
-      "We shipped it — now we need to hear from the people who used it. What worked, what was confusing, what they actually wanted.",
-  },
-  {
-    number: "02",
-    title: "Strengthen the staff-side experience.",
-    description:
-      "We focused heavily on the hacker side. The staff flow still needs work — specifically, there's no safeguard if a staff member accidentally taps a redemption. That needs an undo or a confirmation step before it goes any further.",
-  },
-  {
-    number: "03",
-    title: "Refine the visual design.",
-    description: "The system works. Now we make it feel as good as it functions.",
-  },
-];
-
-/* ─── page ──────────────────────────────────────────────────────── */
 
 export default function DubcoinSystemPage() {
-  return (
-    <div className="bg-white flex flex-col items-center min-h-screen">
-      <SiteHeader />
-
-      <main className="flex flex-col items-center w-full">
-        {/* ── HERO ─────────────────────────────────────────────── */}
-        <div className="flex flex-col items-start w-full pb-8" style={{ gap: 48 }}>
-          <div className="relative w-full" style={{ aspectRatio: "1440 / 513" }}>
-            <Image
-              src="/images/DubCoin/hero-cover.png"
-              alt="DubCoin distribution system cover"
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
+  return <><SiteHeader/><div className={styles.layout}>
+    <aside className={styles.sidebar} aria-label="Case study sections">
+      <nav><a className={styles.homeLink} href="#top">⌂ <span>HOME</span></a><p className={styles.sideLabel}>ON THIS PAGE</p>
+        {sections.map(([id, label]) => <a key={id} href={"#" + id}>{label}</a>)}
+      </nav>
+      <a className={styles.backTop} href="#top">↑ <span>BACK TO TOP</span></a>
+    </aside>
+    <main className={styles.main} id="top">
+      <div className={styles.cover}><Image src="/images/DubCoin/hero-cover.png" alt="DubCoin hacker profile and prize redemption experience" fill priority sizes="(max-width: 760px) 100vw, calc(100vw - 200px)"/></div>
+      <article className={styles.article}>
+        <header className={styles.intro}>
+          <p className={styles.kicker}>DUBHACKS · PRODUCT DESIGN · 2025—2026</p>
+          <h1>From a 3-hour Excel line to a DubCoin system</h1>
+          <p className={styles.dek}>A two-part case study: a hacker profile that shipped in 2025, and a data-informed redesign for 2026.</p>
+          <div className={styles.meta}>
+            <div><Eyebrow>Timeline</Eyebrow><p>v1 · Jul–Sep 2025<br/>v2 · Jul–Oct 2026</p></div>
+            <div><Eyebrow>Role</Eyebrow><p>Product Designer (v1)<br/>UX Design Lead (v2)</p></div>
+            <div><Eyebrow>Team</Eyebrow><p>Ariana Cao, Annie Chang,<br/>Medha Rawat · Audrey Wu (v2)</p></div>
+            <div><Eyebrow>Tools</Eyebrow><p>Figma, Figr, Lovable,<br/>Tailwind CSS</p></div>
           </div>
+        </header>
 
-          <div className="flex flex-col items-center w-full" style={{ padding: "0 16px" }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 20 }}>
-              <h1
-                style={{
-                  fontFamily: "var(--font-primary)",
-                  fontWeight: "var(--weight-bold)",
-                  fontSize: "52px",
-                  letterSpacing: "-1.56px",
-                  lineHeight: "57.2px",
-                  margin: 0,
-                }}
-              >
-                <span style={{ display: "block", color: "#000" }}>Automating the</span>
-                <span style={{ display: "block", color: "var(--color-accent-rose)" }}>DubCoin distribution system</span>
-              </h1>
+        <section className={styles.stats} aria-label="Project data">
+          {stats.map((stat) => <div key={stat.value}><strong>{stat.value}</strong><p>{stat.label}</p></div>)}
+        </section>
 
-              <div className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
-                {[
-                  { label: "ROLE", value: "Product Designer" },
-                  { label: "TEAM", value: "Annie Chang\nAriana Cao\nMedha Rawat" },
-                  { label: "TIMELINE", value: "3 months · 2025" },
-                  { label: "OVERVIEW", value: "Student Hackathon Hub Platform" },
-                ].map(({ label, value }) => (
-                  <div key={label} className="flex flex-col shrink-0 md:w-[195px]" style={{ gap: 8 }}>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-xxs)",
-                        color: "var(--color-accent-rose)",
-                        textTransform: "uppercase",
-                        letterSpacing: "var(--tracking-wider)",
-                        lineHeight: "var(--leading-snug)",
-                      }}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontSize: "var(--text-sm)",
-                        color: "#000",
-                        lineHeight: "21.12px",
-                        whiteSpace: "pre-line",
-                      }}
-                    >
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <Section id="overview" label="Overview" title="DubHacks rewards hackers with coins. Spending them used to take hours.">
+          <p>DubCoins are DubHacks’ incentive currency. Hackers earn them by attending workshops and activities, then redeem them for prizes at the end of the weekend.</p>
+          <p>I designed the experience in two rounds. <strong>Version 1 (2025) shipped</strong>, giving us real usage data. <strong>Version 2 (2026) is fully designed but not yet built</strong>; its direction comes from what we observed during the event.</p>
+          <a className={styles.textLink} href="#version-two">Jump to Version 2 <span>↘</span></a>
+        </Section>
 
-        {/* ── JUMP NAV ─────────────────────────────────────────── */}
-        <JumpNav links={JUMP_LINKS} />
+        <Section id="context" label="Context" title="Redemption was the biggest pain point of 2024.">
+          <p>Prize redemption was scheduled for one hour on Sunday. It took about three. Five to seven staff members shared one Excel sheet while they looked up each hacker, verified their identity, changed balances, found prizes, and updated inventory.</p>
+          <p>Staff were tired from overnight shifts. Hackers waited in long lines, and some prizes ran out before people reached the table. Meanwhile, staff estimated that answering questions took around 70% of their time, even though much of the information already existed in Notion.</p>
+          <div className={styles.callout}><Eyebrow>The brief</Eyebrow><p>Build a personalized hacker hub that centralizes information, reduces day-of questions, and gives each hacker a clear view of their experience.</p></div>
+          <Media src="/images/DubCoin/insight-manual.png" alt="Spreadsheet used to track prize redemption" caption="The 2024 redemption flow depended on staff updating a shared spreadsheet."/>
+          <p>The brief arrived in early July, with design due by the end of August and a September ship date. Tech already had a Discord system, a skeleton UI, workshop QR codes, and MongoDB; design needed to define the experience and backend requirements.</p>
+        </Section>
 
-        {/* ── CONTENT ──────────────────────────────────────────── */}
-        <div className="flex flex-col items-center w-full" style={{ padding: 16 }}>
-          <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 96 }}>
-            <section id="context" className="w-full">
-              <SectionIntro
-                eyebrow="overview"
-                heading="DubHacks rewards hackers with coins for attending workshops."
-                description="Dubcoins are DubHacks' incentive currency. Hackers earn them by attending workshops and redeem them for prizes."
-              >
-                <a
-                  href="#final-design"
-                  className="flex items-center"
-                  style={{ gap: 10, marginTop: 8, textDecoration: "none" }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-primary)",
-                      fontSize: "var(--text-sm)",
-                      color: "#000",
-                      lineHeight: "21.12px",
-                    }}
-                  >
-                    Jump to final design
-                  </span>
-                  <span
-                    className="flex items-center justify-center rounded-full"
-                    style={{ width: 26, height: 26, background: "var(--color-bg-subtle)" }}
-                  >
-                    →
-                  </span>
-                </a>
-              </SectionIntro>
-            </section>
+        <Section id="insights" label="Insights" title="Staff were acting as the database.">
+          <p>We mapped the 2024 flow with context from co-directors Erika and Nolan, and design advisors Meiyao and Erika. Three issues shaped the first product:</p>
+          <div className={styles.threeCards}><div><b>Manual</b><p>Every transaction needed someone to edit a spreadsheet by hand.</p></div><div><b>Opaque</b><p>Hackers couldn’t see their own balance. “How many DubCoins do I have?”</p></div><div><b>Disconnected</b><p>Staff had to match a person’s balance to available prizes from memory.</p></div></div>
+          <p>The system pushed memory and coordination onto people. The profile could make information visible, while redemption needed a flow staff could run quickly and reliably.</p>
+        </Section>
 
-            <section id="goals" className="w-full">
-              <SectionIntro
-                eyebrow="problem"
-                heading="The Dubcoin distribution system was the biggest pain point of 2024."
-                description="Everything ran through a single Excel sheet. Staff manually looked up hackers, edited rows, and verified student IDs — in a packed ballroom, under pressure. Lines stretched around the room. What should've taken minutes took three hours. Staff were overwhelmed."
-              />
-            </section>
+        <Section id="version-one" label="Version 1 · 2025" title="Our first bet: a hacker profile, and QR codes for redemption.">
+          <h3>Choosing a redemption model</h3>
+          <p>We considered a self-serve pick-up flow and staff-led QR redemption. The pick-up model could update inventory immediately and reveal prizes only when a hacker had enough coins. But it introduced operational complexity and a risk of 1,000+ people hitting a system the tech team could not yet scale with confidence.</p>
+          <p>We shipped QR redemption instead. Each hacker had a personal QR code; staff scanned it at the prize table, checked the redemption history, and marked items claimed. Staff were a resource we already had, and the pattern reused workshop QR codes.</p>
+          <Media src="/images/DubCoin/hacker-profile-screens.png" alt="Screens from the 2025 DubHacks hacker profile" caption="The first release combined a hacker profile, DubCoins, directory, and event information."/>
+          <p>The profile included bio, skills, and interests; a Connect directory; a DubCoins page; and a Home screen with a schedule and countdown. Before development, we used a Lovable prototype to help tech and directors react to the direction.</p>
+          <p className={styles.note}>The 2025 design was collaborative: Annie built the staff side, Medha led most screens and the design system, and I worked on Home logic, countdown, and navigation.</p>
+        </Section>
 
-            <section id="process" className="w-full flex flex-col" style={{ gap: 32 }}>
-              <SectionIntro
-                eyebrow="insights"
-                heading="Staff were being used as the system — instead of a system doing the work."
-                description="We walked through last year's flow step by step: staff interviews, debrief notes, and every manual touchpoint."
-              />
-              <div className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
-                {INSIGHTS.map((card) => (
-                  <InsightCardView key={card.title} card={card} />
-                ))}
-              </div>
-            </section>
+        <Section id="learnings" label="What we learned" title="The hackathon taught us what the prototype couldn’t.">
+          <p>After launch, I asked the tech lead for the usage data and compared our assumptions with how hackers actually used the profile.</p>
+          <div className={styles.dataGrid}><div><strong>1,030</strong><span>registered hackers</span></div><div><strong>331</strong><span>completed the pre-event quiz</span></div><div><strong>243</strong><span>attended workshops</span></div><div><strong>148</strong><span>redeemed 237 prizes</span></div></div>
+          <ul><li><strong>QR was slower than typing.</strong> Camera focus, lighting, and Wi-Fi introduced an estimated 4–7 seconds per scan.</li><li><strong>Most hackers skipped the social profile.</strong> About 17% filled in a bio, LinkedIn, or GitHub.</li><li><strong>Hackers mostly used laptops.</strong> Phones came out most often at the prize table.</li></ul>
+          <p>So the next version would lead with useful event information and DubCoins, and let staff search by a username instead of scanning a code.</p>
+        </Section>
 
-            <section id="final-design" className="w-full flex flex-col" style={{ gap: 32 }}>
-              <SectionIntro
-                eyebrow="solution"
-                headingSize="lg"
-                heading="The Hacker Profile, in full."
-                description="The Hacker Profile gives every hacker visibility — and gives staff a one-tap redemption flow."
-              />
-              <div className="relative w-full md:w-[768px]" style={{ aspectRatio: "768 / 576" }}>
-                <Image
-                  src="/images/DubCoin/hacker-profile-screens.png"
-                  alt="Hacker profile screens"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 768px"
-                  className="object-contain"
-                />
-              </div>
+        <Section id="version-two" label="Version 2 · 2026 redesign" title="Same problem, simpler bet: hackers show a username; staff type it.">
+          <p>The redesigned dashboard is planned for user testing during the 2026 hackathon. Here are the decisions that carry the research forward.</p>
+          <div className={styles.decision}><span>01</span><div><h3>Home is about information, not identity.</h3><p>A live countdown, event schedule, DubCoin balance, and links to DevPost and the guide bring the day’s essentials forward. Before the event, Get Started guides hackers through the setup steps.</p></div></div>
+          <div className={styles.decision}><span>02</span><div><h3>A sidebar makes the hub feel like a tool.</h3><p>The top navigation became a left sidebar, a familiar pattern for a dashboard. Connect remains available for hackers who want to browse profiles or find teammates.</p></div></div>
+          <div className={styles.decision}><span>03</span><div><h3>Hackers show a Discord username. Staff type it.</h3><p>The mobile redeem screen puts the required Discord username in large monospaced type. Staff can read it across the table and search for the hacker directly.</p></div></div>
+          <div className={styles.decision}><span>04</span><div><h3>Search helps staff recognize the right person.</h3><p>Fuzzy search results include username, real name, team, and balance. A slash shortcut opens search so staff can get to a person quickly.</p></div></div>
+          <div className={styles.decision}><span>05</span><div><h3>A cart makes the transaction clear.</h3><p>Balance, cart total, and remaining balance stay visible together. Unaffordable and out-of-stock prizes are clear, with filters for what can be redeemed. “Recent at this table” supports reversing a mistake.</p></div></div>
+          <div className={styles.decision}><span>06</span><div><h3>A design system built with AI, directed by me.</h3><p>Figr helped generate a starting system. I directed its colors, neutral surfaces, Work Sans typography, spacing, and components. Everyday buttons use near-black because white on brand pink reaches only 3.6:1 contrast; pink is reserved for emphasis.</p></div></div>
+          <div className={styles.status}><Eyebrow>Build status</Eyebrow><p>Version 2 is designed and entering user testing, but it has not shipped. The tech team is focused on the judging algorithm; the profile is planned for release next year.</p></div>
+        </Section>
 
-              <div className="flex flex-col w-full" style={{ gap: 64 }}>
-                {FEATURES.map((feature) => (
-                  <FeatureRow key={feature.title} feature={feature} />
-                ))}
-              </div>
-            </section>
+        <Section id="outcome" label="Outcome" title="V1 shipped. V2 is designed, and not live yet.">
+          <p>The first profile served 1,030 hackers in 2025 and gave us evidence to shape the next iteration. Version 2 has a complete design direction and system ready for testing and a future build.</p>
+          <p>At the 2026 hackathon, I plan to test with available hackers and prize-table staff. Tasks include checking a balance, finding an affordable prize, showing a username, searching for a hacker, redeeming, and reversing a transaction. I’ll track time to item-in-hand, errors, and requests for help.</p>
+        </Section>
 
-            <section id="impact" className="w-full flex flex-col" style={{ gap: 32 }}>
-              <SectionIntro
-                eyebrow="IMPACT"
-                headingSize="lg"
-                heading="Staff could focus on hackers, not spreadsheets."
-                description="The 2025 distribution ran without the chaos that defined 2024. What took three hours became a scan-and-tap flow."
-              />
-              <div className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
-                {IMPACT_STATS.map(({ stat, label }) => (
-                  <div
-                    key={label}
-                    className="flex flex-1 flex-col items-start justify-end rounded-lg"
-                    style={{ border: "1px solid var(--primitive-black-10)", padding: 30, minHeight: 240, gap: 8 }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontWeight: "var(--weight-bold)",
-                        fontSize: "var(--text-2xl)",
-                        letterSpacing: "-0.64px",
-                        lineHeight: "41.6px",
-                        color: "var(--color-accent-rose)",
-                      }}
-                    >
-                      {stat}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-xs)",
-                        color: "#000",
-                        letterSpacing: "1.2px",
-                        lineHeight: "16.8px",
-                      }}
-                    >
-                      {label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </section>
+        <Section id="reflection" label="Reflection" title="What I’d tell my past self.">
+          <ul><li><strong>Test in the real room.</strong> Lighting, lines, and crowded Wi-Fi mattered more than the QR flow’s neat prototype.</li><li><strong>A failed bet is still useful data.</strong> Watching QR slow people down gave us a clear reason to change course.</li><li><strong>People are a resource too.</strong> Staff made a simpler flow viable while the backend matured.</li><li><strong>Ask for the data.</strong> Usage files changed the direction of the redesign.</li></ul>
+        </Section>
 
-            <section className="w-full flex flex-col" style={{ gap: 32 }}>
-              <SectionIntro
-                eyebrow="reflection"
-                headingSize="lg"
-                heading="Our constraints shaped the design."
-                description="We had a whole self-checkout idea that got cut because the tech wasn't there yet. But the thing we built instead — scan, tap, redeem — was cleaner. Sometimes the constraint does the design thinking for you."
-              />
-              <div className="relative w-full" style={{ aspectRatio: "922 / 519" }}>
-                <Image
-                  src="/images/DubCoin/reflection.png"
-                  alt="Photo of two DubHacks staff members smiling together after the event"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 922px"
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </section>
-
-            <section id="next-steps" className="w-full flex flex-col" style={{ gap: 32 }}>
-              <SectionIntro
-                eyebrow="NEXT STEPS"
-                headingSize="lg"
-                heading="Where the DubCoin system goes from here."
-              />
-              <div className="flex flex-col w-full" style={{ gap: 32 }}>
-                {NEXT_STEPS.map(({ number, title, description }) => (
-                  <div key={number} className="flex items-start w-full" style={{ gap: 32 }}>
-                    <span
-                      className="shrink-0"
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontSize: "24px",
-                        lineHeight: "33.6px",
-                        color: "var(--color-accent-rose)",
-                        width: 27,
-                      }}
-                    >
-                      {number}
-                    </span>
-                    <div className="flex flex-col flex-1 min-w-0" style={{ gap: 8 }}>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-primary)",
-                          fontWeight: "var(--weight-bold)",
-                          fontSize: "var(--text-md)",
-                          color: "var(--color-accent-rose)",
-                          lineHeight: "var(--leading-body)",
-                        }}
-                      >
-                        {title}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-primary)",
-                          fontSize: "var(--text-md)",
-                          color: "#000",
-                          lineHeight: "var(--leading-body)",
-                        }}
-                      >
-                        {description}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      {/* ── FOOTER ──────────────────────────────────────────────── */}
-      <Footer />
-    </div>
-  );
+        <Section id="next-steps" label="Next steps" title="Where it goes from here.">
+          <ol className={styles.nextSteps}><li><span>01</span><p>User-test the v2 hacker and staff flows during the event.</p></li><li><span>02</span><p>Design for 5–9 staff working at once, including stock holds, transaction locking, and clear conflict recovery.</p></li><li><span>03</span><p>Improve the mobile username view with a full-screen option and an auto-brightness request for tech.</p></li><li><span>04</span><p>Add UW NetID or email as backup search identifiers.</p></li><li><span>05</span><p>Work with tech on admin controls for prize visibility and overrides.</p></li></ol>
+        </Section>
+        <div className={styles.endnav}><Link href="/work">← Back to work</Link><a href="#top">Back to top ↑</a></div>
+      </article>
+    </main>
+  </div><Footer/></>;
 }
