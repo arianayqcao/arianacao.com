@@ -296,17 +296,7 @@ export default function Home() {
                   </div>
                 </FeaturedCoverCard>
 
-                <FeaturedCoverCard card={CURA_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
-                  <Image
-                    src="/images/Case Study Cover Images/Updated-Cura-Cover-Image-4k-1-1-ratio.png"
-                    alt="Cura app home screen showing today's caregiving schedule"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 696px"
-                    className="object-cover"
-                  />
-                </FeaturedCoverCard>
-                
-                <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
+                <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
                   <Image
                     src="/images/Case Study Cover Images/dubcoins-cover-image.png"
                     alt="DubCoin prizes screen showing a QR code to redeem coins"
@@ -316,6 +306,16 @@ export default function Home() {
                   />
                 </FeaturedCoverCard>
 
+                <FeaturedCoverCard card={CURA_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
+                  <Image
+                    src="/images/Case Study Cover Images/Updated-Cura-Cover-Image-4k-1-1-ratio.png"
+                    alt="Cura app home screen showing today's caregiving schedule"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 696px"
+                    className="object-cover"
+                  />
+                </FeaturedCoverCard>
+                
                 <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
                   <video
                     src="/videos/Sponsor-Us-Button-Animation-DH26-Jitter.mp4"
