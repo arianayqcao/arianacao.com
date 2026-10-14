@@ -144,6 +144,19 @@ const SPUR_CARD: FeaturedCard = {
   showHoverOverlay: true,
 };
 
+const DUBCOIN_CARD: FeaturedCard = {
+  eyebrow: "DubHacks · 2026",
+  title: "DubCoin Reward System",
+  description: "Redesigning the DubCoin experience and DubCoin distribution system.",
+  href: "/work/dubcoin-system",
+  cursor: "view-case-study",
+  bg: "var(--primitive-hot-pink)",
+  gradient: DARK_GRADIENT,
+  aspectRatio: "1 / 1",
+  order: 3,
+  showHoverOverlay: true,
+};
+
 const CURA_CARD: FeaturedCard = {
   eyebrow: "WINFO Hackathon · 2025",
   title: "Cura",
@@ -157,19 +170,6 @@ const CURA_CARD: FeaturedCard = {
   order: 2,
   showHoverOverlay: false,
   disableHoverTextChange: true,
-};
-
-const DUBCOIN_CARD: FeaturedCard = {
-  eyebrow: "DubHacks · 2025",
-  title: "DubCoin Reward System",
-  description: "Redesigning the DubCoin experience and DubCoin distribution system.",
-  href: "/work/dubcoin-system",
-  cursor: "view-case-study",
-  bg: "var(--primitive-hot-pink)",
-  gradient: DARK_GRADIENT,
-  aspectRatio: "1 / 1",
-  order: 3,
-  showHoverOverlay: true,
 };
 
 const DUBHACKS_2026_CARD: FeaturedCard = {
