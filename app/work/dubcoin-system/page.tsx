@@ -37,7 +37,7 @@ export default function DubcoinSystemPage() {
       <a className={"dubcoin-backTop"} href="#top">↑ <span>BACK TO TOP</span></a>
     </aside>
     <main className={"dubcoin-main"} id="top">
-      <div className={"dubcoin-cover"}><Image src="/images/DubCoin/dubcoins-hero.png" alt="DubCoin hacker profile and prize redemption experience" fill priority sizes="(max-width: 760px) 100vw, calc(100vw - 200px)"/></div>
+      <div className={"dubcoin-cover"}><picture><source media="(min-width: 1600px)" srcSet="/images/DubCoin/dubcoins-case-study-hero-XL.png"/><Image src="/images/DubCoin/dubcoins-hero.png" alt="DubCoin hacker profile and prize redemption experience" fill priority sizes="(max-width: 760px) 100vw, calc(100vw - 200px)"/></picture></div>
       <article className={"dubcoin-article"}>
         <header className={"dubcoin-intro"}>
           <p className={"dubcoin-kicker"}>DUBHACKS · PRODUCT DESIGN · 2025—2026</p>
