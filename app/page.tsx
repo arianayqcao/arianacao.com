@@ -308,7 +308,7 @@ export default function Home() {
                 
                 <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
                   <Image
-                    src="/images/Case Study Cover Images/4k-1-1-ratio-Redeem-DubCoins.png"
+                    src="/images/Case Study Cover Images/dubcoins-cover-image.png"
                     alt="DubCoin prizes screen showing a QR code to redeem coins"
                     fill
                     sizes="(max-width: 768px) 100vw, 1000px"
