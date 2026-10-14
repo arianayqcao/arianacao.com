@@ -24,8 +24,8 @@ function Section({ id, label, title, children }: { id: string; label: string; ti
   return <section className={"dubcoin-section"} id={id}><Eyebrow>{label}</Eyebrow><h2 className="text-dubcoin-section-title">{title}</h2><div className="dubcoin-prose text-dubcoin-body">{children}</div></section>;
 }
 
-function Media({ src, alt, caption, className = "" }: { src: string; alt: string; caption?: string; className?: string }) {
-  return <figure className={"dubcoin-media" + " " + className}><Image src={src} alt={alt} fill sizes="(max-width: 760px) 100vw, 1100px"/><figcaption>{caption}</figcaption></figure>;
+function Media({ src, alt, caption, width, height, className = "" }: { src: string; alt: string; caption?: string; width: number; height: number; className?: string }) {
+  return <figure className={"dubcoin-media" + " " + className}><Image src={src} alt={alt} width={width} height={height} sizes="(max-width: 760px) 100vw, 920px"/><figcaption>{caption}</figcaption></figure>;
 }
 
 export default function DubcoinSystemPage() {
@@ -41,7 +41,7 @@ export default function DubcoinSystemPage() {
       <article className={"dubcoin-article"}>
         <header className={"dubcoin-intro"}>
           <p className={"dubcoin-kicker"}>DUBHACKS · PRODUCT DESIGN · 2025—2026</p>
-          <h1>From a 3-hour Excel line to a DubCoin system</h1>
+          <h1 className="text-dubcoin-page-title">From a 3-hour Excel line to a DubCoin system</h1>
           <p className={"dubcoin-dek"}>A two-part case study: a hacker profile that shipped in 2025, and a data-informed redesign for 2026.</p>
           <div className={"dubcoin-meta"}>
             <div><Eyebrow>Timeline</Eyebrow><p>v1 · Jul–Sep 2025<br/>v2 · Jul–Oct 2026</p></div>
@@ -65,7 +65,8 @@ export default function DubcoinSystemPage() {
           <p>Prize redemption was scheduled for one hour on Sunday. It took about three. Five to seven staff members shared one Excel sheet while they looked up each hacker, verified their identity, changed balances, found prizes, and updated inventory.</p>
           <p>Staff were tired from overnight shifts. Hackers waited in long lines, and some prizes ran out before people reached the table. Meanwhile, staff estimated that answering questions took around 70% of their time, even though much of the information already existed in Notion.</p>
           <div className={"dubcoin-callout"}><Eyebrow>The brief</Eyebrow><p>Build a personalized hacker hub that centralizes information, reduces day-of questions, and gives each hacker a clear view of their experience.</p></div>
-          <Media src="/images/DubCoin/insight-manual.png" alt="Spreadsheet used to track prize redemption" caption="The 2024 redemption flow depended on staff updating a shared spreadsheet."/>
+          <Media width={1715} height={1146} src="/images/DubCoin/dubcoin-spreadsheet.png" alt="Spreadsheet used to track prize redemption" caption="The 2024 redemption flow depended on staff updating a shared spreadsheet."/>
+          <Media width={1715} height={850} src="/images/DubCoin/line-of-hackers.png" alt="Line of hackers waiting for prize redemption from 2024" caption="Hackers waited in long lines for prize redemption."/>
           <p>The brief arrived in early July, with design due by the end of August and a September ship date. Tech already had a Discord system, a skeleton UI, workshop QR codes, and MongoDB; design needed to define the experience and backend requirements.</p>
         </Section>
 
@@ -79,7 +80,7 @@ export default function DubcoinSystemPage() {
           <h3>Choosing a redemption model</h3>
           <p>We considered a self-serve pick-up flow and staff-led QR redemption. The pick-up model could update inventory immediately and reveal prizes only when a hacker had enough coins. But it introduced operational complexity and a risk of 1,000+ people hitting a system the tech team could not yet scale with confidence.</p>
           <p>We shipped QR redemption instead. Each hacker had a personal QR code; staff scanned it at the prize table, checked the redemption history, and marked items claimed. Staff were a resource we already had, and the pattern reused workshop QR codes.</p>
-          <Media src="/images/DubCoin/hacker-profile-screens.png" alt="Screens from the 2025 DubHacks hacker profile" caption="The first release combined a hacker profile, DubCoins, directory, and event information."/>
+          <Media width={1024} height={768} src="/images/DubCoin/hacker-profile-screens.png" alt="Screens from the 2025 DubHacks hacker profile" caption="The first release combined a hacker profile, DubCoins, directory, and event information."/>
           <p>The profile included bio, skills, and interests; a Connect directory; a DubCoins page; and a Home screen with a schedule and countdown. Before development, we used a Lovable prototype to help tech and directors react to the direction.</p>
           <p className={"dubcoin-note"}>The 2025 design was collaborative: Annie built the staff side, Medha led most screens and the design system, and I worked on Home logic, countdown, and navigation.</p>
         </Section>

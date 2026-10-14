@@ -28,6 +28,7 @@
   --text-md:  1rem;       /* 16px — body base (Figma: --16, --font-size/16) */
   --text-lg:  1.125rem;   /* 18px — card title variant (Figma: 18px) */
   --text-xl:  1.25rem;    /* 20px — card titles (Figma: --20) */
+  --text-24:  1.5rem;     /* 24px — DubCoin page title from supplied design spec */
   --text-2xl: 2rem;       /* 32px — bio blurb, large copy (Figma: 32px) */
   --text-3xl: 2.25rem;    /* 36px — section headings, footer CTA (Figma: 36px) */
   --text-4xl: 8rem;       /* 128px — hero display "ariana cao." (Figma: 128px) */
@@ -358,4 +359,17 @@ body {
   font-weight: var(--weight-regular);
   line-height: 1.2;
   letter-spacing: 0.2px;
+}
+
+
+/* DubCoin case-study page title, matching the supplied design spec. */
+.text-dubcoin-page-title {
+  color: var(--color-gray-900);
+  font-family: var(--font-primary);
+  font-size: var(--text-24);
+  font-style: normal;
+  font-weight: var(--weight-regular);
+  line-height: 1.2;
+  letter-spacing: 0.24px;
+  text-transform: capitalize;
 }
