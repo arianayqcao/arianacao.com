@@ -31,7 +31,7 @@ function Media({ src, alt, caption, width, height, className = "" }: { src: stri
 export default function DubcoinSystemPage() {
   return <><SiteHeader/><div className="dubcoin-page dubcoin-layout">
     <aside className={"dubcoin-sidebar"} aria-label="Case study sections">
-      <nav><a className={"dubcoin-homeLink"} href="#top">⌂ <span>HOME</span></a><p className={"dubcoin-sideLabel"}>ON THIS PAGE</p>
+      <nav><a className={"dubcoin-homeLink"} href="#top">⌂ <span>HOME</span></a>
         {sections.map(([id, label]) => <a key={id} href={"#" + id}>{label}</a>)}
       </nav>
       <a className={"dubcoin-backTop"} href="#top">↑ <span>BACK TO TOP</span></a>
@@ -64,10 +64,11 @@ export default function DubcoinSystemPage() {
         <Section id="context" label="Context" title="Redemption was the biggest pain point of 2024.">
           <p>Prize redemption was scheduled for one hour on Sunday. It took about three. Five to seven staff members shared one Excel sheet while they looked up each hacker, verified their identity, changed balances, found prizes, and updated inventory.</p>
           <p>Staff were tired from overnight shifts. Hackers waited in long lines, and some prizes ran out before people reached the table. Meanwhile, staff estimated that answering questions took around 70% of their time, even though much of the information already existed in Notion.</p>
-          <div className={"dubcoin-callout"}><Eyebrow>The brief</Eyebrow><p>Build a personalized hacker hub that centralizes information, reduces day-of questions, and gives each hacker a clear view of their experience.</p></div>
           <Media width={1715} height={1146} src="/images/DubCoin/dubcoin-spreadsheet.png" alt="Spreadsheet used to track prize redemption" caption="The 2024 redemption flow depended on staff updating a shared spreadsheet."/>
           <Media width={1715} height={850} src="/images/DubCoin/line-of-hackers.png" alt="Line of hackers waiting for prize redemption from 2024" caption="Hackers waited in long lines for prize redemption."/>
           <p>The brief arrived in early July, with design due by the end of August and a September ship date. Tech already had a Discord system, a skeleton UI, workshop QR codes, and MongoDB; design needed to define the experience and backend requirements.</p>
+          <div className={"dubcoin-callout"}><Eyebrow>The brief</Eyebrow><p>Build a personalized hacker hub that centralizes information, reduces day-of questions, and gives each hacker a clear view of their experience.</p></div>
+          <Media width={1715} height={1110} src="/images/DubCoin/project-timeline-dark.png" alt="Timeline" caption="Early July brief → end of Aug design deadline → Sept ship → Oct hackathon."/>
         </Section>
 
         <Section id="insights" label="Insights" title="Staff were acting as the database.">
