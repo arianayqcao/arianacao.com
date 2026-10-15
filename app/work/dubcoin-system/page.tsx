@@ -73,6 +73,7 @@ export default function DubcoinSystemPage() {
 
         <Section id="insights" label="Insights" title="Staff were acting as the database.">
           <p>We mapped the 2024 flow with context from co-directors Erika and Nolan, and design advisors Meiyao and Erika. Three issues shaped the first product:</p>
+          <Media width={1715} height={870} src="/images/DubCoin/hacker-journey-map.png" alt="User journey map for a first-time DubHacks hacker" caption="User journey map for a first-time DubHacks hacker, from the acceptance email through post-event follow-up."/>
           <div className={"dubcoin-threeCards"}><div><b>Manual</b><p>Every transaction needed someone to edit a spreadsheet by hand.</p></div><div><b>Opaque</b><p>Hackers couldn’t see their own balance. “How many DubCoins do I have?”</p></div><div><b>Disconnected</b><p>Staff had to match a person’s balance to available prizes from memory.</p></div></div>
           <p>The system pushed memory and coordination onto people. The profile could make information visible, while redemption needed a flow staff could run quickly and reliably.</p>
         </Section>
