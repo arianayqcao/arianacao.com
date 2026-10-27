@@ -297,13 +297,19 @@ export default function Home() {
                 </FeaturedCoverCard>
 
                 <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
-                  <Image
-                    src="/images/Case Study Cover Images/dubcoins-cover-image.png"
-                    alt="DubCoin prizes screen showing a QR code to redeem coins"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 1000px"
-                    className="object-cover"
-                  />
+                  <picture>
+                    <source
+                      media="(min-width: 768px)"
+                      srcSet="/images/Case Study Cover Images/dubcoins-cover-image-desktop.png"
+                    />
+                    <Image
+                      src="/images/Case Study Cover Images/dubcoins-cover-image.png"
+                      alt="DubCoin prizes screen showing a QR code to redeem coins"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 1000px"
+                      className="object-cover"
+                    />
+                  </picture>
                 </FeaturedCoverCard>
 
                 <FeaturedCoverCard card={CURA_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
@@ -561,3 +567,4 @@ export default function Home() {
     </>
   );
 }
+
