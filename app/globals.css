@@ -20,20 +20,31 @@ html.custom-cursor-active * {
   cursor: none !important;
 }
 
-/* Play page: CSS multi-column so cards stack tightly within each
-   column instead of being aligned by a shared row grid; single
-   column (no columns) below md keeps mobile reading order unchanged. */
+/* Play page: three stacked card columns keep the current masonry look while
+   holding the requested cards in predictable top, second, and bottom spots. */
 .play-columns {
-  column-gap: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
 }
-@media (min-width: 768px) {
-  .play-columns {
-    columns: 3;
-  }
+.play-column {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
 }
 .play-card {
   break-inside: avoid;
   margin-bottom: 16px;
+}
+@media (max-width: 767px) {
+  .play-columns {
+    flex-direction: column;
+    gap: 0;
+  }
+  .play-column {
+    display: contents;
+  }
 }
 
 /* Homepage featured case-study cards: taller 1:1.5 (w:h) crop on mobile;
@@ -73,3 +84,4 @@ html.custom-cursor-active * {
     aspect-ratio: 2482 / 612;
   }
 }
+

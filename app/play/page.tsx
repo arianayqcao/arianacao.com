@@ -19,10 +19,8 @@ interface PlayItem {
   url?: string;
 }
 
-// Order here is the single source of reading order for both mobile (single
-// column) and desktop, where CSS multi-column (.play-columns in globals.css)
-// balances this same flat list into 3 stacked columns without re-rendering
-// (re-rendering would re-mount <video> elements and double-load them).
+// Card content stays in one list; the column order below controls placement
+// while keeping each video mounted only once.
 const PLAY_ITEMS: PlayItem[] = [
   {
     id: "gradient-map",
@@ -67,6 +65,12 @@ const PLAY_ITEMS: PlayItem[] = [
     media: { kind: "image", src: "/images/Play/charged-up-tshirt.png", aspect: "696 / 900" },
   },
   {
+    id: "glowing-orb",
+    title: "glowing orb",
+    description: "Created in AfterEffects",
+    media: { kind: "video", src: "/videos/glowing_orb.mp4", aspect: "1920 / 1920" },
+  },
+  {
     id: "rough",
     title: "“rough”",
     description: "created in Illustrator with texture effects",
@@ -84,12 +88,6 @@ const PLAY_ITEMS: PlayItem[] = [
     title: "still art & light study",
     description: "created in Procreate",
     media: { kind: "image", src: "/images/Play/still-art-light-study.jpg", aspect: "346 / 448" },
-  },
-  {
-    id: "glowing-orb",
-    title: "glowing orb",
-    description: "Created in AfterEffects",
-    media: { kind: "video", src: "/videos/glowing_orb.mp4", aspect: "1920 / 1920" },
   },
   {
     id: "informatics-tshirt",
@@ -149,6 +147,20 @@ const PLAY_ITEMS: PlayItem[] = [
     media: { kind: "image", src: "/images/Play/interact-hippos-tshirt.png", aspect: "462 / 630" },
   },
 ];
+
+const PLAY_COLUMN_IDS = [
+  ["shader-slice", "liquid-chrome-shader", "gradient-map", "rough", "team8-logo-animation", "interact-hippos-tshirt"],
+  ["still-art", "glowing-fluffy-flowers", "charged-up-tshirt", "and-or", "digital-animation", "informatics-tshirt"],
+  ["glowing-orb", "can-you-see-me", "did-you-play-today-poster", "abyss", "alvaldi-tshirt", "smiski-cafe-popup"],
+];
+
+const PLAY_COLUMNS: PlayItem[][] = PLAY_COLUMN_IDS.map((columnIds) =>
+  columnIds.map((id) => {
+    const item = PLAY_ITEMS.find((playItem) => playItem.id === id);
+    if (!item) throw new Error(`Missing Play item: ${id}`);
+    return item;
+  }),
+);
 
 /* ─── card ──────────────────────────────────────────────────────── */
 
@@ -287,13 +299,14 @@ export default function PlayPage() {
           <img src="/images/Play/play-header-icon.svg" alt="" aria-hidden="true" width={40} height={40} />
         </section>
 
-        {/* single column on mobile; CSS multi-column (.play-columns in
-            globals.css) balances the same flat list into 3 stacked
-            columns at md+ — items are rendered once so videos don't
-            get mounted (and loaded) twice */}
+        {/* Three stacked columns on desktop; the same columns stack on mobile. */}
         <section className="play-columns w-full" style={{ padding: 16 }}>
-          {PLAY_ITEMS.map((item) => (
-            <PlayCard key={item.id} item={item} />
+          {PLAY_COLUMNS.map((column, columnIndex) => (
+            <div className="play-column" key={columnIndex}>
+              {column.map((item) => (
+                <PlayCard key={item.id} item={item} />
+              ))}
+            </div>
           ))}
         </section>
       </main>
@@ -302,3 +315,4 @@ export default function PlayPage() {
     </div>
   );
 }
+
