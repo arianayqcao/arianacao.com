@@ -25,6 +25,30 @@ interface PlayItem {
 // (re-rendering would re-mount <video> elements and double-load them).
 const PLAY_ITEMS: PlayItem[] = [
   {
+    id: "gradient-map",
+    title: "cold. icy.",
+    description: "A cool-toned study made with Figma shaders and a gradient map.",
+    media: { kind: "image", src: "/images/Play/Gradient Map.png", aspect: "1080 / 1350" },
+  },
+  {
+    id: "liquid-chrome-shader",
+    title: "liquid chrome",
+    description: "Sculptural chrome forms made with Figma shaders.",
+    media: { kind: "image", src: "/images/Play/liquid-chrome-shader-experiment.png", aspect: "1200 / 1200" },
+  },
+  {
+    id: "shader-slice",
+    title: "shader slices",
+    description: "A warm light study exploring sliced gradients with Figma shaders.",
+    media: { kind: "image", src: "/images/Play/shader-slice-experiment.png", aspect: "1350 / 900" },
+  },
+  {
+    id: "topographic-map",
+    title: "topographic map",
+    description: "A flowing contour-line study made with Figma shaders.",
+    media: { kind: "image", src: "/images/Play/Topographic Map.png", aspect: "1080 / 1350" },
+  },
+  {
     id: "glowing-fluffy-flowers",
     title: "glowing fluffy flowers",
     description: "playing around with Figma gradients & shadows",
