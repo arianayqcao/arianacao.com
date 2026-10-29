@@ -72,7 +72,7 @@ export default function BioHeadlineReveal() {
       <span
         style={{
           textDecoration: "underline",
-          textDecorationColor: "#93f200",
+          textDecorationColor: "#7bc100",
           textDecorationThickness: "12%",
           textDecorationSkipInk: "none",
         }}
@@ -85,7 +85,7 @@ export default function BioHeadlineReveal() {
       <span
         style={{
           textDecoration: "underline",
-          textDecorationColor: "red",
+          textDecorationColor: "#93f200",
           textDecorationThickness: "12%",
           textDecorationSkipInk: "none",
         }}
