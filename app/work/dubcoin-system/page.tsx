@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 const sections = [
   ["overview", "Overview"], ["context", "Context"], ["insights", "Insights"],
   ["version-one", "Version 1"], ["learnings", "What we learned"],
-  ["version-two", "Version 2"], ["outcome", "Outcome"], ["reflection", "Reflection"], ["next-steps", "Next steps"],
+  ["final-solution", "Final Solution"], ["outcome", "Outcome"], ["reflection", "Reflection"], ["next-steps", "Next steps"],
 ] as const;
 
 const stats = [
@@ -14,6 +14,68 @@ const stats = [
   { value: "5–7", label: "staff members editing the same Excel sheet at once" },
   { value: "17%", label: "of 2025 hackers added a bio, LinkedIn, or GitHub" },
   { value: "148", label: "hackers redeemed at least one prize in 2025" },
+];
+
+type Decision = {
+  title: string;
+  body: string;
+  media: { src: string; alt: string }[];
+};
+
+const GIF_DIR = "/images/DubCoin/final-solution-gifs";
+
+const DECISIONS: Decision[] = [
+  {
+    title: "Home is about information, not identity.",
+    body: "A live countdown, event schedule, DubCoin balance, and links to DevPost and the guide bring the day’s essentials forward. Before the event, Get Started guides hackers through the setup steps.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-home-page.gif`, alt: "Redesigned home page with countdown, schedule, and DubCoin balance" }],
+  },
+  {
+    title: "A sidebar makes the hub feel like a tool.",
+    body: "The top navigation became a left sidebar, a familiar pattern for a dashboard. Connect remains available for hackers who want to browse profiles or find teammates.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-sidebar.gif`, alt: "Left sidebar navigation in the dashboard" }],
+  },
+  {
+    title: "Hackers can show a QR code or a username.",
+    body: "The mobile redeem screen offers a full-screen QR code for fast scanning, and the required Discord username in large monospaced type as a backup. Staff can read it across the table when a scan isn’t practical.",
+    media: [
+      { src: `${GIF_DIR}/rough-final-solution-mobile-full-screen-qr.gif`, alt: "Full-screen QR code on the hacker’s phone" },
+      { src: `${GIF_DIR}/rough-final-solution-scroll-mobile.gif`, alt: "Scrolling through the mobile redeem screen" },
+    ],
+  },
+  {
+    title: "Staff can scan the code or type the name.",
+    body: "Scanning a hacker’s QR code pulls up their account in one step. When a scan isn’t possible, staff can type the username instead. Both paths lead to the same confirmation, so redemption works the same way either way.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-mobile-scan-qr-code.gif`, alt: "Staff scanning a hacker’s QR code on mobile" }],
+  },
+  {
+    title: "Search helps staff recognize the right person.",
+    body: "Fuzzy search results include username, real name, team, and balance, so a typo or half-remembered name still finds the right hacker. A slash shortcut opens search so staff can get to a person quickly.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-hacker-fuzzy-search-staff.gif`, alt: "Staff fuzzy-searching for a hacker by username" }],
+  },
+  {
+    title: "A cart makes the transaction clear.",
+    body: "Balance, cart total, and remaining balance stay visible together. Unaffordable and out-of-stock prizes are clearly marked, and filter chips narrow the list to what can actually be redeemed.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-filter-chips-dubcoin-prizes.gif`, alt: "Filter chips narrowing the DubCoin prize list" }],
+  },
+  {
+    title: "Mistakes can be undone at the table.",
+    body: "“Recent at this table” lists the latest transactions so staff can reverse a mistake without leaving the screen.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-undo-transaction.gif`, alt: "Undoing a recent DubCoin transaction" }],
+  },
+  {
+    title: "Dark mode for a long event.",
+    body: "The dashboard supports a dark theme built from the same system, so it stays readable for hackers and staff in a dim venue.",
+    media: [{ src: `${GIF_DIR}/rough-final-solution-dark-mode.gif`, alt: "Dashboard switching to dark mode" }],
+  },
+  {
+    title: "A design system built with AI, directed by me.",
+    body: "Figr helped generate a starting system. I directed its colors, neutral surfaces, Work Sans typography, spacing, and components. Everyday buttons use near-black because white on brand pink reaches only 3.6:1 contrast; pink is reserved for emphasis.",
+    media: [
+      { src: `${GIF_DIR}/rough-final-solution-design-system-foundations.gif`, alt: "Design system foundations: color, type, and spacing" },
+      { src: `${GIF_DIR}/rough-final-solution-design-system-components.gif`, alt: "Design system components" },
+    ],
+  },
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -58,7 +120,7 @@ export default function DubcoinSystemPage() {
         <Section id="overview" label="Overview" title="DubHacks rewards hackers with coins. Spending them used to take hours.">
           <p>DubCoins are DubHacks’ incentive currency. Hackers earn them by attending workshops and activities, then redeem them for prizes at the end of the weekend.</p>
           <p>I designed the experience in two rounds. <strong>Version 1 (2025) shipped</strong>, giving us real usage data. <strong>Version 2 (2026) is fully designed but not yet built</strong>; its direction comes from what we observed during the event.</p>
-          <a className={"dubcoin-textLink"} href="#version-two">Jump to Version 2 <span>↘</span></a>
+          <a className={"dubcoin-textLink"} href="#final-solution">Jump to Final Solution <span>↘</span></a>
         </Section>
 
         <Section id="context" label="Context" title="Redemption was the biggest pain point of 2024.">
@@ -94,15 +156,36 @@ export default function DubcoinSystemPage() {
           <p>So the next version would lead with useful event information and DubCoins, and let staff search by a username instead of scanning a code.</p>
         </Section>
 
-        <Section id="version-two" label="Version 2 · 2026 redesign" title="Same problem, simpler bet: hackers show a username; staff type it.">
-          <p>The redesigned dashboard is planned for user testing during the 2026 hackathon. Here are the decisions that carry the research forward.</p>
-          <div className={"dubcoin-decision"}><span>01</span><div><h3>Home is about information, not identity.</h3><p>A live countdown, event schedule, DubCoin balance, and links to DevPost and the guide bring the day’s essentials forward. Before the event, Get Started guides hackers through the setup steps.</p></div></div>
-          <div className={"dubcoin-decision"}><span>02</span><div><h3>A sidebar makes the hub feel like a tool.</h3><p>The top navigation became a left sidebar, a familiar pattern for a dashboard. Connect remains available for hackers who want to browse profiles or find teammates.</p></div></div>
-          <div className={"dubcoin-decision"}><span>03</span><div><h3>Hackers show a Discord username. Staff type it.</h3><p>The mobile redeem screen puts the required Discord username in large monospaced type. Staff can read it across the table and search for the hacker directly.</p></div></div>
-          <div className={"dubcoin-decision"}><span>04</span><div><h3>Search helps staff recognize the right person.</h3><p>Fuzzy search results include username, real name, team, and balance. A slash shortcut opens search so staff can get to a person quickly.</p></div></div>
-          <div className={"dubcoin-decision"}><span>05</span><div><h3>A cart makes the transaction clear.</h3><p>Balance, cart total, and remaining balance stay visible together. Unaffordable and out-of-stock prizes are clear, with filters for what can be redeemed. “Recent at this table” supports reversing a mistake.</p></div></div>
-          <div className={"dubcoin-decision"}><span>06</span><div><h3>A design system built with AI, directed by me.</h3><p>Figr helped generate a starting system. I directed its colors, neutral surfaces, Work Sans typography, spacing, and components. Everyday buttons use near-black because white on brand pink reaches only 3.6:1 contrast; pink is reserved for emphasis.</p></div></div>
-          <div className={"dubcoin-status"}><Eyebrow>Build status</Eyebrow><p>Version 2 is designed and entering user testing, but it has not shipped. The tech team is focused on the judging algorithm; the profile is planned for release next year.</p></div>
+        <Section
+          id="final-solution"
+          label="Final Solution · 2026 redesign"
+          title="Same problem, simpler bet: hackers show a code or username; staff scan or search."
+        >
+          <p>
+            The redesigned dashboard is planned for user testing during the 2026 hackathon. Here are the decisions that carry the research forward.
+          </p>
+
+          {DECISIONS.map((d, i) => (
+            <div className="dubcoin-decision" key={d.title}>
+              <div className="dubcoin-decision-media">
+                {d.media.map((m) => (
+                  <img key={m.src} src={m.src} alt={m.alt} loading="lazy" />
+                ))}
+              </div>
+              <div className="dubcoin-decision-text">
+                <span className="dubcoin-decision-num">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{d.title}</h3>
+                <p>{d.body}</p>
+              </div>
+            </div>
+          ))}
+
+          <div className="dubcoin-status">
+            <Eyebrow>Build status</Eyebrow>
+            <p>
+              Version 2 is designed and entering user testing, but it has not shipped. The tech team is focused on the judging algorithm; the profile is planned for release next year.
+            </p>
+          </div>
         </Section>
 
         <Section id="outcome" label="Outcome" title="V1 shipped. V2 is designed, and not live yet.">
