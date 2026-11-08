@@ -15,6 +15,21 @@ const sections = [
   ["next-steps", "Next steps"],
 ] as const;
 
+const impact = [
+  {
+    value: "78%",
+    label: "adoption of the hacker profile",
+  },
+  {
+    value: "3 hrs to 1 hr",
+    label: "reduction in prize redemption time",
+  },
+  {
+    value: "~1,000",
+    label: "users, including participants and staff",
+  },
+];
+
 const stats = [
   {
     value: "~3 hrs",
@@ -27,10 +42,6 @@ const stats = [
   {
     value: "17%",
     label: "of 2025 hackers added a bio, LinkedIn, or GitHub",
-  },
-  {
-    value: "148",
-    label: "hackers redeemed at least one prize in 2025",
   },
 ];
 
@@ -278,7 +289,7 @@ export default function DubcoinSystemPage() {
                   <p>
                     Figma, Figr, Lovable,
                     <br />
-                    Tailwind CSS
+                    Codex, Tailwind CSS
                   </p>
                 </div>
               </div>
@@ -286,7 +297,7 @@ export default function DubcoinSystemPage() {
 
             {/* ---------- Stats ---------- */}
             <section className="dubcoin-stats" aria-label="Project data">
-              {stats.map((stat) => (
+              {impact.map((stat) => (
                 <div key={stat.value}>
                   <strong>{stat.value}</strong>
                   <p>{stat.label}</p>
@@ -346,8 +357,14 @@ export default function DubcoinSystemPage() {
                 caption="Hackers waited in long lines for prize redemption."
               />
 
-              <p>
+            </Section>
 
+            <Section
+              id="brief"
+              label="Brief"
+              title="Build a personalized hub."
+            >
+              <p>
                 The brief came in early July, with design due at the end of August. Tech had a skeleton UI, workshop QR codes, and a database. Design defined the experience and what the backend needed.
               </p>
 
@@ -377,8 +394,16 @@ export default function DubcoinSystemPage() {
             >
               <p>
                 We mapped the 2024 flow with context from co-directors Erika and
-                Nolan, and design advisor Meiyao. Three issues stood out:
+                Nolan, and design advisor Meiyao. 
               </p>
+                  <section className="dubcoin-stats" aria-label="Project data">
+                    {stats.map((stat) => (
+                      <div key={stat.value}>
+                        <strong>{stat.value}</strong>
+                        <p>{stat.label}</p>
+                      </div>
+                    ))}
+                  </section>
 
               <Media
                 width={1715}
@@ -387,6 +412,10 @@ export default function DubcoinSystemPage() {
                 alt="User journey map for a first-time DubHacks hacker"
                 caption="User journey map for a first-time DubHacks hacker, from the acceptance email through post-event follow-up."
               />
+
+              <p>
+                Three issues stood out:
+              </p>
 
               <div className="dubcoin-threeCards">
                 <div>
@@ -490,8 +519,8 @@ export default function DubcoinSystemPage() {
 
               <ul>
                 <li>
-                  <strong>QR was slower than typing.</strong> Camera focus, lighting,
-                  and Wi-Fi introduced an estimated 4–7 seconds per scan.
+                  <strong>Some experienced slow scanning with QR codes.</strong> Camera focus, lighting,
+                  and Wi-Fi introduced an estimated 1-4 seconds per scan.
                 </li>
                 <li>
                   <strong>Most hackers skipped the social profile.</strong> About 17%
@@ -499,13 +528,21 @@ export default function DubcoinSystemPage() {
                 </li>
                 <li>
                   <strong>Hackers mostly used laptops.</strong> Phones came out most
-                  often at the prize table.
+                  often at the prize table and at workshops.
                 </li>
               </ul>
 
+              <Media
+                width={1715}
+                height={870}
+                src="/images/DubCoin/hacker-journey-map.png"
+                alt="Staff redeeming prizes at the 2025 DubHacks hackathon"
+                caption="Real life staff flow redeeming DubCoins from line of hackers."
+              />
+
               <p>
                 So the next version would lead with useful event information and
-                DubCoins, and let staff search by a username instead of scanning a
+                DubCoins, and let staff search by a username in addition to scanning a
                 code.
               </p>
             </Section>
@@ -603,7 +640,7 @@ export default function DubcoinSystemPage() {
               <ol className="dubcoin-nextSteps">
                 <li>
                   <span>01</span>
-                  <p>User-test the v2 hacker and staff flows during the event.</p>
+                  <p>User-test the v2 hacker and staff flows during the event. Done actually! Updates incoming</p>
                 </li>
                 <li>
                   <span>02</span>
@@ -615,17 +652,17 @@ export default function DubcoinSystemPage() {
                 <li>
                   <span>03</span>
                   <p>
-                    Improve the mobile username view with a full-screen option and an
+                    Improve the mobile username/QR code view with an
                     auto-brightness request for tech.
                   </p>
                 </li>
                 <li>
-                  <span>04</span>
-                  <p>Add UW NetID or email as backup search identifiers.</p>
-                </li>
-                <li>
                   <span>05</span>
                   <p>Work with tech on admin controls for prize visibility and overrides.</p>
+                </li>
+                <li>
+                  <span>04</span>
+                  <p>Actually ship the redesigned flows!!!</p>
                 </li>
               </ol>
             </Section>
