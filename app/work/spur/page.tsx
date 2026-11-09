@@ -498,7 +498,7 @@ export default function SpurPage() {
               />
               <div className="relative w-full" style={{ aspectRatio: "921.59 / 655.36" }}>
                 <Image
-                  src="/images/Spur/final-designs.webp"
+                  src="/images/Spur/spur-final-designs.webp"
                   alt="Spur app screens"
                   fill
                   sizes="(max-width: 700px) 70vw, 922px"
