@@ -303,7 +303,7 @@ export default function Home() {
                       srcSet="/images/Case Study Cover Images/dubcoins-cover-image-desktop.webp"
                     />
                     <Image
-                      src="/images/Case Study Cover Images/dubcoins-cover-image.png"
+                      src="/images/Case Study Cover Images/dubcoins-cover-image-desktop.webp"
                       alt="DubCoin prizes screen showing a QR code to redeem coins"
                       fill
                       sizes="(max-width: 768px) 100vw, 1000px"

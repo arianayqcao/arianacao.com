@@ -331,24 +331,25 @@ export default function DubcoinSystemPage() {
             <Section
               id="context"
               label="Context"
-              title="Redemption was the biggest pain point of 2024."
+              title="Redemption took two hours longer than scheduled."
             >
               <p>
                 Redemption was scheduled for one hour on Sunday. It took about
-                three. Five to seven tired staff shared one Excel sheet to look up 
-                hackers, check IDs, update balances, and track inventory.
-              </p>
-              <p>
-                Lines got long, and some prizes ran out before people reached the table.
+                three. Five tired staff shared one Excel sheet to look up 
+                hackers, update balances, track inventory, and hand prizes out.
               </p>
 
               <Media
                 width={1715}
                 height={1146}
-                src="/images/DubCoin/dubcoin-spreadsheet.png"
+                src="/images/DubCoin/dubcoin-spreadsheet.webp"
                 alt="Spreadsheet used to track prize redemption"
                 caption="The 2024 redemption flow depended on staff updating a shared spreadsheet."
               />
+              <p>
+                Lines wrapped around room, and some prizes ran out before people reached the table. 
+                According to directors, it was the biggest pain point of 2024.
+              </p>
               <Media
                 width={1715}
                 height={850}
@@ -449,18 +450,57 @@ export default function DubcoinSystemPage() {
             <Section
               id="version-one"
               label="Version 1 · 2025"
-              title="Our first bet: a hacker profile, and QR codes for redemption."
+              title="We explored three models for DubCoin redemption."
             >
-              <h3>Choosing a redemption model</h3>
               <p>
-                We considered a self-serve pick-up flow and staff-led QR redemption.
-                The pick-up model could update inventory immediately and reveal
-                prizes only when a hacker had enough coins. But it introduced
-                operational complexity and a risk of 1,000+ people hitting a system
-                the tech team could not yet scale with confidence.
+                The hardest question was how hackers should redeem DubCoins. 
               </p>
+              <p className="dubcoin-note">
+                Before development, we used a Lovable prototype to help tech and
+                directors react to the direction.
+                Annie built the staff side, Medha
+                led most screens and the design system, and I worked on Home logic,
+                countdown, navigation, and judging.
+              </p>
+              <h3>Pick-up system (rejected).</h3>
               <p>
-                We shipped QR redemption instead. Each hacker had a personal QR code;
+                Hackers redeem on their own device, then pick up at a table.
+              </p>
+              <ul>
+                <li>• Items only appear if staff toggle visibility and the hacker has enough balance</li>
+                <li>• Inventory updates the instant someone redeems, so 200 people can&apos;t claim 1 item</li>
+                <li>• Hackers go up in waves; caps of 3-4 items; prizes unlock late to keep people for closing ceremony</li>
+              </ul>
+              <h3>Revamped manual typing.</h3>
+              <p>
+                Staff would still look hackers up by hand, but in a purpose-built 
+                search tool instead of a shared Excel sheet.
+              </p>
+              <h3>QR redemption (shipped).</h3>
+              <p>
+                Every hacker gets a personal QR code, the same kind used for earning 
+                at workshops. Staff scan it at the prize table, check redemption history, 
+                and mark the item claimed.
+              </p>
+
+              <Media
+                width={1024}
+                height={768}
+                src="/images/DubCoin/hacker-profile-screens.png"
+                alt="Screens from the 2025 DubHacks hacker profile"
+                caption="The first release combined a hacker profile, DubCoins, directory, and event information."
+              />
+
+            </Section>
+
+            {/* ---------- Version 1 ---------- */}
+            <Section
+              id="version-one"
+              label="Version 1 · 2025"
+              title="We explored three models for DubCoin redemption."
+            >
+              <p>
+                Each hacker had a personal QR code;
                 staff scanned it at the prize table, checked the redemption history,
                 and marked items claimed. Staff were a resource we already had, and
                 the pattern reused workshop QR codes.
@@ -474,17 +514,6 @@ export default function DubcoinSystemPage() {
                 caption="The first release combined a hacker profile, DubCoins, directory, and event information."
               />
 
-              <p>
-                The profile included bio, skills, and interests; a Connect directory;
-                a DubCoins page; and a Home screen with a schedule and countdown.
-                Before development, we used a Lovable prototype to help tech and
-                directors react to the direction.
-              </p>
-              <p className="dubcoin-note">
-                The 2025 design was collaborative: Annie built the staff side, Medha
-                led most screens and the design system, and I worked on Home logic,
-                countdown, and navigation.
-              </p>
             </Section>
 
             {/* ---------- What we learned ---------- */}
@@ -527,7 +556,7 @@ export default function DubcoinSystemPage() {
                   filled in a bio, LinkedIn, or GitHub.
                 </li>
                 <li>
-                  <strong>Hackers mostly used laptops.</strong> Phones came out most
+                  <strong>Device of choice was 50/50 between laptops and phones.</strong> Laptops came out while hackers were sitting, phones came out most
                   often at the prize table and at workshops.
                 </li>
               </ul>
@@ -535,15 +564,19 @@ export default function DubcoinSystemPage() {
               <Media
                 width={1715}
                 height={870}
-                src="/images/DubCoin/hacker-journey-map.png"
+                src="/images/DubCoin/dh26-day-of-dubcoin-redemption.gif"
                 alt="Staff redeeming prizes at the 2025 DubHacks hackathon"
                 caption="Real life staff flow redeeming DubCoins from line of hackers."
               />
+              <h3>Two takeaways</h3>
 
               <p>
-                So the next version would lead with useful event information and
-                DubCoins, and let staff search by a username in addition to scanning a
-                code.
+                1. The profile should shrink the social side 
+                and lead with information and DubCoins.
+              </p>
+              <p>
+                2. The redemption flow should support both QR scanning and manual search, 
+                so staff can use whichever fits their device.
               </p>
             </Section>
 
