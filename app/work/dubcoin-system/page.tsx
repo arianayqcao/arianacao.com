@@ -238,7 +238,7 @@ export default function DubcoinSystemPage() {
                 srcSet="/images/DubCoin/dubcoins-case-study-hero-XL.png"
               />
               <Image
-                src="/images/DubCoin/dubcoins-hero.png"
+                src="/images/DubCoin/dubcoins-case-study-hero.webp"
                 alt="DubCoin hacker profile and prize redemption experience"
                 fill
                 priority
@@ -320,7 +320,7 @@ export default function DubcoinSystemPage() {
                 I designed the experience in two rounds.{" "}
                 Version 1 (2025) shipped, giving us real usage data.{" "}
                 Version 2 (2026) is designed but not yet built with backend support;
-                and it's based on what we observed during the event.
+                and it&apos;s based on what we observed during the event.
               </p>
               <a className="dubcoin-textLink" href="#final-solution">
                 Jump to Final Solution <span>▼</span>
@@ -562,7 +562,7 @@ export default function DubcoinSystemPage() {
                 <div className="dubcoin-decision" key={d.title}>
                   <div className="dubcoin-decision-media">
                     {d.media.map((m) => (
-                      <img key={m.src} src={m.src} alt={m.alt} loading="lazy" />
+                      <Image key={m.src} src={m.src} alt={m.alt} loading="lazy" />
                     ))}
                   </div>
                   <div className="dubcoin-decision-text">

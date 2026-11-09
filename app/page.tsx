@@ -300,7 +300,7 @@ export default function Home() {
                   <picture>
                     <source
                       media="(min-width: 768px)"
-                      srcSet="/images/Case Study Cover Images/dubcoins-cover-image-desktop.png"
+                      srcSet="/images/Case Study Cover Images/dubcoins-cover-image-desktop.webp"
                     />
                     <Image
                       src="/images/Case Study Cover Images/dubcoins-cover-image.png"
