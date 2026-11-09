@@ -562,7 +562,7 @@ export default function DubcoinSystemPage() {
                 <div className="dubcoin-decision" key={d.title}>
                   <div className="dubcoin-decision-media">
                     {d.media.map((m) => (
-                      <Image key={m.src} src={m.src} alt={m.alt} loading="lazy" />
+                      <img key={m.src} src={m.src} alt={m.alt} loading="lazy" />
                     ))}
                   </div>
                   <div className="dubcoin-decision-text">
