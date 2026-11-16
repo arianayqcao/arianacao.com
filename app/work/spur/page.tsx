@@ -53,7 +53,7 @@ const FEATURES: Feature[] = [
     title: "Search Intentionally",
     description:
       "Search intentionally reminds you what to look for, and encourages quick deep dives than long rabbit holes. All uploads will go directly to your active workspace.",
-    video: "/videos/spur/search-intentionally.mp4",
+    video: "/videos/spur/Search-Intentionally.mp4",
     aspect: "1400 / 1086",
     dark: true,
   },
