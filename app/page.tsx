@@ -157,33 +157,33 @@ const DUBCOIN_CARD: FeaturedCard = {
   showHoverOverlay: true,
 };
 
-const CURA_CARD: FeaturedCard = {
-  eyebrow: "WINFO Hackathon · 2025",
-  title: "Cura",
-  description: "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
-  href: "/work/cura",
-  cursor: "coming-soon",
-  bg: "#EAEAF0",
-  textDark: true,
-  gradient: LIGHT_GRADIENT,
-  aspectRatio: "1 / 1",
-  order: 2,
-  showHoverOverlay: false,
-  disableHoverTextChange: true,
-};
+// const CURA_CARD: FeaturedCard = {
+//   eyebrow: "WINFO Hackathon · 2025",
+//   title: "Cura",
+//   description: "Empowering families to manage caregiving with accessible, user-friendly tools and resources.",
+//   href: "/work/cura",
+//   cursor: "coming-soon",
+//   bg: "#EAEAF0",
+//   textDark: true,
+//   gradient: LIGHT_GRADIENT,
+//   aspectRatio: "1 / 1",
+//   order: 2,
+//   showHoverOverlay: false,
+//   disableHoverTextChange: true,
+// };
 
-const DUBHACKS_2026_CARD: FeaturedCard = {
-  eyebrow: "DubHacks · 2026",
-  title: "DubHacks 2026",
-  description: "Designing cooking-themed annual website for largest hackathon in the Pacific Northwest.",
-  href: "/work/dubhacks-2026",
-  cursor: "coming-soon",
-  bg: "var(--primitive-dubhacks-blue)",
-  gradient: DARK_GRADIENT,
-  aspectRatio: "1 / 1",
-  order: 4,
-  showHoverOverlay: false,
-};
+// const DUBHACKS_2026_CARD: FeaturedCard = {
+//   eyebrow: "DubHacks · 2026",
+//   title: "DubHacks 2026",
+//   description: "Designing cooking-themed annual website for largest hackathon in the Pacific Northwest.",
+//   href: "/work/dubhacks-2026",
+//   cursor: "coming-soon",
+//   bg: "var(--primitive-dubhacks-blue)",
+//   gradient: DARK_GRADIENT,
+//   aspectRatio: "1 / 1",
+//   order: 4,
+//   showHoverOverlay: false,
+// };
 
 /* ─── logo strip ────────────────────────────────────────────────── */
 
@@ -312,7 +312,7 @@ export default function Home() {
                   </picture>
                 </FeaturedCoverCard>
 
-                <FeaturedCoverCard card={CURA_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
+                {/* <FeaturedCoverCard card={CURA_CARD} gridClassName="order-3 md:order-none md:col-start-1 md:row-start-2">
                   <Image
                     src="/images/Case Study Cover Images/Updated-Cura-Cover-Image-4k-1-1-ratio.png"
                     alt="Cura app home screen showing today's caregiving schedule"
@@ -320,9 +320,9 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, 696px"
                     className="object-cover"
                   />
-                </FeaturedCoverCard>
+                </FeaturedCoverCard> */}
                 
-                <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
+                {/* <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
                   <video
                     src="/videos/Sponsor-Us-Button-Animation-DH26-Jitter.mp4"
                     autoPlay
@@ -332,7 +332,7 @@ export default function Home() {
                     className="absolute object-cover md:h-[435.8px] h-[250px]"
                     style={{ left: 83.5, top: 0, width: 673.5, height: 435.8, objectPosition: "left" }}
                   />
-                </FeaturedCoverCard>
+                </FeaturedCoverCard> */}
               </div>
             </div>
           </section>
