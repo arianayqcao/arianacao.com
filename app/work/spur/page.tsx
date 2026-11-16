@@ -1,86 +1,44 @@
 import Image from "next/image";
+import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
-import JumpNav from "@/components/JumpNav";
 
-/* ─── jump nav ──────────────────────────────────────────────────── */
+const sections = [
+  ["context", "Context"],
+  ["define", "Define"],
+  ["insights", "Insights"],
+  ["ideation", "Ideation"],
+  ["iteration", "Iteration"],
+  ["solution", "Solution"],
+  ["reflection", "Reflection"],
+] as const;
 
-const JUMP_LINKS = [
-  { href: "#overview", label: "overview" },
-  { href: "#define", label: "define" },
-  { href: "#insights", label: "insights" },
-  { href: "#ideation", label: "ideation" },
-  { href: "#iteration", label: "iteration" },
-  { href: "#solution", label: "solution" },
-  { href: "#reflection", label: "reflection" },
+const impact = [
+  {
+    value: "Won Best Research-Driven Design",
+    label: "at the Design For America Expo 2026",
+  },
 ];
 
-/* ─── shared section intro (eyebrow + heading + description) ──────── */
+const FINDINGS = [
+  {
+    title: "Saves become a graveyard",
+    description:
+      "People save content with intention but rarely return to it. Context is stripped at save-time, making retrieval feel like archaeology.",
+  },
+  {
+    title: "Inspiration requires action to stick",
+    description:
+      'Psychology sources show that inspiration without a "transmit or actualize" step just fades. Saving ≠ doing.',
+  },
+  {
+    title: "How people re-find things matters cognitively",
+    description:
+      "Context beats chronology, and people are filers in intention but pilers in practice.",
+  },
+];
 
-function SectionIntro({
-  eyebrow,
-  heading,
-  headingSize = "sm",
-  description,
-  dark = false,
-  children,
-}: {
-  eyebrow: string;
-  heading: string;
-  headingSize?: "sm" | "lg";
-  description?: string;
-  dark?: boolean;
-  children?: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col items-start w-full" style={{ gap: 16 }}>
-      <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "var(--text-xxs)",
-          color: "var(--color-accent-rose)",
-          textTransform: "uppercase",
-          letterSpacing: "var(--tracking-wider)",
-          lineHeight: "var(--leading-snug)",
-        }}
-      >
-        {eyebrow}
-      </span>
-      <h3
-        style={{
-          fontFamily: "var(--font-primary)",
-          fontWeight: headingSize === "lg" ? "var(--weight-bold)" : "var(--weight-semibold)",
-          fontSize: headingSize === "lg" ? "var(--text-2xl)" : "24px",
-          letterSpacing: headingSize === "lg" ? "-0.64px" : "-0.24px",
-          lineHeight: headingSize === "lg" ? "41.6px" : "31.2px",
-          color: dark ? "#fff" : "#000",
-          margin: 0,
-        }}
-      >
-        {heading}
-      </h3>
-      {description && (
-        <p
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-regular)",
-            fontSize: "var(--text-md)",
-            color: dark ? "rgba(255,255,255,0.8)" : "var(--color-text-subtle)",
-            lineHeight: "var(--leading-body)",
-            margin: 0,
-          }}
-        >
-          {description}
-        </p>
-      )}
-      {children}
-    </div>
-  );
-}
-
-/* ─── feature row (text + screenshot or video) ─────────────────── */
-
-interface Feature {
+type Feature = {
   title: string;
   description: string;
   image?: string;
@@ -88,7 +46,7 @@ interface Feature {
   aspect: string;
   dark?: boolean;
   maxHeight?: number;
-}
+};
 
 const FEATURES: Feature[] = [
   {
@@ -139,52 +97,110 @@ const FEATURES: Feature[] = [
   },
   {
     title: "Exporting",
-    description:
-      "Export your workspace as a PNG.",
+    description: "Export your workspace as a PNG.",
     image: "/images/Spur/spur-exporting.png",
     aspect: "150 / 113",
     maxHeight: 200,
   },
   {
     title: "Figma Integration",
-    description: "Spur's Figma plugin lets you easily import your workspaces as separate images.",
+    description:
+      "Spur's Figma plugin lets you easily import your workspaces as separate images.",
     image: "/images/Spur/figma-plugin.webp",
     aspect: "605.13 / 424.42",
   },
 ];
 
+const REFLECTIONS = [
+  {
+    number: "01",
+    title:
+      'User testing for AI interactions requires a lot of "Wizard of Oz" prototyping',
+    description:
+      "We shipped it — now we need to hear from the people who used it. What worked, what was confusing, what they actually wanted.",
+  },
+  {
+    number: "02",
+    title: "How feasible are our AI features, and where should we cut back?",
+    description:
+      "Auto-generated descriptions and insights were the most resource-intensive part of the prototype. We'd want to test which AI-assisted features people actually rely on before investing further effort into all of them.",
+  },
+  {
+    number: "03",
+    title:
+      "How can we simplify our interactions further, and drive insights quicker?",
+    description: "The system works. Now we make it feel as good as it functions.",
+  },
+];
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return <p className="text-dubcoin-eyebrow">{children}</p>;
+}
+
+function Section({
+  id,
+  label,
+  title,
+  children,
+}: {
+  id: string;
+  label: string;
+  title: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <section className="dubcoin-section" id={id}>
+      <Eyebrow>{label}</Eyebrow>
+      <h2 className="text-dubcoin-section-title">{title}</h2>
+      {children && (
+        <div className="dubcoin-prose text-dubcoin-body">{children}</div>
+      )}
+    </section>
+  );
+}
+
+function Media({
+  src,
+  alt,
+  caption,
+  width,
+  height,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  width: number;
+  height: number;
+  className?: string;
+}) {
+  return (
+    <figure className={`dubcoin-media ${className}`}>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        sizes="(max-width: 760px) 100vw, 920px"
+      />
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
 function FeatureRow({ feature }: { feature: Feature }) {
   return (
-    <div className="flex flex-col md:flex-row items-start justify-center w-full" style={{ gap: 24 }}>
-      <div className="flex flex-col shrink-0 w-full md:w-[276px]" style={{ gap: 9 }}>
-        <h4
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-semibold)",
-            fontSize: "var(--text-lg)",
-            color: "#000",
-            lineHeight: "25.31px",
-            margin: 0,
-          }}
-        >
-          {feature.title}
-        </h4>
-        <p
-          style={{
-            fontFamily: "var(--font-primary)",
-            fontWeight: "var(--weight-regular)",
-            fontSize: "var(--text-md)",
-            color: "#000",
-            lineHeight: "var(--leading-body)",
-            margin: 0,
-          }}
-        >
-          {feature.description}
-        </p>
+    <div className="flex flex-col md:flex-row items-start justify-center w-full gap-6">
+      <div className="flex flex-col shrink-0 w-full md:w-[276px] gap-2">
+        <h4>{feature.title}</h4>
+        <p>{feature.description}</p>
       </div>
       <div
         className="relative w-full md:flex-1 shrink-0 overflow-hidden flex items-center justify-center"
-        style={{ aspectRatio: feature.aspect, background: feature.dark ? "#000" : undefined }}
+        style={{
+          aspectRatio: feature.aspect,
+          background: feature.dark ? "#000" : undefined,
+        }}
       >
         {feature.video ? (
           <video
@@ -209,364 +225,262 @@ function FeatureRow({ feature }: { feature: Feature }) {
   );
 }
 
-/* ─── "what we found" cards (3-up, black) ─────────────────────────── */
-
-const FINDINGS = [
-  {
-    title: "Saves become a graveyard",
-    description:
-      "People save content with intention but rarely return to it. Context is stripped at save-time, making retrieval feel like archaeology.",
-  },
-  {
-    title: "Inspiration requires action to stick",
-    description:
-      'Psychology sources show that inspiration without a "transmit or actualize" step just fades. Saving ≠ doing.',
-  },
-  {
-    title: "How people re-find things matters cognitively",
-    description: "Context beats chronology, and people are filers in intention but pilers in practice.",
-  },
-];
-
-/* ─── reflection items ─────────────────────────────────────────── */
-
-const REFLECTIONS = [
-  {
-    number: "01",
-    title: 'User testing for AI interactions requires a lot of "Wizard of Oz" prototyping',
-    description:
-      "We shipped it — now we need to hear from the people who used it. What worked, what was confusing, what they actually wanted.",
-  },
-  {
-    number: "02",
-    title: "How feasible are our AI features, and where should we cut back?",
-    description:
-      "Auto-generated descriptions and insights were the most resource-intensive part of the prototype. We'd want to test which AI-assisted features people actually rely on before investing further effort into all of them.",
-  },
-  {
-    number: "03",
-    title: "How can we simplify our interactions further, and drive insights quicker?",
-    description: "The system works. Now we make it feel as good as it functions.",
-  },
-];
-
-/* ─── page ──────────────────────────────────────────────────────── */
-
 export default function SpurPage() {
   return (
-    <div className="bg-white flex flex-col items-center min-h-screen">
+    <>
       <SiteHeader />
+      <div className="dubcoin-page dubcoin-layout">
+        {/* ---------- Sidebar ---------- */}
+        <aside className="dubcoin-sidebar" aria-label="Case study sections">
+          <nav>
+            {sections.map(([id, label]) => (
+              <a key={id} href={`#${id}`}>
+                {label}
+              </a>
+            ))}
+          </nav>
+          <a className="dubcoin-backTop" href="#top">
+            ↑ <span>BACK TO TOP</span>
+          </a>
+        </aside>
 
-      <main className="flex flex-col items-center w-full">
-        {/* ── HERO ─────────────────────────────────────────────── */}
-        <div className="flex flex-col items-start w-full" style={{ gap: 48 }}>
-          <div className="relative w-full" style={{ aspectRatio: "1440 / 400" }}>
+        <main className="dubcoin-main" id="top">
+          {/* ---------- Cover ---------- */}
+          <div className="dubcoin-cover">
             <Image
               src="/images/Spur/spur-hero.png"
               alt="Spur app cover"
               fill
-              sizes="100vw"
-              className="object-cover"
+              priority
+              sizes="(max-width: 760px) 100vw, calc(100vw - 200px)"
             />
           </div>
 
-          <div className="flex flex-col items-center w-full" style={{ padding: "0 16px" }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 20 }}>
-              <h1
-                style={{
-                  fontFamily: "var(--font-primary)",
-                  fontWeight: "var(--weight-bold)",
-                  fontSize: "52px",
-                  letterSpacing: "-1.56px",
-                  lineHeight: "57.2px",
-                  margin: 0,
-                }}
-              >
-                <span style={{ display: "block", color: "#000" }}>Turn cluttered saves into</span>
-                <span style={{ display: "block", color: "var(--color-accent-rose)" }}>creative action</span>
+          <article className="dubcoin-article">
+            {/* ---------- Intro ---------- */}
+            <header className="dubcoin-intro">
+              <h1 className="text-dubcoin-page-title">
+                Turn cluttered saves into creative action
               </h1>
 
-              <div className="flex flex-col md:flex-row w-full" style={{ gap: 16 }}>
-                {[
-                  { label: "ROLE", value: "product designer" },
-                  {
-                    label: "TEAM",
-                    value: "sam lopez\njuna kim\nariana cao\ninara khan\nsabrina turnes\nhelen nguyen",
-                  },
-                  { label: "TIMELINE", value: "5 months · 2026" },
-                  { label: "OVERVIEW", value: "mobile app for creative inspiration" },
-                ].map(({ label, value }) => (
-                  <div key={label} className="flex flex-col shrink-0 md:w-[195px]" style={{ gap: 8 }}>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-xxs)",
-                        color: "var(--color-accent-rose)",
-                        textTransform: "uppercase",
-                        letterSpacing: "var(--tracking-wider)",
-                        lineHeight: "var(--leading-snug)",
-                      }}
-                    >
-                      {label}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontSize: "var(--text-sm)",
-                        color: "#000",
-                        lineHeight: "21.12px",
-                        whiteSpace: "pre-line",
-                      }}
-                    >
-                      {value}
-                    </span>
+              <div className="dubcoin-meta">
+                <div>
+                  <Eyebrow>Timeline</Eyebrow>
+                  <p>5 months · 2026</p>
+                </div>
+                <div>
+                  <Eyebrow>Role</Eyebrow>
+                  <p>Product Designer</p>
+                </div>
+                <div>
+                  <Eyebrow>Team</Eyebrow>
+                  <p>
+                    Sam Lopez
+                    <br />
+                    Juna Kim
+                    <br />
+                    Ariana Cao
+                    <br />
+                    Inara Khan
+                    <br />
+                    Sabrina Turnes
+                    <br />
+                    Helen Nguyen
+                  </p>
+                </div>
+                <div>
+                  <Eyebrow>Overview</Eyebrow>
+                  <p>Mobile app for creative inspiration</p>
+                </div>
+              </div>
+            </header>
+
+            {/* ---------- Stats ---------- */}
+            <section className="dubcoin-stats" aria-label="Project data">
+              {impact.map((stat) => (
+                <div key={stat.value}>
+                  <strong>{stat.value}</strong>
+                  <p>{stat.label}</p>
+                </div>
+              ))}
+            </section>
+
+            {/* ---------- Context ---------- */}
+            <Section
+              id="context"
+              label="Context"
+              title="Creative inspiration is often saved impulsively and forgotten quickly, turning meaningful content into digital clutter."
+            >
+              <p>
+                We spend so much time scrolling for inspiration, but rarely
+                return to what we saved.
+              </p>
+              <p>
+                <a href="#solution">Jump to final design →</a>
+              </p>
+            </Section>
+
+            {/* ---------- Define ---------- */}
+            <Section
+              id="define"
+              label="Define"
+              title="How might we help people organize their saved content into actionable sources of creativity?"
+            />
+
+            {/* ---------- Insights ---------- */}
+            <Section
+              id="insights"
+              label="Insights"
+              title="We surveyed, interviewed over 100 creatives."
+            >
+              <p>
+                Context beats chronology, and people are filers in intention but
+                pilers in practice. Psychology sources show that inspiration
+                without a &quot;transmit or actualize&quot; step just fades.
+                Saving ≠ doing.
+              </p>
+
+              <Media
+                width={342}
+                height={300}
+                src="/images/Spur/initial-research.webp"
+                alt="Collage summarizing Spur's user research: over 100 survey responses, 8 recorded interviews, and 25 literature reviews"
+              />
+
+              <h3>What we found.</h3>
+
+              <div className="dubcoin-threeCards">
+                {FINDINGS.map(({ title, description }) => (
+                  <div key={title}>
+                    <b>{title}</b>
+                    <p>{description}</p>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* ── JUMP NAV ─────────────────────────────────────────── */}
-        <JumpNav links={JUMP_LINKS} />
+              <h3>
+                Existing solutions made users choose between exploration and
+                action.
+              </h3>
+              <p>
+                We conducted competitive analyses on four different solutions:
+                mymind, Milanote, Eagle, and Obsidian.
+              </p>
 
-        {/* ── CONTENT ──────────────────────────────────────────── */}
-        <div className="flex flex-col items-center w-full">
-          <section id="overview" className="w-full flex justify-center" style={{ padding: 16 }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922 }}>
-              <SectionIntro
-                eyebrow="overview"
-                heading="Creative inspiration is often saved impulsively and forgotten quickly, turning meaningful content into digital clutter."
-                description="We spend so much time scrolling for inspiration, but rarely return to what we saved."
-              >
-                <a
-                  href="#final-design"
-                  className="flex items-center"
-                  style={{ gap: 10, marginTop: 8, textDecoration: "none" }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-primary)",
-                      fontSize: "var(--text-sm)",
-                      color: "#000",
-                      lineHeight: "21.12px",
-                    }}
-                  >
-                    Jump to final design
-                  </span>
-                  <span
-                    className="flex items-center justify-center rounded-full"
-                    style={{ width: 26, height: 26, background: "var(--color-bg-subtle)" }}
-                  >
-                    →
-                  </span>
-                </a>
-              </SectionIntro>
-            </div>
-          </section>
-
-          <section id="define" className="w-full flex justify-center" style={{ background: "#000", padding: "64px 16px" }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, paddingInline: 0 }}>
-              <SectionIntro
-                eyebrow="define"
-                dark
-                heading="How might we help people organize their saved content into actionable sources of creativity?"
+              <Media
+                width={1715}
+                height={965}
+                src="/images/Spur/competitive-analysis.webp"
+                alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian"
               />
-            </div>
-          </section>
+            </Section>
 
-          <section id="insights" className="w-full flex justify-center" style={{ padding: 16 }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 96 }}>
-              <div className="flex flex-col items-start w-full" style={{ gap: 32 }}>
-                <SectionIntro
-                  eyebrow="insights"
-                  heading="We surveyed, interviewed over 100 creatives."
-                  description='Context beats chronology, and people are filers in intention but pilers in practice. Psychology sources show that inspiration without a "transmit or actualize" step just fades. Saving ≠ doing.'
-                />
-                <div className="w-full flex justify-center">
-                  <div className="relative" style={{ width: 342, aspectRatio: "342 / 300.08" }}>
-                    <Image src="/images/Spur/initial-research.webp" alt="Collage summarizing Spur's user research: over 100 survey responses, 8 recorded interviews, and 25 literature reviews" fill sizes="342px" className="object-contain" />
-                  </div>
-                </div>
-                <h3
-                  style={{
-                    fontFamily: "var(--font-primary)",
-                    fontWeight: "var(--weight-semibold)",
-                    fontSize: "24px",
-                    letterSpacing: "-0.24px",
-                    lineHeight: "31.2px",
-                    color: "#000",
-                    margin: 0,
-                  }}
-                >
-                  What we found.
-                </h3>
-                <div className="flex flex-col md:flex-row w-full" style={{ gap: 10 }}>
-                  {FINDINGS.map(({ title, description }) => (
-                    <div
-                      key={title}
-                      className="flex flex-col flex-1 items-center justify-center text-center"
-                      style={{ background: "#000", padding: 26, gap: 10, minHeight: 280 }}
-                    >
-                      <h4
-                        style={{
-                          fontFamily: "var(--font-primary)",
-                          fontWeight: "var(--weight-semibold)",
-                          fontSize: "24px",
-                          letterSpacing: "-0.24px",
-                          lineHeight: "31.2px",
-                          color: "#fff",
-                          margin: 0,
-                        }}
-                      >
-                        {title}
-                      </h4>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-primary)",
-                          fontSize: "var(--text-md)",
-                          lineHeight: "var(--leading-body)",
-                          color: "#fff",
-                          margin: 0,
-                        }}
-                      >
-                        {description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+            {/* ---------- Ideation ---------- */}
+            <Section
+              id="ideation"
+              label="Ideation"
+              title="We drafted initial user flows."
+            >
+              <p>
+                We sketched flows for saving, searching, and organizing
+                inspiration—mapping how someone could move from a single save to
+                a finished idea.
+              </p>
 
-              <SectionIntro
-                eyebrow="insights"
-                heading="Existing solutions made users choose between exploration and action."
-                description="We conducted competitive analyses on four different solutions: mymind, Milanote, Eagle, and Obsidian."
-              >
-                <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                  <Image src="/images/Spur/competitive-analysis.webp" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
-                </div>
-              </SectionIntro>
-
-              </div>
-            </div>
-          </section>
-
-          <section id="ideation" className="w-full flex justify-center" style={{ padding: "64px 16px" }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 96 }}>
-              <div className="flex flex-col items-start w-full" style={{ gap: 32 }}>
-
-                <SectionIntro
-                  eyebrow="ideation"
-                  heading="We drafted initial user flows."
-                  description="We sketched flows for saving, searching, and organizing inspiration—mapping how someone could move from a single save to a finished idea."
-                >
-                  <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                    <Image src="/images/Spur/user-flows.webp" alt="Four sketched user flow diagrams for Spur: media search, importing inspiration, project creation, and onboarding" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
-                  </div>
-                </SectionIntro>
-
-                <SectionIntro
-                  eyebrow="ideation"
-                  heading="We vibe coded a mid-fidelity prototype to better understand how users would upload content and create spaces."
-                  description="We discovered that users would find more value creating insights and actions in the workspace rather than purely in the inspiration feed."
-                >
-                  <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 518.39" }}>
-                    <Image src="/images/Spur/user-testing.webp" alt="Dock of competitor app icons analyzed for Spur: mymind, Milanote, Eagle, and Obsidian" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover" />
-                  </div>
-                </SectionIntro>
-              </div>
-            </div>
-          </section>
-
-          <section id="iteration" className="w-full flex justify-center" style={{ padding: 16 }}>
-              <SectionIntro
-                eyebrow="iteration"
-                heading="Our current direction prioritized curation over action. How can we tailor Spur to exist closer in the space between image discovery and creation?"
-              >
-                <div className="relative w-full mt-6" style={{ aspectRatio: "921.59 / 331.67" }}>
-                  <Image src="/images/Spur/pivot.webp" alt="Dock of app icons illustrating Spur's pivot, positioned between discovery apps like Pinterest, Cosmos, and Are.na, and creation tools like Figma" fill sizes="(max-width: 768px) 100vw, 922px" className="object-contain" />
-                </div>
-              </SectionIntro>
-          </section>
-
-          <section id="solution" className="w-full flex justify-center" style={{ padding: 16 }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 32 }}>
-              <SectionIntro
-                eyebrow="solution"
-                headingSize="lg"
-                heading="Spur, in full."
-                description="Spur brings saving, searching, and creating into one workspace, so inspiration turns into action instead of disappearing into a folder."
+              <Media
+                width={1715}
+                height={965}
+                src="/images/Spur/user-flows.webp"
+                alt="Four sketched user flow diagrams for Spur: media search, importing inspiration, project creation, and onboarding"
               />
-              <div className="relative w-full" style={{ aspectRatio: "921.59 / 655.36" }}>
-                <Image
-                  src="/images/Spur/spur-final-designs.webp"
-                  alt="Spur app screens"
-                  fill
-                  sizes="(max-width: 700px) 70vw, 922px"
-                  className="object-cover"
-                />
-              </div>
 
-              <div className="flex flex-col w-full" style={{ gap: 64 }}>
+              <h3>
+                We vibe coded a mid-fidelity prototype to better understand how
+                users would upload content and create spaces.
+              </h3>
+              <p>
+                We discovered that users would find more value creating insights
+                and actions in the workspace rather than purely in the
+                inspiration feed.
+              </p>
+
+              <Media
+                width={1715}
+                height={965}
+                src="/images/Spur/user-testing.webp"
+                alt="Mid-fidelity vibe coded Spur prototype used to test uploading content and creating spaces"
+              />
+            </Section>
+
+            {/* ---------- Iteration ---------- */}
+            <Section
+              id="iteration"
+              label="Iteration"
+              title="Our current direction prioritized curation over action. How can we tailor Spur to exist closer in the space between image discovery and creation?"
+            >
+              <Media
+                width={1715}
+                height={617}
+                src="/images/Spur/pivot.webp"
+                alt="Dock of app icons illustrating Spur's pivot, positioned between discovery apps like Pinterest, Cosmos, and Are.na, and creation tools like Figma"
+              />
+            </Section>
+
+            {/* ---------- Solution ---------- */}
+            <Section id="solution" label="Solution" title="Spur, in full.">
+              <p>
+                Spur brings saving, searching, and creating into one workspace,
+                so inspiration turns into action instead of disappearing into a
+                folder.
+              </p>
+
+              <Media
+                width={1715}
+                height={1220}
+                src="/images/Spur/spur-final-designs.webp"
+                alt="Spur app screens"
+              />
+
+              <div className="flex flex-col w-full gap-16">
                 {FEATURES.map((feature) => (
                   <FeatureRow key={feature.title} feature={feature} />
                 ))}
               </div>
-            </div>
-          </section>
+            </Section>
 
-          <section id="next-steps" className="w-full flex justify-center" style={{ padding: 16 }}>
-            <div className="flex flex-col items-start w-full" style={{ maxWidth: 922, gap: 40 }}>
-              <SectionIntro eyebrow="reflection" heading="What we learned, what we'd do differently:" />
-              <div className="flex flex-col w-full" style={{ gap: 32 }}>
+            {/* ---------- Reflection ---------- */}
+            <Section
+              id="reflection"
+              label="Reflection"
+              title="What we learned, what we'd do differently:"
+            >
+              <ol className="dubcoin-nextSteps">
                 {REFLECTIONS.map(({ number, title, description }) => (
-                  <div key={number} className="flex items-start w-full" style={{ gap: 32 }}>
-                    <span
-                      className="shrink-0"
-                      style={{
-                        fontFamily: "var(--font-primary)",
-                        fontSize: "var(--text-md)",
-                        lineHeight: "var(--leading-body)",
-                        color: "var(--color-accent-rose)",
-                        width: 27,
-                      }}
-                    >
-                      {number}
-                    </span>
-                    <div className="flex flex-col flex-1 min-w-0" style={{ gap: 8 }}>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-primary)",
-                          fontWeight: "var(--weight-bold)",
-                          fontSize: "var(--text-md)",
-                          color: "var(--color-accent-rose)",
-                          lineHeight: "var(--leading-body)",
-                        }}
-                      >
-                        {title}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-primary)",
-                          fontSize: "var(--text-md)",
-                          color: "var(--color-text)",
-                          lineHeight: "var(--leading-body)",
-                        }}
-                      >
-                        {description}
-                      </span>
-                    </div>
-                  </div>
+                  <li key={number}>
+                    <span>{number}</span>
+                    <p>
+                      <strong>{title}</strong> {description}
+                    </p>
+                  </li>
                 ))}
-              </div>
-              <div className="relative w-full" style={{ aspectRatio: "921.59 / 515.75" }}>
-                <Image src="/images/Spur/spur-gradient.webp" alt="Spur app splash screen with the tagline 'Turn your cluttered saves into creative action'" fill sizes="(max-width: 768px) 100vw, 922px" className="object-cover rounded-lg" />
-              </div>
-            </div>
-          </section>
-        </div>
-      </main>
+              </ol>
 
+              <Media
+                width={1715}
+                height={960}
+                src="/images/Spur/spur-gradient.webp"
+                alt="Spur app splash screen with the tagline 'Turn your cluttered saves into creative action'"
+              />
+            </Section>
+
+            <div className="dubcoin-endnav">
+              <Link href="/work">← Back to work</Link>
+              <a href="#top">Back to top ↑</a>
+            </div>
+          </article>
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
