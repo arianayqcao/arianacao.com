@@ -4,7 +4,6 @@ import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 
 const sections = [
-  ["overview", "Overview"],
   ["context", "Context"],
   ["insights", "Insights"],
   ["version-one", "Version 1"],
@@ -215,9 +214,6 @@ export default function DubcoinSystemPage() {
         {/* ---------- Sidebar ---------- */}
         <aside className="dubcoin-sidebar" aria-label="Case study sections">
           <nav>
-            <a className="dubcoin-homeLink" href="#top">
-              ⌂ <span>HOME</span>
-            </a>
             {sections.map(([id, label]) => (
               <a key={id} href={`#${id}`}>
                 {label}
@@ -250,7 +246,6 @@ export default function DubcoinSystemPage() {
           <article className="dubcoin-article">
             {/* ---------- Intro ---------- */}
             <header className="dubcoin-intro">
-              <p className="dubcoin-kicker">DUBHACKS · PRODUCT DESIGN · 2025—2026</p>
               <h1 className="text-dubcoin-page-title">
                 From a 3-hour Excel line to a DubCoin system
               </h1>
@@ -263,25 +258,25 @@ export default function DubcoinSystemPage() {
                 <div>
                   <Eyebrow>Timeline</Eyebrow>
                   <p>
-                    v1 · Jul–Sep 2025
-                    <br />
-                    v2 · Jul–Oct 2026
+                    Sep 2025 - Oct 2026
                   </p>
                 </div>
                 <div>
                   <Eyebrow>Role</Eyebrow>
                   <p>
-                    Product Designer (v1)
-                    <br />
-                    UX Design Lead (v2)
+                    Product Design Lead
                   </p>
                 </div>
                 <div>
                   <Eyebrow>Team</Eyebrow>
                   <p>
-                    Ariana Cao, Annie Chang,
+                    Ariana Cao
                     <br />
-                    Medha Rawat · Audrey Wu (v2)
+                    Annie Chang
+                    <br />
+                    Medha Rawat
+                    <br />
+                    Audrey Wu
                   </p>
                 </div>
                 <div>
@@ -304,28 +299,6 @@ export default function DubcoinSystemPage() {
                 </div>
               ))}
             </section>
-
-            {/* ---------- Overview ---------- */}
-            <Section
-              id="overview"
-              label="Overview"
-              title="DubHacks rewards hackers with coins. Spending them used to take hours."
-            >
-              <p>
-                DubCoins are DubHacks’ currency. Hackers earn them by
-                attending workshops and activities, then redeem them for prizes at
-                the end of the weekend.
-              </p>
-              <p>
-                I designed the experience in two rounds.{" "}
-                Version 1 (2025) shipped, giving us real usage data.{" "}
-                Version 2 (2026) is designed but not yet built with backend support;
-                and it&apos;s based on what we observed during the event.
-              </p>
-              <a className="dubcoin-textLink" href="#final-solution">
-                Jump to Final Solution <span>▼</span>
-              </a>
-            </Section>
 
             {/* ---------- Context ---------- */}
             <Section
