@@ -379,7 +379,7 @@ export default function Home() {
                   }}
                 >
                   <p style={{ margin: 0 }}>
-                    I&apos;m a 3rd-year undergrad student pursuing Informatics at the
+                    I&apos;m a 4th-year undergrad student pursuing Informatics at the
                     University of Washington in Seattle.
                   </p>
                   <p style={{ margin: 0 }}>
