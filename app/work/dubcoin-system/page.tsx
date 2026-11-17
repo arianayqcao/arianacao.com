@@ -215,6 +215,9 @@ export default function DubcoinSystemPage() {
         <CaseStudyScrollFade />
         {/* ---------- Sidebar ---------- */}
         <aside className="case-study-sidebar" aria-label="Case study sections">
+          <Link className="case-study-homeLink" href="/" aria-label="Ariana Cao home">
+            <Image src="/apple_logo.svg" alt="Apple" width={28} height={28} />
+          </Link>
           <nav>
             {sections.map(([id, label]) => (
               <a key={id} href={`#${id}`}>
