@@ -314,22 +314,16 @@ export default function DubcoinSystemPage() {
 
               <Media
                 width={1715}
-                height={1146}
-                src="/images/DubCoin/dubcoin-spreadsheet.webp"
-                alt="Spreadsheet used to track prize redemption"
-                caption="The 2024 redemption flow depended on staff updating a shared spreadsheet."
-              />
-              <p>
-                Lines wrapped around room, and some prizes ran out before people reached the table. 
-                According to directors, it was the biggest pain point of 2024.
-              </p>
-              <Media
-                width={1715}
                 height={850}
                 src="/images/DubCoin/line-of-hackers.png"
                 alt="Line of hackers waiting for prize redemption from 2024"
                 caption="Hackers waited in long lines for prize redemption."
               />
+              
+              <p>
+                Lines wrapped around room, and some prizes ran out before people reached the table. 
+                According to directors, it was the biggest pain point of 2024.
+              </p>
 
             </Section>
 
