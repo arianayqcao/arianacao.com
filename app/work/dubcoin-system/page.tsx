@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import CaseStudyScrollFade from "@/components/CaseStudyScrollFade";
 
 const sections = [
   ["context", "Context"],
@@ -211,6 +212,7 @@ export default function DubcoinSystemPage() {
     <>
       <SiteHeader />
       <div className="case-study-page case-study-layout">
+        <CaseStudyScrollFade />
         {/* ---------- Sidebar ---------- */}
         <aside className="case-study-sidebar" aria-label="Case study sections">
           <nav>
