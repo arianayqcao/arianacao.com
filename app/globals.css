@@ -145,7 +145,7 @@ html.custom-cursor-active * {
   height: clamp(320px, 40vw, 576px);
   position: relative;
   overflow: hidden;
-  background: #4d4afc;
+  background: #f63690;
 }
 
 .case-study-page .case-study-cover picture {
@@ -399,7 +399,7 @@ html.custom-cursor-active * {
 .case-study-page .case-study-dataGrid strong {
   font: 500 32px/1 var(--font-primary);
   letter-spacing: -.03em;
-  color: #4d4afc;
+  color: #f63690;
 }
 
 .case-study-page .case-study-dataGrid span {
@@ -446,7 +446,7 @@ html.custom-cursor-active * {
 .case-study-page .case-study-decision-num,
 .case-study-page .case-study-nextSteps span {
   font: 500 12px/1 var(--font-mono);
-  color: #4d4afc;
+  color: #f63690;
 }
 
 .case-study-page .case-study-decision-num {
@@ -542,7 +542,7 @@ html.custom-cursor-active * {
 }
 
 .case-study-page .case-study-nextProject-copy > span {
-  color: #4d4afc;
+  color: #f63690;
   font: 500 12px/1.5 var(--font-mono);
   text-transform: uppercase;
 }
@@ -577,7 +577,7 @@ html.custom-cursor-active * {
 }
 
 .case-study-page .case-study-endnav a:hover {
-  color: #4d4afc;
+  color: #f63690;
 }
 
 /* ============ End nav ============ */
