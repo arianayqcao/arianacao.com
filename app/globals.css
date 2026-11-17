@@ -382,7 +382,7 @@ html.custom-cursor-active * {
 /* ============ Data grid ============ */
 .case-study-page .case-study-dataGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 1px;
   background: #e4e1dc;
   margin: 26px 0;
