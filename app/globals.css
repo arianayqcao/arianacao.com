@@ -59,22 +59,22 @@ html.custom-cursor-active * {
   }
 }
 
-/* DubCoin case-study layout; typography is shared via text-dubcoin-* utilities. */
+/* Shared case-study layout and typography. */
 /* ============ Layout ============ */
-.dubcoin-page.dubcoin-layout {
+.case-study-page.case-study-layout {
   display: flex;
   width: 100%;
   align-items: stretch;
   background: #fff;
 }
 
-.dubcoin-page .dubcoin-main {
+.case-study-page .case-study-main {
   flex: 1;
   min-width: 0;
 }
 
 /* ============ Sidebar ============ */
-.dubcoin-page .dubcoin-sidebar {
+.case-study-page .case-study-sidebar {
   position: sticky;
   top: var(--nav-height);
   align-self: flex-start;
@@ -90,14 +90,14 @@ html.custom-cursor-active * {
   z-index: 2;
 }
 
-.dubcoin-page .dubcoin-sidebar nav {
+.case-study-page .case-study-sidebar nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }
 
-.dubcoin-page .dubcoin-sidebar a {
+.case-study-page .case-study-sidebar a {
   font: 500 12px/1.65 var(--font-mono);
   letter-spacing: .12px;
   text-decoration: none;
@@ -106,28 +106,28 @@ html.custom-cursor-active * {
   transition: color .18s;
 }
 
-.dubcoin-page .dubcoin-sidebar a:hover,
-.dubcoin-page .dubcoin-sidebar a:focus-visible {
+.case-study-page .case-study-sidebar a:hover,
+.case-study-page .case-study-sidebar a:focus-visible {
   color: #F63690;
 }
 
-.dubcoin-page .dubcoin-sidebar .dubcoin-homeLink,
-.dubcoin-page .dubcoin-sidebar .dubcoin-backTop {
+.case-study-page .case-study-sidebar .case-study-homeLink,
+.case-study-page .case-study-sidebar .case-study-backTop {
   display: flex;
   align-items: center;
   gap: 6px;
   color: #666;
 }
 
-.dubcoin-page .dubcoin-homeLink {
+.case-study-page .case-study-homeLink {
   background: #edecea;
   padding: 0 4px;
   border-radius: 2px;
 }
 
-.dubcoin-page .dubcoin-sideLabel,
-.dubcoin-page .dubcoin-eyebrow,
-.dubcoin-page .dubcoin-kicker {
+.case-study-page .case-study-sideLabel,
+.case-study-page .case-study-eyebrow,
+.case-study-page .case-study-kicker {
   margin: 0;
   font: var(--weight-medium) var(--text-xs)/1.65 var(--font-mono);
   letter-spacing: .12px;
@@ -135,56 +135,56 @@ html.custom-cursor-active * {
   color: #F63690;
 }
 
-.dubcoin-page .dubcoin-sideLabel {
+.case-study-page .case-study-sideLabel {
   color: var(--color-gray-500);
   margin-top: 7px;
 }
 
 /* ============ Cover ============ */
-.dubcoin-page .dubcoin-cover {
+.case-study-page .case-study-cover {
   height: clamp(320px, 40vw, 576px);
   position: relative;
   overflow: hidden;
   background: #4d4afc;
 }
 
-.dubcoin-page .dubcoin-cover picture {
+.case-study-page .case-study-cover picture {
   position: absolute;
   inset: 0;
 }
 
-.dubcoin-page .dubcoin-cover img {
+.case-study-page .case-study-cover img {
   object-fit: cover;
 }
 
 /* ============ Article + intro ============ */
-.dubcoin-page .dubcoin-article {
+.case-study-page .case-study-article {
   width: min(100%, 1200px);
   margin: 0 auto;
   padding: 0 48px 96px;
 }
 
-.dubcoin-page .dubcoin-intro {
+.case-study-page .case-study-intro {
   padding: 46px 0 36px;
 }
 
-.dubcoin-page .dubcoin-kicker {
+.case-study-page .case-study-kicker {
   margin-bottom: 16px;
 }
 
-.dubcoin-page .dubcoin-intro h1 {
+.case-study-page .case-study-intro h1 {
   max-width: 940px;
   margin: 0;
 }
 
-.dubcoin-page .dubcoin-dek {
+.case-study-page .case-study-dek {
   max-width: 720px;
   color: #666;
   font: 400 20px/1.5 var(--font-primary);
   margin: 18px 0 32px;
 }
 
-.dubcoin-page .dubcoin-meta {
+.case-study-page .case-study-meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
@@ -192,14 +192,14 @@ html.custom-cursor-active * {
   padding-top: 18px;
 }
 
-.dubcoin-page .dubcoin-meta p {
+.case-study-page .case-study-meta p {
   margin: 5px 0 0;
   color: #777;
   font: 400 14px/1.55 var(--font-primary);
 }
 
 /* ============ Stats ============ */
-.dubcoin-page .dubcoin-stats {
+.case-study-page .case-study-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
@@ -208,37 +208,37 @@ html.custom-cursor-active * {
   border-bottom: 1px solid #e7e5e2;
 }
 
-.dubcoin-page .dubcoin-stats > div {
+.case-study-page .case-study-stats > div {
   padding: 5px 14px 6px;
   border-left: 1px solid #e7e5e2;
 }
 
-.dubcoin-page .dubcoin-stats > div:first-child {
+.case-study-page .case-study-stats > div:first-child {
   border-left: 0;
   padding-left: 0;
 }
 
-.dubcoin-page .dubcoin-stats strong {
+.case-study-page .case-study-stats strong {
   display: block;
   color: #F63690;
   font: 500 clamp(28px, 3vw, 42px)/1.05 var(--font-primary);
   letter-spacing: -.04em;
 }
 
-.dubcoin-page .dubcoin-stats p {
+.case-study-page .case-study-stats p {
   margin: 9px 0 0;
   color: #777;
   font: 400 14px/1.45 var(--font-primary);
 }
 
 /* ============ Sections + prose ============ */
-.dubcoin-page .dubcoin-section {
+.case-study-page .case-study-section {
   padding: 66px 0;
   border-bottom: 1px solid #e7e5e2;
   scroll-margin-top: 24px;
 }
 
-.dubcoin-page .dubcoin-section > h2 {
+.case-study-page .case-study-section > h2 {
   max-width: 920px;
   margin: 9px 0 22px;
   font: var(--weight-regular) var(--text-xl)/1.2 var(--font-primary);
@@ -246,49 +246,49 @@ html.custom-cursor-active * {
   color: var(--color-gray-900);
 }
 
-.dubcoin-page .dubcoin-prose {
+.case-study-page .case-study-prose {
   max-width: 920px;
   color: var(--color-gray-500);
 }
 
-.dubcoin-page .dubcoin-prose > p,
-.dubcoin-page .dubcoin-prose li {
+.case-study-page .case-study-prose > p,
+.case-study-page .case-study-prose li {
   font: inherit;
   letter-spacing: inherit;
 }
 
-.dubcoin-page .dubcoin-prose > p {
+.case-study-page .case-study-prose > p {
   margin: 0 0 16px;
 }
 
-.dubcoin-page .dubcoin-prose strong {
+.case-study-page .case-study-prose strong {
   font-weight: 600;
   color: #282828;
 }
 
-.dubcoin-page .dubcoin-prose h3 {
+.case-study-page .case-study-prose h3 {
   margin: 30px 0 10px;
   font: 500 22px/1.3 var(--font-primary);
   letter-spacing: -.02em;
   color: #202020;
 }
 
-.dubcoin-page .dubcoin-prose ul {
+.case-study-page .case-study-prose ul {
   padding-left: 21px;
   margin: 22px 0;
 }
 
-.dubcoin-page .dubcoin-prose li {
+.case-study-page .case-study-prose li {
   padding-left: 5px;
   margin: 0 0 10px;
 }
 
-.dubcoin-page .dubcoin-eyebrow {
+.case-study-page .case-study-eyebrow {
   font-size: var(--text-xs);
 }
 
 /* ============ Links ============ */
-.dubcoin-page .dubcoin-textLink {
+.case-study-page .case-study-textLink {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -298,7 +298,7 @@ html.custom-cursor-active * {
   text-decoration: none;
 }
 
-.dubcoin-page .dubcoin-textLink span {
+.case-study-page .case-study-textLink span {
   display: grid;
   place-items: center;
   width: 27px;
@@ -308,36 +308,36 @@ html.custom-cursor-active * {
 }
 
 /* ============ Callout + status ============ */
-.dubcoin-page .dubcoin-callout,
-.dubcoin-page .dubcoin-status {
+.case-study-page .case-study-callout,
+.case-study-page .case-study-status {
   margin: 25px 0;
   padding: 22px 24px;
   background: #f5f4f2;
   border-left: 3px solid #f63690;
 }
 
-.dubcoin-page .dubcoin-callout > p:last-child,
-.dubcoin-page .dubcoin-status > p:last-child {
+.case-study-page .case-study-callout > p:last-child,
+.case-study-page .case-study-status > p:last-child {
   margin: 7px 0 0;
   color: #444;
   font: 400 16px/1.65 var(--font-primary);
 }
 
 /* ============ Media ============ */
-.dubcoin-page .dubcoin-media {
+.case-study-page .case-study-media {
   position: relative;
   width: 100%;
   margin: 30px 0 26px;
 }
 
-.dubcoin-page .dubcoin-media img {
+.case-study-page .case-study-media img {
   display: block;
   width: 100%;
   height: auto;
   object-fit: initial;
 }
 
-.dubcoin-page .dubcoin-media figcaption {
+.case-study-page .case-study-media figcaption {
   position: static;
   padding: 9px 12px;
   background: rgba(255, 255, 255, .9);
@@ -346,33 +346,33 @@ html.custom-cursor-active * {
 }
 
 /* ============ Three cards ============ */
-.dubcoin-page .dubcoin-threeCards {
+.case-study-page .case-study-threeCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin: 24px 0;
 }
 
-.dubcoin-page .dubcoin-threeCards > div {
+.case-study-page .case-study-threeCards > div {
   min-height: 146px;
   padding: 20px;
   background: #f4f3f1;
   border-top: 2px solid #4d4afc;
 }
 
-.dubcoin-page .dubcoin-threeCards b {
+.case-study-page .case-study-threeCards b {
   font: 500 18px/1.3 var(--font-primary);
   color: #222;
 }
 
-.dubcoin-page .dubcoin-threeCards p {
+.case-study-page .case-study-threeCards p {
   margin: 10px 0 0;
   color: #666;
   font: 400 14px/1.55 var(--font-primary);
 }
 
 /* ============ Note ============ */
-.dubcoin-page .dubcoin-note {
+.case-study-page .case-study-note {
   padding: 13px 16px;
   background: #faf9f7;
   color: #777 !important;
@@ -380,7 +380,7 @@ html.custom-cursor-active * {
 }
 
 /* ============ Data grid ============ */
-.dubcoin-page .dubcoin-dataGrid {
+.case-study-page .case-study-dataGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
@@ -388,7 +388,7 @@ html.custom-cursor-active * {
   margin: 26px 0;
 }
 
-.dubcoin-page .dubcoin-dataGrid > div {
+.case-study-page .case-study-dataGrid > div {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -396,19 +396,19 @@ html.custom-cursor-active * {
   background: #f6f5f3;
 }
 
-.dubcoin-page .dubcoin-dataGrid strong {
+.case-study-page .case-study-dataGrid strong {
   font: 500 32px/1 var(--font-primary);
   letter-spacing: -.03em;
   color: #4d4afc;
 }
 
-.dubcoin-page .dubcoin-dataGrid span {
+.case-study-page .case-study-dataGrid span {
   font: 400 13px/1.45 var(--font-primary);
   color: #666;
 }
 
 /* ============ Decisions ============ */
-.dubcoin-page .dubcoin-decision {
+.case-study-page .case-study-decision {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* equal columns */
   gap: 40px;
@@ -417,19 +417,19 @@ html.custom-cursor-active * {
   border-top: 1px solid #e7e5e2;
 }
 
-.dubcoin-page .dubcoin-decision-media,
-.dubcoin-page .dubcoin-decision-text {
+.case-study-page .case-study-decision-media,
+.case-study-page .case-study-decision-text {
   width: 100%;
   min-width: 0;
 }
 
-.dubcoin-page .dubcoin-decision-media {
+.case-study-page .case-study-decision-media {
   display: flex;
   gap: 12px;
   align-items: flex-start;
 }
 
-.dubcoin-page .dubcoin-decision-media img {
+.case-study-page .case-study-decision-media img {
   flex: 1 1 0;      /* each gif shares the column equally */
   min-width: 0;
   width: 100%;
@@ -437,34 +437,34 @@ html.custom-cursor-active * {
   display: block;
 }
 
-.dubcoin-page .dubcoin-decision-num,
-.dubcoin-page .dubcoin-nextSteps span {
+.case-study-page .case-study-decision-num,
+.case-study-page .case-study-nextSteps span {
   font: 500 12px/1 var(--font-mono);
   color: #4d4afc;
 }
 
-.dubcoin-page .dubcoin-decision-num {
+.case-study-page .case-study-decision-num {
   display: block;
   margin: 0 0 12px;
 }
 
-.dubcoin-page .dubcoin-decision-text h3 {
+.case-study-page .case-study-decision-text h3 {
   margin: 0 0 8px !important;
 }
 
-.dubcoin-page .dubcoin-decision-text p {
+.case-study-page .case-study-decision-text p {
   margin: 0;
   color: #666;
   font: 400 15px/1.65 var(--font-primary);
 }
 
 /* ============ Next steps ============ */
-.dubcoin-page .dubcoin-nextSteps {
+.case-study-page .case-study-nextSteps {
   list-style: none;
   padding: 0 !important;
 }
 
-.dubcoin-page .dubcoin-nextSteps li {
+.case-study-page .case-study-nextSteps li {
   display: grid;
   grid-template-columns: 46px 1fr;
   gap: 12px;
@@ -472,41 +472,41 @@ html.custom-cursor-active * {
   border-bottom: 1px solid #e7e5e2;
 }
 
-.dubcoin-page .dubcoin-nextSteps p {
+.case-study-page .case-study-nextSteps p {
   margin: 0;
 }
 
 /* ============ End nav ============ */
-.dubcoin-page .dubcoin-endnav {
+.case-study-page .case-study-endnav {
   display: flex;
   justify-content: space-between;
   padding-top: 28px;
 }
 
-.dubcoin-page .dubcoin-endnav a {
+.case-study-page .case-study-endnav a {
   color: #555;
   font: 500 13px/1.5 var(--font-mono);
   text-decoration: none;
   text-transform: uppercase;
 }
 
-.dubcoin-page .dubcoin-endnav a:hover {
+.case-study-page .case-study-endnav a:hover {
   color: #4d4afc;
 }
 
 /* ============ Responsive: ≤1000px ============ */
 @media (max-width: 1000px) {
-  .dubcoin-page .dubcoin-sidebar {
+  .case-study-page .case-study-sidebar {
     width: 170px;
     min-width: 170px;
     padding-inline: 14px;
   }
 
-  .dubcoin-page .dubcoin-article {
+  .case-study-page .case-study-article {
     padding-inline: 32px;
   }
 
-  .dubcoin-page .dubcoin-meta {
+  .case-study-page .case-study-meta {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 16px;
   }
@@ -514,11 +514,11 @@ html.custom-cursor-active * {
 
 /* ============ Responsive: ≤760px ============ */
 @media (max-width: 760px) {
-  .dubcoin-page.dubcoin-layout {
+  .case-study-page.case-study-layout {
     display: block;
   }
 
-  .dubcoin-page .dubcoin-sidebar {
+  .case-study-page .case-study-sidebar {
     position: sticky;
     top: var(--nav-height);
     width: 100%;
@@ -529,7 +529,7 @@ html.custom-cursor-active * {
     border-bottom: 1px solid #e2e2e2;
   }
 
-  .dubcoin-page .dubcoin-sidebar nav {
+  .case-study-page .case-study-sidebar nav {
     flex-direction: row;
     align-items: center;
     gap: 16px;
@@ -537,75 +537,75 @@ html.custom-cursor-active * {
     white-space: nowrap;
   }
 
-  .dubcoin-page .dubcoin-sidebar nav > a {
+  .case-study-page .case-study-sidebar nav > a {
     font-size: 10px;
   }
 
-  .dubcoin-page .dubcoin-sidebar .dubcoin-homeLink,
-  .dubcoin-page .dubcoin-sideLabel,
-  .dubcoin-page .dubcoin-backTop {
+  .case-study-page .case-study-sidebar .case-study-homeLink,
+  .case-study-page .case-study-sideLabel,
+  .case-study-page .case-study-backTop {
     display: none !important;
   }
 
-  .dubcoin-page .dubcoin-cover {
+  .case-study-page .case-study-cover {
     height: clamp(245px, 64vw, 430px);
   }
 
-  .dubcoin-page .dubcoin-article {
+  .case-study-page .case-study-article {
     padding: 0 20px 64px;
   }
 
-  .dubcoin-page .dubcoin-intro {
+  .case-study-page .case-study-intro {
     padding: 32px 0 26px;
   }
 
-  .dubcoin-page .dubcoin-intro h1 {
+  .case-study-page .case-study-intro h1 {
     font-size: var(--text-24);
   }
 
-  .dubcoin-page .dubcoin-dek {
+  .case-study-page .case-study-dek {
     font-size: 17px;
   }
 
-  .dubcoin-page .dubcoin-meta {
+  .case-study-page .case-study-meta {
     gap: 16px 12px;
   }
 
-  .dubcoin-page .dubcoin-stats {
+  .case-study-page .case-study-stats {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 16px;
   }
 
-  .dubcoin-page .dubcoin-stats > div:nth-child(3) {
+  .case-study-page .case-study-stats > div:nth-child(3) {
     border-left: 0;
     padding-left: 0;
   }
 
-  .dubcoin-page .dubcoin-stats strong {
+  .case-study-page .case-study-stats strong {
     font-size: 32px;
   }
 
-  .dubcoin-page .dubcoin-section {
+  .case-study-page .case-study-section {
     padding: 48px 0;
   }
 
-  .dubcoin-page .dubcoin-section > h2 {
+  .case-study-page .case-study-section > h2 {
     font-size: var(--text-xl);
   }
 
-  .dubcoin-page .dubcoin-threeCards {
+  .case-study-page .case-study-threeCards {
     grid-template-columns: 1fr;
   }
 
-  .dubcoin-page .dubcoin-threeCards > div {
+  .case-study-page .case-study-threeCards > div {
     min-height: 0;
   }
 
-  .dubcoin-page .dubcoin-dataGrid {
+  .case-study-page .case-study-dataGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .dubcoin-page .dubcoin-decision {
+  .case-study-page .case-study-decision {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 28px 0;
@@ -614,13 +614,13 @@ html.custom-cursor-active * {
 
 /* ============ Reduced motion ============ */
 @media (prefers-reduced-motion: reduce) {
-  .dubcoin-page .dubcoin-sidebar a {
+  .case-study-page .case-study-sidebar a {
     transition: none;
   }
 }
 
 /* Keep the supplied title size above any page heading defaults. */
-.dubcoin-page .dubcoin-intro h1.text-dubcoin-page-title {
+.case-study-page .case-study-intro h1.text-case-study-page-title {
   font-family: var(--font-primary);
   font-size: var(--text-24);
   font-style: normal;
@@ -633,7 +633,7 @@ html.custom-cursor-active * {
 
 /* On wide desktop displays, match the ultra-wide hero's native proportions. */
 @media (min-width: 1600px) {
-  .dubcoin-page .dubcoin-cover {
+  .case-study-page .case-study-cover {
     height: auto;
     aspect-ratio: 2482 / 612;
   }

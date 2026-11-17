@@ -154,7 +154,7 @@ const DECISIONS: Decision[] = [
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-dubcoin-eyebrow">{children}</p>;
+  return <p className="text-case-study-eyebrow">{children}</p>;
 }
 
 function Section({
@@ -169,10 +169,10 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="dubcoin-section" id={id}>
+    <section className="case-study-section" id={id}>
       <Eyebrow>{label}</Eyebrow>
-      <h2 className="text-dubcoin-section-title">{title}</h2>
-      <div className="dubcoin-prose text-dubcoin-body">{children}</div>
+      <h2 className="text-case-study-section-title">{title}</h2>
+      <div className="case-study-prose text-case-study-body">{children}</div>
     </section>
   );
 }
@@ -193,7 +193,7 @@ function Media({
   className?: string;
 }) {
   return (
-    <figure className={`dubcoin-media ${className}`}>
+    <figure className={`case-study-media ${className}`}>
       <Image
         src={src}
         alt={alt}
@@ -210,9 +210,9 @@ export default function DubcoinSystemPage() {
   return (
     <>
       <SiteHeader />
-      <div className="dubcoin-page dubcoin-layout">
+      <div className="case-study-page case-study-layout">
         {/* ---------- Sidebar ---------- */}
-        <aside className="dubcoin-sidebar" aria-label="Case study sections">
+        <aside className="case-study-sidebar" aria-label="Case study sections">
           <nav>
             {sections.map(([id, label]) => (
               <a key={id} href={`#${id}`}>
@@ -220,14 +220,14 @@ export default function DubcoinSystemPage() {
               </a>
             ))}
           </nav>
-          <a className="dubcoin-backTop" href="#top">
+          <a className="case-study-backTop" href="#top">
             ↑ <span>BACK TO TOP</span>
           </a>
         </aside>
 
-        <main className="dubcoin-main" id="top">
+        <main className="case-study-main" id="top">
           {/* ---------- Cover ---------- */}
-          <div className="dubcoin-cover">
+          <div className="case-study-cover">
             <picture>
               <source
                 media="(min-width: 1600px)"
@@ -243,18 +243,18 @@ export default function DubcoinSystemPage() {
             </picture>
           </div>
 
-          <article className="dubcoin-article">
+          <article className="case-study-article">
             {/* ---------- Intro ---------- */}
-            <header className="dubcoin-intro">
-              <h1 className="text-dubcoin-page-title">
+            <header className="case-study-intro">
+              <h1 className="text-case-study-page-title">
                 From a 3-hour Excel line to a DubCoin system
               </h1>
-              <p className="dubcoin-dek">
+              <p className="case-study-dek">
                 A two-part case study: a hacker profile that shipped in 2025, and a
                 data-informed redesign for 2026.
               </p>
 
-              <div className="dubcoin-meta">
+              <div className="case-study-meta">
                 <div>
                   <Eyebrow>Timeline</Eyebrow>
                   <p>
@@ -291,7 +291,7 @@ export default function DubcoinSystemPage() {
             </header>
 
             {/* ---------- Stats ---------- */}
-            <section className="dubcoin-stats" aria-label="Project data">
+            <section className="case-study-dataGrid" aria-label="Project data">
               {impact.map((stat) => (
                 <div key={stat.value}>
                   <strong>{stat.value}</strong>
@@ -342,7 +342,7 @@ export default function DubcoinSystemPage() {
                 The brief came in early July, with design due at the end of August. Tech had a skeleton UI, workshop QR codes, and a database. Design defined the experience and what the backend needed.
               </p>
 
-              <div className="dubcoin-callout">
+              <div className="case-study-callout">
                 <Eyebrow>The brief</Eyebrow>
                 <p>
                   Build a personalized hacker hub that centralizes information,
@@ -370,7 +370,7 @@ export default function DubcoinSystemPage() {
                 We mapped the 2024 flow with context from co-directors Erika and
                 Nolan, and design advisor Meiyao. 
               </p>
-                  <section className="dubcoin-stats" aria-label="Project data">
+                  <section className="case-study-stats" aria-label="Project data">
                     {stats.map((stat) => (
                       <div key={stat.value}>
                         <strong>{stat.value}</strong>
@@ -391,7 +391,7 @@ export default function DubcoinSystemPage() {
                 Three issues stood out:
               </p>
 
-              <div className="dubcoin-threeCards">
+              <div className="case-study-threeCards">
                 <div>
                   <b>Manual</b>
                   <p>Every transaction needed someone to edit a spreadsheet by hand.</p>
@@ -428,7 +428,7 @@ export default function DubcoinSystemPage() {
               <p>
                 The hardest question was how hackers should redeem DubCoins. 
               </p>
-              <p className="dubcoin-note">
+              <p className="case-study-note">
                 Before development, we used a Lovable prototype to help tech and
                 directors react to the direction.
                 Annie built the staff side, Medha
@@ -500,7 +500,7 @@ export default function DubcoinSystemPage() {
                 our assumptions with how hackers actually used the profile.
               </p>
 
-              <div className="dubcoin-dataGrid">
+              <div className="case-study-dataGrid">
                 <div>
                   <strong>1,030</strong>
                   <span>registered hackers</span>
@@ -565,14 +565,14 @@ export default function DubcoinSystemPage() {
               </p>
 
               {DECISIONS.map((d, i) => (
-                <div className="dubcoin-decision" key={d.title}>
-                  <div className="dubcoin-decision-media">
+                <div className="case-study-decision" key={d.title}>
+                  <div className="case-study-decision-media">
                     {d.media.map((m) => (
                       <img key={m.src} src={m.src} alt={m.alt} loading="lazy" />
                     ))}
                   </div>
-                  <div className="dubcoin-decision-text">
-                    <span className="dubcoin-decision-num">
+                  <div className="case-study-decision-text">
+                    <span className="case-study-decision-num">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3>{d.title}</h3>
@@ -581,7 +581,7 @@ export default function DubcoinSystemPage() {
                 </div>
               ))}
 
-              <div className="dubcoin-status">
+              <div className="case-study-status">
                 <Eyebrow>Build status</Eyebrow>
                 <p>
                   Version 2 is designed and entering user testing, but it has not
@@ -643,7 +643,7 @@ export default function DubcoinSystemPage() {
               label="Next steps"
               title="Where it goes from here."
             >
-              <ol className="dubcoin-nextSteps">
+              <ol className="case-study-nextSteps">
                 <li>
                   <span>01</span>
                   <p>User-test the v2 hacker and staff flows during the event. Done actually! Updates incoming</p>
@@ -673,7 +673,7 @@ export default function DubcoinSystemPage() {
               </ol>
             </Section>
 
-            <div className="dubcoin-endnav">
+            <div className="case-study-endnav">
               <Link href="/work">← Back to work</Link>
               <a href="#top">Back to top ↑</a>
             </div>

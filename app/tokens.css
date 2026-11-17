@@ -327,9 +327,9 @@ body {
 }
 
 
-/* DubCoin case-study typography, shared from the site token layer.
+/* Shared case-study typography from the site token layer.
    Metrics match the supplied design specifications. */
-.text-dubcoin-eyebrow {
+.text-case-study-eyebrow {
   margin: 0;
   color: var(--color-pink-500);
   font-family: var(--font-mono);
@@ -341,7 +341,7 @@ body {
   text-transform: uppercase;
 }
 
-.text-dubcoin-body {
+.text-case-study-body {
   color: var(--color-gray-500);
   font-family: var(--font-primary);
   font-size: var(--text-sm);
@@ -351,7 +351,7 @@ body {
   letter-spacing: 0.14px;
 }
 
-.text-dubcoin-section-title {
+.text-case-study-section-title {
   color: var(--color-gray-900);
   font-family: var(--font-primary);
   font-size: var(--text-xl);
@@ -362,8 +362,8 @@ body {
 }
 
 
-/* DubCoin case-study page title, matching the supplied design spec. */
-.text-dubcoin-page-title {
+/* Shared case-study page title. */
+.text-case-study-page-title {
   color: var(--color-gray-900);
   font-family: var(--font-primary);
   font-size: var(--text-24);

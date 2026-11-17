@@ -134,7 +134,7 @@ const REFLECTIONS = [
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-dubcoin-eyebrow">{children}</p>;
+  return <p className="text-case-study-eyebrow">{children}</p>;
 }
 
 function Section({
@@ -149,11 +149,11 @@ function Section({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="dubcoin-section" id={id}>
+    <section className="case-study-section" id={id}>
       <Eyebrow>{label}</Eyebrow>
-      <h2 className="text-dubcoin-section-title">{title}</h2>
+      <h2 className="text-case-study-section-title">{title}</h2>
       {children && (
-        <div className="dubcoin-prose text-dubcoin-body">{children}</div>
+        <div className="case-study-prose text-case-study-body">{children}</div>
       )}
     </section>
   );
@@ -175,7 +175,7 @@ function Media({
   className?: string;
 }) {
   return (
-    <figure className={`dubcoin-media ${className}`}>
+    <figure className={`case-study-media ${className}`}>
       <Image
         src={src}
         alt={alt}
@@ -229,9 +229,9 @@ export default function SpurPage() {
   return (
     <>
       <SiteHeader />
-      <div className="dubcoin-page dubcoin-layout">
+      <div className="case-study-page case-study-layout">
         {/* ---------- Sidebar ---------- */}
-        <aside className="dubcoin-sidebar" aria-label="Case study sections">
+        <aside className="case-study-sidebar" aria-label="Case study sections">
           <nav>
             {sections.map(([id, label]) => (
               <a key={id} href={`#${id}`}>
@@ -239,14 +239,14 @@ export default function SpurPage() {
               </a>
             ))}
           </nav>
-          <a className="dubcoin-backTop" href="#top">
+          <a className="case-study-backTop" href="#top">
             ↑ <span>BACK TO TOP</span>
           </a>
         </aside>
 
-        <main className="dubcoin-main" id="top">
+        <main className="case-study-main" id="top">
           {/* ---------- Cover ---------- */}
-          <div className="dubcoin-cover">
+          <div className="case-study-cover">
             <Image
               src="/images/Spur/spur-hero.png"
               alt="Spur app cover"
@@ -256,14 +256,14 @@ export default function SpurPage() {
             />
           </div>
 
-          <article className="dubcoin-article">
+          <article className="case-study-article">
             {/* ---------- Intro ---------- */}
-            <header className="dubcoin-intro">
-              <h1 className="text-dubcoin-page-title">
+            <header className="case-study-intro">
+              <h1 className="text-case-study-page-title">
                 Turn cluttered saves into creative action
               </h1>
 
-              <div className="dubcoin-meta">
+              <div className="case-study-meta">
                 <div>
                   <Eyebrow>Timeline</Eyebrow>
                   <p>5 months · 2026</p>
@@ -296,7 +296,7 @@ export default function SpurPage() {
             </header>
 
             {/* ---------- Stats ---------- */}
-            <section className="dubcoin-stats" aria-label="Project data">
+            <section className="case-study-stats" aria-label="Project data">
               {impact.map((stat) => (
                 <div key={stat.value}>
                   <strong>{stat.value}</strong>
@@ -349,7 +349,7 @@ export default function SpurPage() {
 
               <h3>What we found.</h3>
 
-              <div className="dubcoin-threeCards">
+              <div className="case-study-threeCards">
                 {FINDINGS.map(({ title, description }) => (
                   <div key={title}>
                     <b>{title}</b>
@@ -454,7 +454,7 @@ export default function SpurPage() {
               label="Reflection"
               title="What we learned, what we'd do differently:"
             >
-              <ol className="dubcoin-nextSteps">
+              <ol className="case-study-nextSteps">
                 {REFLECTIONS.map(({ number, title, description }) => (
                   <li key={number}>
                     <span>{number}</span>
@@ -473,7 +473,7 @@ export default function SpurPage() {
               />
             </Section>
 
-            <div className="dubcoin-endnav">
+            <div className="case-study-endnav">
               <Link href="/work">← Back to work</Link>
               <a href="#top">Back to top ↑</a>
             </div>
