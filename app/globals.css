@@ -256,7 +256,7 @@ html.custom-cursor-active * {
 .case-study-page #final-solution {
   margin: 0 -48px;
   padding: 66px 48px;
-  background: linear-gradient(to bottom, #fff 0%, #000 220px, #000 100%);
+  background: #000;
   border-bottom-color: #333;
 }
 
