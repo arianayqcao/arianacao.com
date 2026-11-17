@@ -409,12 +409,18 @@ html.custom-cursor-active * {
 
 /* ============ Decisions ============ */
 .case-study-page .case-study-decision {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* equal columns */
-  gap: 40px;
-  align-items: start;
-  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  padding: 28px 0;
   border-top: 1px solid #e7e5e2;
+}
+
+.case-study-page .case-study-decisions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
 }
 
 .case-study-page .case-study-decision-media,
@@ -456,6 +462,27 @@ html.custom-cursor-active * {
   margin: 0;
   color: #666;
   font: 400 15px/1.65 var(--font-primary);
+}
+
+.case-study-page .case-study-other-features {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid #e7e5e2;
+}
+
+.case-study-page .case-study-other-features > h3 {
+  margin: 0 0 6px !important;
+  font: 500 18px/1.3 var(--font-primary);
+}
+
+.case-study-page .case-study-other-features-intro {
+  margin: 0 0 8px;
+  color: #777;
+  font: 400 13px/1.5 var(--font-primary);
+}
+
+.case-study-page .case-study-other-features .case-study-decision-text h3 {
+  font-size: 17px;
 }
 
 /* ============ Next steps ============ */
@@ -680,9 +707,12 @@ html.custom-cursor-active * {
   }
 
   .case-study-page .case-study-decision {
+    gap: 14px;
+    padding: 24px 0;
+  }
+
+  .case-study-page .case-study-decisions {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 28px 0;
   }
 }
 

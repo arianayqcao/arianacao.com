@@ -558,7 +558,8 @@ export default function DubcoinSystemPage() {
                 hackathon. Here are the decisions that carry the research forward.
               </p>
 
-              {DECISIONS.map((d, i) => (
+              <div className="case-study-decisions">
+              {DECISIONS.slice(0, 7).map((d, i) => (
                 <div className="case-study-decision" key={d.title}>
                   <div className="case-study-decision-media">
                     {d.media.map((m) => (
@@ -574,6 +575,32 @@ export default function DubcoinSystemPage() {
                   </div>
                 </div>
               ))}
+              </div>
+
+              <div className="case-study-other-features">
+                <h3>Other features</h3>
+                <p className="case-study-other-features-intro">
+                  Additional details that support the experience without shaping its core direction.
+                </p>
+                <div className="case-study-decisions">
+                {DECISIONS.slice(7).map((d, i) => (
+                  <div className="case-study-decision" key={d.title}>
+                    <div className="case-study-decision-media">
+                      {d.media.map((m) => (
+                        <img key={m.src} src={m.src} alt={m.alt} loading="lazy" />
+                      ))}
+                    </div>
+                    <div className="case-study-decision-text">
+                      <span className="case-study-decision-num">
+                        {String(i + 8).padStart(2, "0")}
+                      </span>
+                      <h3>{d.title}</h3>
+                      <p>{d.body}</p>
+                    </div>
+                  </div>
+                ))}
+                </div>
+              </div>
 
               <div className="case-study-status">
                 <Eyebrow>Build status</Eyebrow>
