@@ -54,8 +54,9 @@ export default function BioHeadlineReveal() {
         margin: 0,
       }}
     >
-      Ariana is a product designer with a passion for crafting playful
-      experiences that feel{" "}
+      Ariana is an Informatics student at the University of Washington 
+      crafting playful, quietly delightful experiences where digital 
+      design meets physical interaction.{" "}
       <span className="block md:hidden" aria-hidden="true" />
       <span
         style={{

@@ -139,17 +139,29 @@ const WORDMARKS: Wordmark[] = [
 ];
 
 export default function IntroOverlay() {
+  const [shouldPlay, setShouldPlay] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const stickerRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const wordmarkRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    const storageKey = "arianacao-intro-played";
+    if (sessionStorage.getItem(storageKey)) return;
+
+    // Mark before showing the overlay so Strict Mode remounts and later
+    // client-side visits to the homepage do not replay it.
+    sessionStorage.setItem(storageKey, "true");
+    setShouldPlay(true);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldPlay) return;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [shouldPlay]);
 
   useGSAP(
     () => {
@@ -228,10 +240,10 @@ export default function IntroOverlay() {
     tl.seek(0.1);
 
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [shouldPlay] }
   );
 
-  if (done) return null;
+  if (!shouldPlay || done) return null;
 
   return (
     <div
