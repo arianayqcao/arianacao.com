@@ -558,7 +558,7 @@ export default function DubcoinSystemPage() {
                 hackathon. Here are the decisions that carry the research forward.
               </p>
 
-              <div className="case-study-decisions">
+              <div className="case-study-decisions case-study-decisions-main">
               {DECISIONS.slice(0, 7).map((d, i) => (
                 <div className="case-study-decision" key={d.title}>
                   <div className="case-study-decision-media">
@@ -582,7 +582,7 @@ export default function DubcoinSystemPage() {
                 <p className="case-study-other-features-intro">
                   Additional details that support the experience without shaping its core direction.
                 </p>
-                <div className="case-study-decisions">
+                <div className="case-study-decisions case-study-decisions-other">
                 {DECISIONS.slice(7).map((d, i) => (
                   <div className="case-study-decision" key={d.title}>
                     <div className="case-study-decision-media">
