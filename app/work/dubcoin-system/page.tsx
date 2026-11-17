@@ -251,7 +251,7 @@ export default function DubcoinSystemPage() {
           <article className="case-study-article">
             {/* ---------- Intro ---------- */}
             <header className="case-study-intro">
-              <h1>
+              <h1 className="text-case-study-page-title">
                 From a 3-hour Excel line to a DubCoin system
               </h1>
               <p className="case-study-dek">

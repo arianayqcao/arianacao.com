@@ -822,8 +822,8 @@ html.custom-cursor-active * {
 .case-study-page .case-study-intro h1.text-case-study-page-title {
   font-family: var(--font-primary);
   font-size: var(--text-24);
-  font-style: normal;
-  font-weight: var(--weight-regular);
+  font-style: 600;
+  font-weight: var(--weight-bold);
   line-height: 1.2;
   letter-spacing: 0.24px;
   text-transform: capitalize;
