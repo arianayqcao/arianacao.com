@@ -689,7 +689,6 @@ export default function DubcoinSystemPage() {
 
             <div className="case-study-endnav">
               <Link href="/work">← Back to work</Link>
-              <a href="#top">Back to top ↑</a>
             </div>
           </article>
         </main>
