@@ -295,7 +295,7 @@ export default function DubcoinSystemPage() {
               {impact.map((stat) => (
                 <div key={stat.value}>
                   <strong>{stat.value}</strong>
-                  <p>{stat.label}</p>
+                  <span>{stat.label}</span>
                 </div>
               ))}
             </section>
