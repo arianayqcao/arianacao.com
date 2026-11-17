@@ -319,7 +319,7 @@ export default function DubcoinSystemPage() {
                 alt="Line of hackers waiting for prize redemption from 2024"
                 caption="Hackers waited in long lines for prize redemption."
               />
-              
+
               <p>
                 Lines wrapped around room, and some prizes ran out before people reached the table. 
                 According to directors, it was the biggest pain point of 2024.
@@ -550,7 +550,7 @@ export default function DubcoinSystemPage() {
             {/* ---------- Final Solution ---------- */}
             <Section
               id="final-solution"
-              label="Final Solution · 2026 redesign"
+              label="Final Solution"
               title="Same problem, simpler bet: hackers show a code or username; staff scan or search."
             >
               <p>
@@ -666,6 +666,26 @@ export default function DubcoinSystemPage() {
                 </li>
               </ol>
             </Section>
+
+            <Link className="case-study-nextProject" href="/work/spur">
+              <div className="case-study-nextProject-copy">
+                <Eyebrow>Check out next</Eyebrow>
+                <h2>Spur</h2>
+                <p>
+                  Turning cluttered saves into creative action with a workspace
+                  built for inspiration.
+                </p>
+                <span>View case study <span aria-hidden="true">↗</span></span>
+              </div>
+              <div className="case-study-nextProject-image">
+                <Image
+                  src="/images/Spur/spur-hero.png"
+                  alt="Preview of the Spur creative inspiration app case study"
+                  fill
+                  sizes="(max-width: 760px) 100vw, 320px"
+                />
+              </div>
+            </Link>
 
             <div className="case-study-endnav">
               <Link href="/work">← Back to work</Link>

@@ -473,6 +473,26 @@ export default function SpurPage() {
               />
             </Section>
 
+            <Link className="case-study-nextProject" href="/work/dubcoin-system">
+              <div className="case-study-nextProject-copy">
+                <Eyebrow>Check out next</Eyebrow>
+                <h2>DubCoin</h2>
+                <p>
+                  Redesigning a hackathon reward system around faster, more
+                  reliable prize redemption.
+                </p>
+                <span>View case study <span aria-hidden="true">↗</span></span>
+              </div>
+              <div className="case-study-nextProject-image">
+                <Image
+                  src="/images/DubCoin/dubcoins-case-study-hero.webp"
+                  alt="Preview of the DubCoin reward system case study"
+                  fill
+                  sizes="(max-width: 760px) 100vw, 320px"
+                />
+              </div>
+            </Link>
+
             <div className="case-study-endnav">
               <Link href="/work">← Back to work</Link>
               <a href="#top">Back to top ↑</a>
