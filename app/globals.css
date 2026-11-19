@@ -82,7 +82,7 @@ html.custom-cursor-active * {
   min-width: 199px;
   height: 100vh;
   margin-top: calc(-1 * var(--nav-height));
-  padding: calc(var(--nav-height) + 24px) 18px 20px;
+  padding: 16px 16px 20px;
   border-right: 1px solid #e2e2e2;
   display: flex;
   flex-direction: column;
@@ -124,8 +124,13 @@ html.custom-cursor-active * {
 
 .case-study-page .case-study-homeLink {
   background: #edecea;
-  padding: 0 4px;
+  padding: 0;
   border-radius: 2px;
+}
+
+.case-study-page .case-study-sidebar .case-study-homeLink img {
+  width: 24px;
+  height: 24px;
 }
 
 .case-study-page .case-study-sidebar nav a {
