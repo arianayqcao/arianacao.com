@@ -86,7 +86,7 @@ html.custom-cursor-active * {
   border-right: 1px solid #e2e2e2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: color-mix(in srgb, white calc(100% - var(--final-solution-progress, 0%)), black var(--final-solution-progress, 0%));
   z-index: 2;
   transition: color 80ms linear, border-color 80ms linear;
@@ -120,6 +120,10 @@ html.custom-cursor-active * {
   align-items: center;
   gap: 6px;
   color: #666;
+}
+
+.case-study-page .case-study-sidebar .case-study-backTop {
+  margin-top: auto;
 }
 
 .case-study-page .case-study-homeLink {
@@ -269,8 +273,13 @@ html.custom-cursor-active * {
 .case-study-page #final-solution > h2,
 .case-study-page #final-solution .case-study-prose,
 .case-study-page #final-solution .case-study-prose strong,
-.case-study-page #final-solution .case-study-prose h3 {
+.case-study-page #final-solution .case-study-prose h3,
+.case-study-page #final-solution .case-study-prose h4 {
   color: #fff;
+}
+
+.case-study-page #final-solution .case-study-prose p {
+  color: #b3b3b3;
 }
 
 .case-study-page #final-solution .case-study-decision,

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import CaseStudyScrollFade from "@/components/CaseStudyScrollFade";
 
 const sections = [
   ["context", "Context"],
@@ -9,7 +10,7 @@ const sections = [
   ["insights", "Insights"],
   ["ideation", "Ideation"],
   ["iteration", "Iteration"],
-  ["solution", "Solution"],
+  ["final-solution", "Solution"],
   ["reflection", "Reflection"],
 ] as const;
 
@@ -230,6 +231,7 @@ export default function SpurPage() {
     <>
       <SiteHeader />
       <div className="case-study-page case-study-layout">
+        <CaseStudyScrollFade />
         {/* ---------- Sidebar ---------- */}
         <aside className="case-study-sidebar" aria-label="Case study sections">
           <nav>
@@ -316,7 +318,7 @@ export default function SpurPage() {
                 return to what we saved.
               </p>
               <p>
-                <a href="#solution">Jump to final design →</a>
+                <a href="#final-solution">Jump to final design →</a>
               </p>
             </Section>
 
@@ -427,7 +429,7 @@ export default function SpurPage() {
             </Section>
 
             {/* ---------- Solution ---------- */}
-            <Section id="solution" label="Solution" title="Spur, in full.">
+            <Section id="final-solution" label="Solution" title="Spur, in full.">
               <p>
                 Spur brings saving, searching, and creating into one workspace,
                 so inspiration turns into action instead of disappearing into a

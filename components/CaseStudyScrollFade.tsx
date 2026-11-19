@@ -12,9 +12,11 @@ export default function CaseStudyScrollFade() {
     const update = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const top = section.getBoundingClientRect().top;
+        const bounds = section.getBoundingClientRect();
         const fadeDistance = Math.min(window.innerHeight * 0.65, 520);
-        const progress = Math.max(0, Math.min(1, (fadeDistance - top) / fadeDistance));
+        const entering = Math.max(0, Math.min(1, (fadeDistance - bounds.top) / fadeDistance));
+        const leaving = Math.max(0, Math.min(1, (bounds.bottom + fadeDistance) / fadeDistance));
+        const progress = Math.min(entering, leaving);
         page.style.setProperty("--final-solution-progress", `${(progress * 100).toFixed(1)}%`);
       });
     };
