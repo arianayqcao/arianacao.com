@@ -184,9 +184,9 @@ html.custom-cursor-active * {
 
 /* ============ Article + intro ============ */
 .case-study-page .case-study-article {
-  width: min(100%, 1200px);
+  width: min(75%, 1200px);
   margin: 0 auto;
-  padding: 0 48px 96px;
+  padding: 0 0 96px;
 }
 
 .case-study-page .case-study-intro {
@@ -675,7 +675,7 @@ html.custom-cursor-active * {
   }
 
   .case-study-page .case-study-article {
-    padding-inline: 32px;
+    width: min(75%, 1200px);
   }
 
   .case-study-page .case-study-meta {
@@ -738,6 +738,7 @@ html.custom-cursor-active * {
   }
 
   .case-study-page .case-study-article {
+    width: 100%;
     padding: 0 20px 64px;
   }
 
