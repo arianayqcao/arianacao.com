@@ -260,7 +260,6 @@ const LOVES = [
 const LOVE_PHOTOS: Record<string, string[]> = {
   "Stardew Valley": ["stardew-valley.png"],
   "coloring books": [
-    "blanket-coloring-book.jpg",
     "farmers-market-coloring-book.jpg",
   ],
   Minato: ["minato.jpg"],
@@ -294,6 +293,22 @@ const LOVE_PHOTO_DIMENSIONS: Record<string, [number, number]> = {
   "anjelina-telephone-booth.jpeg": [806, 538],
   "lauren-grad.JPG": [3648, 2736],
   "hello-world-venmo-arduino.gif": [400, 711],
+};
+
+const LOVE_PHOTO_LAYOUT: Record<string, { left: number; top: number; width: number; rotate: number }> = {
+  "stardew-valley.png": { left: 57, top: 4, width: 27, rotate: 1 },
+  "farmers-market-coloring-book.jpg": { left: 80, top: 20, width: 17, rotate: -2 },
+  "minato.jpg": { left: 69, top: 40, width: 17, rotate: 2 },
+  "paint-the-town.gif": { left: 37, top: 66, width: 13, rotate: 1 },
+  "anything-goes.jpg": { left: 8, top: 50, width: 17, rotate: -1 },
+  "pnb-curtain.jpg": { left: 34, top: 48, width: 18, rotate: 1 },
+  "jonny-xian.jpg": { left: 17, top: 17, width: 27, rotate: -2 },
+  "meiyao-ballet-candid.jpg": { left: 45, top: 26, width: 29, rotate: 1 },
+  "the-cut-candid.JPG": { left: 52, top: 58, width: 25, rotate: -1 },
+  "anjelina-scarf-yellow.jpeg": { left: 79, top: 52, width: 15, rotate: 2 },
+  "anjelina-telephone-booth.jpeg": { left: 3, top: 31, width: 17, rotate: 1 },
+  "lauren-grad.JPG": { left: 63, top: 76, width: 25, rotate: -2 },
+  "hello-world-venmo-arduino.gif": { left: 21, top: 66, width: 13, rotate: -1 },
 };
 
 /* ─── page ──────────────────────────────────────────────────────── */
@@ -692,18 +707,26 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* media carousel */}
+              {/* media collage */}
               <div className="shrink-0 w-full md:flex-1 md:min-w-0">
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+                <div className="relative h-[470px] w-full md:h-[520px]">
                   {Object.entries(LOVE_PHOTOS).flatMap(([love, files]) =>
-                    files.map((file) => {
+                    files.map((file, i) => {
                       const offset = photoOffsets[file] ?? { x: 0, y: 0 };
+                      const layout = LOVE_PHOTO_LAYOUT[file];
 
                       return (
                         <div
                           key={`${love}-${file}`}
-                          className={`relative aspect-[4/3] overflow-hidden select-none ${draggingPhoto === file ? "z-20 cursor-grabbing" : "cursor-grab"}`}
-                          style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, touchAction: "none" }}
+                          className={`absolute select-none ${draggingPhoto === file ? "cursor-grabbing" : "cursor-grab"}`}
+                          style={{
+                            left: `${layout.left}%`,
+                            top: `${layout.top}%`,
+                            width: `${layout.width}%`,
+                            zIndex: draggingPhoto === file ? 50 : i + 1,
+                            transform: `translate(${offset.x}px, ${offset.y}px) rotate(${layout.rotate}deg)`,
+                            touchAction: "none",
+                          }}
                           onPointerDown={(event) => {
                             event.currentTarget.setPointerCapture(event.pointerId);
                             photoDrag.current = { file, x: event.clientX, y: event.clientY, offsetX: offset.x, offsetY: offset.y };
@@ -732,7 +755,7 @@ export default function Home() {
                             width={LOVE_PHOTO_DIMENSIONS[file][0]}
                             height={LOVE_PHOTO_DIMENSIONS[file][1]}
                             draggable={false}
-                            className="h-full w-full object-contain pointer-events-none"
+                            className="block h-auto w-full pointer-events-none shadow-lg"
                           />
                         </div>
                       );
