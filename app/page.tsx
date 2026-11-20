@@ -692,7 +692,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* portrait */}
+              {/* media carousel */}
               <div className="shrink-0 w-full md:flex-1 md:min-w-0">
                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                   {Object.entries(LOVE_PHOTOS).flatMap(([love, files]) =>
@@ -702,7 +702,7 @@ export default function Home() {
                       return (
                         <div
                           key={`${love}-${file}`}
-                          className={`relative aspect-[4/3] overflow-hidden bg-white shadow-lg select-none ${draggingPhoto === file ? "z-20 cursor-grabbing" : "cursor-grab"}`}
+                          className={`relative aspect-[4/3] overflow-hidden select-none ${draggingPhoto === file ? "z-20 cursor-grabbing" : "cursor-grab"}`}
                           style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, touchAction: "none" }}
                           onPointerDown={(event) => {
                             event.currentTarget.setPointerCapture(event.pointerId);
