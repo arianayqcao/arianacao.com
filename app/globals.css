@@ -6,6 +6,11 @@
   to   { transform: translateX(-50%); }
 }
 
+::selection {
+  background: text-lime-600;
+}
+
+
 /* GSAP SplitText line masks: clip per-line so multi-line char reveals
    (see components/BioHeadlineReveal.tsx) don't overflow vertically. */
 .split-line {
