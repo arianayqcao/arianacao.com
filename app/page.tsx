@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import IntroOverlay from "@/components/IntroOverlay";
@@ -299,7 +299,9 @@ const LOVE_PHOTO_DIMENSIONS: Record<string, [number, number]> = {
 /* ─── page ──────────────────────────────────────────────────────── */
 
 export default function Home() {
-  const [activeLove, setActiveLove] = useState<string | null>(null);
+  const [photoOffsets, setPhotoOffsets] = useState<Record<string, { x: number; y: number }>>({});
+  const [draggingPhoto, setDraggingPhoto] = useState<string | null>(null);
+  const photoDrag = useRef<{ file: string; x: number; y: number; offsetX: number; offsetY: number } | null>(null);
 
   return (
     <>
@@ -369,7 +371,7 @@ export default function Home() {
 
           {/* ── CASE STUDIES ─────────────────────────────────────── */}
           <section
-            className="flex items-start justify-center w-full pb-4 md:pb-12"
+            className="flex items-start justify-center w-full pb-4 md:pb-32"
             style={{ paddingInline: 16, paddingTop: 16 }}
           >
             <div
@@ -456,8 +458,8 @@ export default function Home() {
 
           {/* ── ABOUT ────────────────────────────────────────────── */}
           <section
-            className="flex flex-col items-start w-full pb-4 md:pb-12"
-            style={{ padding: 16 }}
+            className="flex flex-col items-start w-full pb-4 md:pb-16"
+            style={{ padding: 128 }}
           >
             <div
               className="flex flex-col md:flex-row items-start w-full"
@@ -517,15 +519,24 @@ export default function Home() {
                 className="hidden md:block self-stretch shrink-0 bg-white"
                 style={{ width: 223 }}
               />
+
+              {/* photo */}
+              <div
+                className="w-1/2 md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden max-h-[80vh]"
+                style={{ aspectRatio: "3 / 2" }}
+              >
+                <Image src="/images/ariana-in-davis-pointing-at-cows.jpg" alt="Ariana Cao in Davis pointing at cows!" fill className="object-cover" />
+              </div>
             </div>
+
           </section>
 
           {/* ── LOGO STRIP ───────────────────────────────────────── */}
           <section
             className="flex flex-col items-start w-full overflow-hidden"
-            style={{ padding: 16 }}
+            style={{ padding: 128 }}
           >
-            <div className="overflow-hidden w-full">
+            <div className="overflow-visible w-full">
               <div
                 className="flex items-center shrink-0"
                 style={{
@@ -671,8 +682,6 @@ export default function Home() {
                     {LOVES.map((item) => (
                       <span
                         key={item}
-                        onMouseEnter={() => setActiveLove(item)}
-                        onFocus={() => setActiveLove(item)}
                         tabIndex={0}
                         className="cursor-pointer hover:text-lime-600 focus:text-lime-600"
                       >
@@ -684,35 +693,48 @@ export default function Home() {
               </div>
 
               {/* portrait */}
-              <div
-                className="relative shrink-0 w-full md:flex-1 md:min-w-0"
-                style={{ minHeight: 546 }}
-              >
-                <div className="absolute inset-0 bg-[#f5f4f0]">
+              <div className="shrink-0 w-full md:flex-1 md:min-w-0">
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
                   {Object.entries(LOVE_PHOTOS).flatMap(([love, files]) =>
-                    files.map((file, i) => {
-                      const isActive = activeLove === love;
+                    files.map((file) => {
+                      const offset = photoOffsets[file] ?? { x: 0, y: 0 };
 
                       return (
-                        <Image
+                        <div
                           key={`${love}-${file}`}
-                          src={`/for-portfolio-about/${file}`}
-                          alt={file.replace(/[-.].*/, "").replaceAll("-", " ")}
-                          width={LOVE_PHOTO_DIMENSIONS[file][0]}
-                          height={LOVE_PHOTO_DIMENSIONS[file][1]}
-                          className="absolute h-auto max-w-none shadow-lg transition-all duration-500"
-                          style={{
-                            width: `${24 + (i % 3) * 4}%`,
-                            left: `${(i * 37) % 73}%`,
-                            top: `${(i * 53) % 66}%`,
-                            transform: `rotate(${
-                              (i % 2 ? 1 : -1) * (3 + (i % 7))
-                            }deg)`,
-                            opacity: activeLove === null || isActive ? 1 : 0.55,
-                            zIndex: isActive ? 30 : i + 1,
-                            scale: isActive ? "1.18" : "1",
+                          className={`relative aspect-[4/3] overflow-hidden bg-white shadow-lg select-none ${draggingPhoto === file ? "z-20 cursor-grabbing" : "cursor-grab"}`}
+                          style={{ transform: `translate(${offset.x}px, ${offset.y}px)`, touchAction: "none" }}
+                          onPointerDown={(event) => {
+                            event.currentTarget.setPointerCapture(event.pointerId);
+                            photoDrag.current = { file, x: event.clientX, y: event.clientY, offsetX: offset.x, offsetY: offset.y };
+                            setDraggingPhoto(file);
                           }}
-                        />
+                          onPointerMove={(event) => {
+                            const drag = photoDrag.current;
+                            if (!drag || drag.file !== file) return;
+                            setPhotoOffsets((current) => ({
+                              ...current,
+                              [file]: { x: drag.offsetX + event.clientX - drag.x, y: drag.offsetY + event.clientY - drag.y },
+                            }));
+                          }}
+                          onPointerUp={() => {
+                            photoDrag.current = null;
+                            setDraggingPhoto(null);
+                          }}
+                          onPointerCancel={() => {
+                            photoDrag.current = null;
+                            setDraggingPhoto(null);
+                          }}
+                        >
+                          <Image
+                            src={`/for-portfolio-about/${file}`}
+                            alt={file.replace(/[-.].*/, "").replaceAll("-", " ")}
+                            width={LOVE_PHOTO_DIMENSIONS[file][0]}
+                            height={LOVE_PHOTO_DIMENSIONS[file][1]}
+                            draggable={false}
+                            className="h-full w-full object-contain pointer-events-none"
+                          />
+                        </div>
                       );
                     })
                   )}
