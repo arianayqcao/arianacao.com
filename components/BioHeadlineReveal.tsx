@@ -68,7 +68,7 @@ export default function BioHeadlineReveal() {
       >
         playful
       </span> */}
-      ,{" "}
+      {/* ,{" "} */}
       {/* <span className="block md:hidden" aria-hidden="true" /> */}
       {/* <span
         style={{
@@ -80,9 +80,9 @@ export default function BioHeadlineReveal() {
       >
         inclusive
       </span> */}
-      ,&nbsp;
+      {/* ,&nbsp; */}
       {/* <span className="block md:hidden" aria-hidden="true" /> */}
-      and{" "}
+      {/* and{" "} */}
       {/* <span
         style={{
           textDecoration: "underline",
@@ -93,7 +93,7 @@ export default function BioHeadlineReveal() {
       >
         quietly delightful
       </span> */}
-      .
+      {/* . */}
     </p>
   );
 }
