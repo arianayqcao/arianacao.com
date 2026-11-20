@@ -555,29 +555,37 @@ export default function Home() {
             className="flex flex-col items-start w-full overflow-hidden"
             style={{ padding: 128 }}
           >
-            <div className="overflow-visible w-full">
+            <div className="overflow-hidden w-full">
               <div
                 className="flex items-center shrink-0"
                 style={{
-                  gap: 64,
+                  width: "max-content",
                   height: 28,
                   animation: "marquee 30s linear infinite",
-                  width: "max-content",
                 }}
               >
-                {[...LOGOS, ...LOGOS].map(({ name, src }, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={i}
-                    src={src}
-                    alt={name}
-                    style={{
-                      height: 24,
-                      width: "auto",
-                      opacity: 1,
-                      userSelect: "none",
-                    }}
-                  />
+                {[0, 1].map((group) => (
+                  <div
+                    className="flex items-center shrink-0"
+                    key={group}
+                    aria-hidden={group === 1}
+                    style={{ gap: 64, paddingRight: 64 }}
+                  >
+                    {LOGOS.map(({ name, src }, i) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        key={`${group}-${i}`}
+                        src={src}
+                        alt={group === 0 ? name : ""}
+                        style={{
+                          height: 24,
+                          width: "auto",
+                          opacity: 1,
+                          userSelect: "none",
+                        }}
+                      />
+                    ))}
+                  </div>
                 ))}
               </div>
             </div>

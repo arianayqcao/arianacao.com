@@ -26,7 +26,7 @@ export default function HeroTitleReveal({ text }: { text: string }) {
         duration: 0.6,
         ease: "circ.out",
         stagger: 0.02,
-        delay: INTRO_REVEAL_DELAY,
+        delay: INTRO_REVEAL_DELAY + 0.6,
       });
 
       return () => split.revert();
