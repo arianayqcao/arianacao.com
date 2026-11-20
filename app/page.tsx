@@ -210,12 +210,42 @@ const PRACTICES = [
 const LOVES = [
   "Stardew Valley", "coloring books", "Minato",
   "Paint the Town", "lilies", "live theatre",
-  "Terraria", "audiobooks", "candid photos",
+  "Terraria", "audiobooks", "candid photos", 
+  "apples", "leaving google maps reviews", 
+  "collecting the Stranger Magazines", "photography", 
+  "the hungry caterpillar", "physical computing",
 ];
+
+const LOVE_PHOTOS: Record<string, string[]> = {
+  "Stardew Valley": ["stardew-valley.png"], "coloring books": ["blanket-coloring-book.jpg", "farmers-market-coloring-book.jpg"], Minato: ["minato.jpg"],
+  "Paint the Town": ["paint-the-town.gif"], "live theatre": ["anything-goes.jpg", "pnb-curtain.jpg"],
+  "candid photos": ["jonny-xian.jpg", "meiyao-ballet-candid.jpg", "the-cut-candid.JPG"],
+  photography: ["anjelina-scarf-yellow.jpeg", "anjelina-telephone-booth.jpeg", "lauren-grad.JPG"],
+  "physical computing": ["hello-world-venmo-arduino.gif"],
+};
+
+const LOVE_PHOTO_DIMENSIONS: Record<string, [number, number]> = {
+  "stardew-valley.png": [1500, 844],
+  "blanket-coloring-book.jpg": [2268, 4032],
+  "farmers-market-coloring-book.jpg": [2268, 2979],
+  "minato.jpg": [2268, 4032],
+  "paint-the-town.gif": [400, 711],
+  "anything-goes.jpg": [2268, 4032],
+  "pnb-curtain.jpg": [3072, 3599],
+  "jonny-xian.jpg": [4032, 3024],
+  "meiyao-ballet-candid.jpg": [3648, 2736],
+  "the-cut-candid.JPG": [3872, 2592],
+  "anjelina-scarf-yellow.jpeg": [806, 1208],
+  "anjelina-telephone-booth.jpeg": [806, 538],
+  "lauren-grad.JPG": [3648, 2736],
+  "hello-world-venmo-arduino.gif": [400, 711],
+};
 
 /* ─── page ──────────────────────────────────────────────────────── */
 
 export default function Home() {
+  const [activeLove, setActiveLove] = useState<string | null>(null);
+
   return (
     <>
       <IntroOverlay />
@@ -392,13 +422,6 @@ export default function Home() {
               {/* 1/3 spacer */}
               <div className="hidden md:block self-stretch shrink-0 bg-white" style={{ width: 223 }} />
 
-              {/* photo */}
-              <div
-                className="w-1/2 md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden max-h-[80vh]"
-                style={{ aspectRatio: "36 / 45" }}
-              >
-                <Image src="/images/ariana-holding-flowers.png" alt="Ariana Cao holding flowers" fill className="object-cover" />
-              </div>
             </div>
           </section>
 
@@ -543,7 +566,7 @@ export default function Home() {
                     }}
                   >
                     {LOVES.map((item) => (
-                      <span key={item}>{item}</span>
+                      <span key={item} onMouseEnter={() => setActiveLove(item)} onFocus={() => setActiveLove(item)} tabIndex={0} className="cursor-pointer hover:text-lime-600 focus:text-lime-600">{item}</span>
                     ))}
                   </div>
                 </div>
@@ -551,10 +574,34 @@ export default function Home() {
 
               {/* portrait */}
               <div
-                className="relative rounded-sm overflow-hidden shrink-0 w-full md:w-[411px]"
-                style={{ aspectRatio: "411 / 546" }}
+                className="relative shrink-0 w-full md:flex-1 md:min-w-0"
+                style={{ minHeight: 546 }}
               >
-                <Image src="/images/lilies.png" alt="Lilies" fill className="object-cover" />
+                <div className="absolute inset-0 bg-[#f5f4f0]">
+                  {Object.entries(LOVE_PHOTOS).flatMap(([love, files]) => files.map((file, i) => {
+                    const isActive = activeLove === love;
+
+                    return (
+                      <Image
+                        key={`${love}-${file}`}
+                        src={`/for-portfolio-about/${file}`}
+                        alt={file.replace(/[-.].*/, "").replaceAll("-", " ")}
+                        width={LOVE_PHOTO_DIMENSIONS[file][0]}
+                        height={LOVE_PHOTO_DIMENSIONS[file][1]}
+                        className="absolute h-auto max-w-none shadow-lg transition-all duration-500"
+                        style={{
+                          width: `${24 + (i % 3) * 4}%`,
+                          left: `${(i * 37) % 73}%`,
+                          top: `${(i * 53) % 66}%`,
+                          transform: `rotate(${(i % 2 ? 1 : -1) * (3 + i % 7)}deg)`,
+                          opacity: activeLove === null || isActive ? 1 : .55,
+                          zIndex: isActive ? 30 : i + 1,
+                          scale: isActive ? "1.18" : "1",
+                        }}
+                      />
+                    );
+                  }))}
+                </div>
               </div>
             </div>
           </section>
