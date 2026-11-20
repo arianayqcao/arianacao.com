@@ -540,7 +540,11 @@ export default function Home() {
                 className="w-1/2 md:flex-1 md:min-w-0 relative rounded-sm overflow-hidden max-h-[80vh]"
                 style={{ aspectRatio: "3 / 2" }}
               >
-                <Image src="/images/ariana-in-davis-pointing-at-cows.jpg" alt="Ariana Cao in Davis pointing at cows!" fill className="object-cover" />
+                <Image 
+                  src="/images/ariana-in-davis-pointing-at-cows.jpg" 
+                  alt="Ariana Cao in Davis pointing at cows!" 
+                  fill className="object-cover" 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               </div>
             </div>
 
