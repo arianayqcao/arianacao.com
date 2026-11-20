@@ -42,7 +42,9 @@ function FeaturedCoverCard({
   const [isHovering, setIsHovering] = useState(false);
   const comingSoon = card.cursor === "coming-soon";
 
-  const className = `group relative block overflow-hidden rounded w-full ${card.heightPx ? "" : "case-study-card"} ${gridClassName}`;
+  const className = `group relative block overflow-hidden rounded w-full ${
+    card.heightPx ? "" : "case-study-card"
+  } ${gridClassName}`;
   const style = {
     background: card.bg,
     height: card.heightPx,
@@ -50,9 +52,24 @@ function FeaturedCoverCard({
     ...(card.heightPx ? {} : { "--card-aspect-desktop": card.aspectRatio }),
   } as React.CSSProperties;
 
-  const eyebrowColor = !card.disableHoverTextChange && isHovering && card.textDark ? "rgba(255,255,255,0.5)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)";
-  const titleColor = !card.disableHoverTextChange && isHovering && card.textDark ? "#fff" : card.textDark ? "#000" : "#fff";
-  const descriptionColor = !card.disableHoverTextChange && isHovering && card.textDark ? "rgba(255,255,255,0.7)" : card.textDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)";
+  const eyebrowColor =
+    !card.disableHoverTextChange && isHovering && card.textDark
+      ? "rgba(255,255,255,0.5)"
+      : card.textDark
+      ? "rgba(0,0,0,0.5)"
+      : "rgba(255,255,255,0.5)";
+  const titleColor =
+    !card.disableHoverTextChange && isHovering && card.textDark
+      ? "#fff"
+      : card.textDark
+      ? "#000"
+      : "#fff";
+  const descriptionColor =
+    !card.disableHoverTextChange && isHovering && card.textDark
+      ? "rgba(255,255,255,0.7)"
+      : card.textDark
+      ? "rgba(0,0,0,0.5)"
+      : "rgba(255,255,255,0.7)";
 
   const content = (
     <>
@@ -106,8 +123,10 @@ function FeaturedCoverCard({
 
   if (comingSoon) {
     return (
-      <div 
-        data-cursor={card.cursor} className={className} style={style}
+      <div
+        data-cursor={card.cursor}
+        className={className}
+        style={style}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
@@ -117,8 +136,11 @@ function FeaturedCoverCard({
   }
 
   return (
-    <Link 
-      href={card.href} data-cursor={card.cursor} className={className} style={style}
+    <Link
+      href={card.href}
+      data-cursor={card.cursor}
+      className={className}
+      style={style}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -127,13 +149,16 @@ function FeaturedCoverCard({
   );
 }
 
-const DARK_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 100%)";
-const LIGHT_GRADIENT = "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.06) 100%)";
+const DARK_GRADIENT =
+  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 100%)";
+const LIGHT_GRADIENT =
+  "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.06) 100%)";
 
 const SPUR_CARD: FeaturedCard = {
   eyebrow: "Design for America · 2026",
   title: "Spur",
-  description: "Creative inspiration is often saved impulsively, quickly forgotten, and turns into digital clutter. Won DFA Best Research-Driven Impact Award.",
+  description:
+    "Creative inspiration is often saved impulsively, quickly forgotten, and turns into digital clutter. Won DFA Best Research-Driven Impact Award.",
   href: "/work/spur",
   cursor: "view-case-study",
   bg: "var(--primitive-black)",
@@ -147,7 +172,8 @@ const SPUR_CARD: FeaturedCard = {
 const DUBCOIN_CARD: FeaturedCard = {
   eyebrow: "DubHacks · 2026",
   title: "DubCoin Reward System",
-  description: "Redesigning the DubCoin experience and DubCoin distribution system.",
+  description:
+    "Redesigning the DubCoin experience and DubCoin distribution system.",
   href: "/work/dubcoin-system",
   cursor: "view-case-study",
   bg: "var(--primitive-hot-pink)",
@@ -201,26 +227,55 @@ const LOGOS = [
 /* ─── skills data ───────────────────────────────────────────────── */
 
 const PRACTICES = [
-  { label: "UI / UX Design",          tools: ["Figma", "Lovable", "Claude Design"] },
-  { label: "Graphic Design",          tools: ["Photoshop", "Illustrator"] },
-  { label: "Front End Development",   tools: ["Claude Code", "GSAP", "React", "Tailwind CSS"] },
-  { label: "2D / 3D Animation",       tools: ["After Effects", "Jitter", "Blender", "Maya"] },
+  { label: "UI / UX Design", tools: ["Figma", "Lovable", "Claude Design"] },
+  { label: "Graphic Design", tools: ["Photoshop", "Illustrator"] },
+  {
+    label: "Front End Development",
+    tools: ["Claude Code", "GSAP", "React", "Tailwind CSS"],
+  },
+  {
+    label: "2D / 3D Animation",
+    tools: ["After Effects", "Jitter", "Blender", "Maya"],
+  },
 ];
 
 const LOVES = [
-  "Stardew Valley", "coloring books", "Minato",
-  "Paint the Town", "lilies", "live theatre",
-  "Terraria", "audiobooks", "candid photos", 
-  "apples", "leaving google maps reviews", 
-  "collecting the Stranger Magazines", "photography", 
-  "the hungry caterpillar", "physical computing",
+  "Stardew Valley",
+  "coloring books",
+  "Minato",
+  "Paint the Town",
+  "lilies",
+  "live theatre",
+  "Terraria",
+  "audiobooks",
+  "candid photos",
+  "apples",
+  "leaving google maps reviews",
+  "collecting the Stranger Magazines",
+  "photography",
+  "the hungry caterpillar",
+  "physical computing",
 ];
 
 const LOVE_PHOTOS: Record<string, string[]> = {
-  "Stardew Valley": ["stardew-valley.png"], "coloring books": ["blanket-coloring-book.jpg", "farmers-market-coloring-book.jpg"], Minato: ["minato.jpg"],
-  "Paint the Town": ["paint-the-town.gif"], "live theatre": ["anything-goes.jpg", "pnb-curtain.jpg"],
-  "candid photos": ["jonny-xian.jpg", "meiyao-ballet-candid.jpg", "the-cut-candid.JPG"],
-  photography: ["anjelina-scarf-yellow.jpeg", "anjelina-telephone-booth.jpeg", "lauren-grad.JPG"],
+  "Stardew Valley": ["stardew-valley.png"],
+  "coloring books": [
+    "blanket-coloring-book.jpg",
+    "farmers-market-coloring-book.jpg",
+  ],
+  Minato: ["minato.jpg"],
+  "Paint the Town": ["paint-the-town.gif"],
+  "live theatre": ["anything-goes.jpg", "pnb-curtain.jpg"],
+  "candid photos": [
+    "jonny-xian.jpg",
+    "meiyao-ballet-candid.jpg",
+    "the-cut-candid.JPG",
+  ],
+  photography: [
+    "anjelina-scarf-yellow.jpeg",
+    "anjelina-telephone-booth.jpeg",
+    "lauren-grad.JPG",
+  ],
   "physical computing": ["hello-world-venmo-arduino.gif"],
 };
 
@@ -251,7 +306,6 @@ export default function Home() {
       <IntroOverlay />
 
       <div className="bg-white flex flex-col items-center min-h-screen">
-
         {/* ══ HEADER ════════════════════════════════════════════════ */}
         <SiteHeader />
 
@@ -260,7 +314,6 @@ export default function Home() {
           className="flex flex-col items-center w-full"
           style={{ gap: "var(--space-0)" }}
         >
-
           {/* ── HERO ─────────────────────────────────────────────── */}
           <section
             className="flex items-start justify-center w-full max-h-[90dvh] md:min-h-0"
@@ -268,12 +321,22 @@ export default function Home() {
           >
             <div
               className="flex flex-col items-center gap-0 md:gap-2"
-              style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+              style={{
+                maxWidth: "var(--max-width-content)",
+                width: "100%",
+                margin: "0 auto",
+              }}
             >
               <HeroTitleReveal text="ariana cao." />
               <div
                 className="mt-6 md:mt-[-40px]"
-                style={{ width: 575, maxWidth: "100%", height: 510, marginBottom: -80, marginInline: "auto" }}
+                style={{
+                  width: 575,
+                  maxWidth: "100%",
+                  height: 510,
+                  marginBottom: -80,
+                  marginInline: "auto",
+                }}
               >
                 <AppleInteractive />
               </div>
@@ -286,15 +349,20 @@ export default function Home() {
             className="flex flex-col items-center w-full"
             style={{ padding: 16 }}
           >
-
             <div
               className="flex flex-col w-full md:w-1/2"
-              style={{ maxWidth: "var(--max-width-content)", gap: 24, margin: "0 auto" }}
+              style={{
+                maxWidth: "var(--max-width-content)",
+                gap: 24,
+                margin: "0 auto",
+              }}
             >
               <BioHeadlineReveal />
 
               <ScrambleBioText
-                text={"Based in Seattle, WA.\nConstantly collecting free magazines, making tea."}
+                text={
+                  "Based in Seattle, WA.\nConstantly collecting free magazines, making tea."
+                }
               />
             </div>
           </section>
@@ -304,15 +372,31 @@ export default function Home() {
             className="flex items-start justify-center w-full pb-4 md:pb-12"
             style={{ paddingInline: 16, paddingTop: 16 }}
           >
-            <div 
-              className="flex flex-col flex-1 min-w-0" 
-              style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+            <div
+              className="flex flex-col flex-1 min-w-0"
+              style={{
+                gap: 16,
+                maxWidth: "var(--max-width-content)",
+                width: "100%",
+                margin: "0 auto",
+              }}
+            >
+              <div
+                className="grid grid-cols-1 md:grid-cols-2 w-full"
+                style={{ gap: 16 }}
               >
-              <div className="grid grid-cols-1 md:grid-cols-2 w-full" style={{ gap: 16 }}>
-                <FeaturedCoverCard card={SPUR_CARD} gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1">
+                <FeaturedCoverCard
+                  card={SPUR_CARD}
+                  gridClassName="order-1 md:order-none md:col-start-1 md:row-start-1"
+                >
                   <div
                     className="absolute flex items-center justify-center"
-                    style={{ top: 0, left: 0, right: 0, bottom: SPUR_CARD.textClearancePx }}
+                    style={{
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: SPUR_CARD.textClearancePx,
+                    }}
                   >
                     <video
                       src="/videos/spur/spur-adding-content.mp4"
@@ -321,12 +405,15 @@ export default function Home() {
                       muted
                       playsInline
                       className="w-auto object-contain"
-                      style={{ height: "90%"}}
+                      style={{ height: "90%" }}
                     />
                   </div>
                 </FeaturedCoverCard>
 
-                <FeaturedCoverCard card={DUBCOIN_CARD} gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1">
+                <FeaturedCoverCard
+                  card={DUBCOIN_CARD}
+                  gridClassName="order-2 md:order-none md:col-start-2 md:row-start-1"
+                >
                   <picture>
                     <source
                       media="(min-width: 768px)"
@@ -351,7 +438,7 @@ export default function Home() {
                     className="object-cover"
                   />
                 </FeaturedCoverCard> */}
-                
+
                 {/* <FeaturedCoverCard card={DUBHACKS_2026_CARD} gridClassName="order-4 md:order-none md:col-start-2 md:row-start-2">
                   <video
                     src="/videos/Sponsor-Us-Button-Animation-DH26-Jitter.mp4"
@@ -372,9 +459,14 @@ export default function Home() {
             className="flex flex-col items-start w-full pb-4 md:pb-12"
             style={{ padding: 16 }}
           >
-            <div 
-              className="flex flex-col md:flex-row items-start w-full" 
-              style={{ gap: 16, maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+            <div
+              className="flex flex-col md:flex-row items-start w-full"
+              style={{
+                gap: 16,
+                maxWidth: "var(--max-width-content)",
+                width: "100%",
+                margin: "0 auto",
+              }}
             >
               {/* text */}
               <div
@@ -409,19 +501,22 @@ export default function Home() {
                   }}
                 >
                   <p style={{ margin: 0 }}>
-                    I&apos;m a 4th-year undergrad student pursuing Informatics at the
-                    University of Washington in Seattle.
+                    I&apos;m a 4th-year undergrad student pursuing Informatics
+                    at the University of Washington in Seattle.
                   </p>
                   <p style={{ margin: 0 }}>
-                    I&apos;m driven by a desire to make technology more accessible and more
-                    magical ✨, especially through women-centered tech initiatives.
+                    I&apos;m driven by a desire to make technology more
+                    accessible and more magical ✨, especially through
+                    women-centered tech initiatives.
                   </p>
                 </div>
               </div>
 
               {/* 1/3 spacer */}
-              <div className="hidden md:block self-stretch shrink-0 bg-white" style={{ width: 223 }} />
-
+              <div
+                className="hidden md:block self-stretch shrink-0 bg-white"
+                style={{ width: 223 }}
+              />
             </div>
           </section>
 
@@ -463,12 +558,19 @@ export default function Home() {
             className="flex flex-col items-start w-full"
             style={{ paddingInline: 16, paddingTop: 16, paddingBottom: 200 }}
           >
-            <div 
+            <div
               className="flex flex-col md:flex-row items-start w-full gap-8 md:gap-16"
-              style={{ maxWidth: "var(--max-width-content)", width: "100%", margin: "0 auto" }}
+              style={{
+                maxWidth: "var(--max-width-content)",
+                width: "100%",
+                margin: "0 auto",
+              }}
             >
               {/* left: grid + loves */}
-              <div className="flex flex-col md:flex-row flex-1 min-w-0 w-full" style={{ gap: 32 }}>
+              <div
+                className="flex flex-col md:flex-row flex-1 min-w-0 w-full"
+                style={{ gap: 32 }}
+              >
                 {/* practices / toolkit grid */}
                 <div
                   data-cursor="text-regular"
@@ -540,9 +642,10 @@ export default function Home() {
 
                 {/* loves */}
                 <div
-                  data-cursor="text-regular" 
-                  className="flex flex-col w-full md:w-[145px] shrink-0" 
-                  style={{ gap: 16 }}>
+                  data-cursor="text-regular"
+                  className="flex flex-col w-full md:w-[145px] shrink-0"
+                  style={{ gap: 16 }}
+                >
                   <span
                     style={{
                       fontFamily: "var(--font-mono)",
@@ -566,7 +669,15 @@ export default function Home() {
                     }}
                   >
                     {LOVES.map((item) => (
-                      <span key={item} onMouseEnter={() => setActiveLove(item)} onFocus={() => setActiveLove(item)} tabIndex={0} className="cursor-pointer hover:text-lime-600 focus:text-lime-600">{item}</span>
+                      <span
+                        key={item}
+                        onMouseEnter={() => setActiveLove(item)}
+                        onFocus={() => setActiveLove(item)}
+                        tabIndex={0}
+                        className="cursor-pointer hover:text-lime-600 focus:text-lime-600"
+                      >
+                        {item}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -578,29 +689,33 @@ export default function Home() {
                 style={{ minHeight: 546 }}
               >
                 <div className="absolute inset-0 bg-[#f5f4f0]">
-                  {Object.entries(LOVE_PHOTOS).flatMap(([love, files]) => files.map((file, i) => {
-                    const isActive = activeLove === love;
+                  {Object.entries(LOVE_PHOTOS).flatMap(([love, files]) =>
+                    files.map((file, i) => {
+                      const isActive = activeLove === love;
 
-                    return (
-                      <Image
-                        key={`${love}-${file}`}
-                        src={`/for-portfolio-about/${file}`}
-                        alt={file.replace(/[-.].*/, "").replaceAll("-", " ")}
-                        width={LOVE_PHOTO_DIMENSIONS[file][0]}
-                        height={LOVE_PHOTO_DIMENSIONS[file][1]}
-                        className="absolute h-auto max-w-none shadow-lg transition-all duration-500"
-                        style={{
-                          width: `${24 + (i % 3) * 4}%`,
-                          left: `${(i * 37) % 73}%`,
-                          top: `${(i * 53) % 66}%`,
-                          transform: `rotate(${(i % 2 ? 1 : -1) * (3 + i % 7)}deg)`,
-                          opacity: activeLove === null || isActive ? 1 : .55,
-                          zIndex: isActive ? 30 : i + 1,
-                          scale: isActive ? "1.18" : "1",
-                        }}
-                      />
-                    );
-                  }))}
+                      return (
+                        <Image
+                          key={`${love}-${file}`}
+                          src={`/for-portfolio-about/${file}`}
+                          alt={file.replace(/[-.].*/, "").replaceAll("-", " ")}
+                          width={LOVE_PHOTO_DIMENSIONS[file][0]}
+                          height={LOVE_PHOTO_DIMENSIONS[file][1]}
+                          className="absolute h-auto max-w-none shadow-lg transition-all duration-500"
+                          style={{
+                            width: `${24 + (i % 3) * 4}%`,
+                            left: `${(i * 37) % 73}%`,
+                            top: `${(i * 53) % 66}%`,
+                            transform: `rotate(${
+                              (i % 2 ? 1 : -1) * (3 + (i % 7))
+                            }deg)`,
+                            opacity: activeLove === null || isActive ? 1 : 0.55,
+                            zIndex: isActive ? 30 : i + 1,
+                            scale: isActive ? "1.18" : "1",
+                          }}
+                        />
+                      );
+                    })
+                  )}
                 </div>
               </div>
             </div>
@@ -610,8 +725,6 @@ export default function Home() {
         {/* ══ FOOTER ════════════════════════════════════════════════ */}
         <Footer />
       </div>
-      
     </>
   );
 }
-
