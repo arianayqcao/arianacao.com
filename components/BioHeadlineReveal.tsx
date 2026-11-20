@@ -55,35 +55,35 @@ export default function BioHeadlineReveal() {
       }}
     >
       Ariana is an Informatics student at the University of Washington 
-      crafting playful, quietly delightful experiences where digital 
+      crafting playful and quietly delightful experiences where digital 
       design meets physical interaction.{" "}
-      <span className="block md:hidden" aria-hidden="true" />
-      <span
+      {/* <span className="block md:hidden" aria-hidden="true" /> */}
+      {/* <span
         style={{
           textDecoration: "underline",
-          textDecorationColor: "#7bc100",
+          textDecorationColor: "#93f200",
           textDecorationThickness: "12%",
           textDecorationSkipInk: "none",
         }}
       >
-        intuitive
-      </span>
+        playful
+      </span> */}
       ,{" "}
-      <span className="block md:hidden" aria-hidden="true" />
-      <span
+      {/* <span className="block md:hidden" aria-hidden="true" /> */}
+      {/* <span
         style={{
           textDecoration: "underline",
-          textDecorationColor: "#7bc100",
+          textDecorationColor: "#93f200",
           textDecorationThickness: "12%",
           textDecorationSkipInk: "none",
         }}
       >
         inclusive
-      </span>
+      </span> */}
       ,&nbsp;
-      <span className="block md:hidden" aria-hidden="true" />
+      {/* <span className="block md:hidden" aria-hidden="true" /> */}
       and{" "}
-      <span
+      {/* <span
         style={{
           textDecoration: "underline",
           textDecorationColor: "#93f200",
@@ -92,7 +92,7 @@ export default function BioHeadlineReveal() {
         }}
       >
         quietly delightful
-      </span>
+      </span> */}
       .
     </p>
   );
